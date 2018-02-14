@@ -78,8 +78,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
     def select_convo(self,topic,intcount=0,):
 
         if topic!='dog':
-            return DialogueActionSleep(
-                sleep_time=0,
+            return DialogueActionTalkNoResponse(
+                utterance="hey",
                 cancelable=False,
                 next_action=None
             )

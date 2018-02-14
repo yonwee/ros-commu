@@ -17,54 +17,111 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
         """
+        return Dialogue(DialogueLibraryQuiz.select_convo(self,topic))
 
-        return Dialogue(
-            DialogueActionLook(
-                look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
+        # return Dialogue(
+        #     DialogueActionLook(
+        #         look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
+        #         cancelable=False,
+        #         next_action=
+        #         DialogueActionSleep(
+        #             sleep_time=1,
+        #             cancelable=False,
+        #             next_action=
+        #             DialogueActionTalkBinaryResponse(
+        #                 utterance="Do you also see {}?".format(self.__add_a_to_noun(self.__get_object_noun(topic))),
+        #                 cancelable=False,
+        #                 next_action_yes=
+        #                 DialogueActionTalkNoResponse(
+        #                     utterance=random.choice(self.positive_response_list),
+        #                     cancelable=False,
+        #                     next_action=
+        #                     DialogueActionLook(
+        #                         look_type=DialogueActionLook.LOOK_TYPE_WATCH_ENVIRONMENT,
+        #                         cancelable=True,
+        #                         next_action=None
+        #                     )
+        #                 ),
+        #                 next_action_no=
+        #                 DialogueActionLook(
+        #                     look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_TOPIC,
+        #                     cancelable=False,
+        #                     next_action=
+        #                     DialogueActionTalkNoResponse(
+        #                         utterance=random.choice(self.negative_response_list),
+        #                         cancelable=False,
+        #                         next_action=
+        #                         DialogueActionSleep(
+        #                             sleep_time=2,
+        #                             cancelable=False,
+        #                             next_action=DialogueActionLook(
+        #                                 look_type=DialogueActionLook.LOOK_TYPE_WATCH_ENVIRONMENT,
+        #                                 cancelable=True,
+        #                                 next_action=None
+        #                             )
+        #                         )
+        #                     ),
+        #                 )
+        #             )
+        #         )
+        #     )
+        # )
+
+
+
+    # import requests
+    # r = requests.get("http://example.com/foo/bar")
+    # print r.header
+    #
+    # print function
+
+    def select_convo(self,topic,intcount=0,):
+
+        if topic!='dog':
+            return DialogueActionSleep(
+                sleep_time=0,
                 cancelable=False,
-                next_action=
-                DialogueActionSleep(
-                    sleep_time=1,
-                    cancelable=False,
-                    next_action=
-                    DialogueActionTalkBinaryResponse(
-                        utterance="Do you also see {}?".format(self.__add_a_to_noun(self.__get_object_noun(topic))),
-                        cancelable=False,
-                        next_action_yes=
-                        DialogueActionTalkNoResponse(
-                            utterance=random.choice(self.positive_response_list),
-                            cancelable=False,
-                            next_action=
-                            DialogueActionLook(
-                                look_type=DialogueActionLook.LOOK_TYPE_WATCH_ENVIRONMENT,
-                                cancelable=True,
-                                next_action=None
-                            )
-                        ),
-                        next_action_no=
-                        DialogueActionLook(
-                            look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_TOPIC,
-                            cancelable=False,
-                            next_action=
-                            DialogueActionTalkNoResponse(
-                                utterance=random.choice(self.negative_response_list),
-                                cancelable=False,
-                                next_action=
-                                DialogueActionSleep(
-                                    sleep_time=2,
-                                    cancelable=False,
-                                    next_action=DialogueActionLook(
-                                        look_type=DialogueActionLook.LOOK_TYPE_WATCH_ENVIRONMENT,
-                                        cancelable=True,
-                                        next_action=None
-                                    )
-                                )
-                            ),
-                        )
-                    )
+                next_action=None
+            )
+
+        else:
+            # change g1 to received code
+
+            #######################################################
+            # sample dog convo, query from server/dictionary later#
+            #######################################################
+            dog1 = {}
+            dog1[1] = {"utterance": "Are you interested in {}", "cancelable": "No","nextaction": "g11".format(self.__add_a_to_noun(self.__get_object_noun(topic)))}
+            dog1[2] = {"utterance": "And why is that so?", "cancelable": "No", "nextaction": "g12"}
+            dog1[3] = {"utterance": "And why is that so?", "cancelable": "No", "nextaction": "None", }
+            dog1['last_interaction'] = {'3'}  # not needed i think
+            # receive code here and assign it to something
+
+            chosen_reply = dog1
+            # change g1 to received code
+
+            lastintcount = chosen_reply['last_interaction']
+
+            return self.generating(intcount, lastintcount,topic)
+
+    def generating(self, intcount, lastintcount, topic, chosen_reply):
+
+        intcount += 1
+        # if intcount==lastintcount:
+        if chosen_reply[intcount]['nextaction'] == 'None':
+            return ("None")
+
+        else:
+            # for intcount<lastintcount:
+            # not needed if not using lastintcount
+            return (DialogueActionTalkNoResponse(
+                utterance=chosen_reply['intcount']['utterance'],
+                cancelable=chosen_reply['intcount']['cancelable'],
+                next_action=self.generating(self, intcount, lastintcount, chosen_reply)
                 )
             )
-        )
+
+
 
     def __add_a_to_noun(self, noun):
         # type: (str) -> str

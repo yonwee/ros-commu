@@ -30,7 +30,7 @@ to specify the offset of the camera relative to the robot. For more information 
     <param name="/commu_wrapper/debug_mode" value="$(arg debug-mode)"/>
     <param name="/commu_wrapper/classification_topic" value="$(arg classification-topic)"/>
 
-    <machine name="euclid" address="$(arg euclid)" default="never" user="euclid" password="euclid"/>
+    <machine name="euclid" address="$(arg euclid)" env-loader="/home/euclid/catkin_ws/devel/env.sh" default="never" user="euclid" password="euclid"/>
 
     <!-- Prevent caffe from printing massive amounts of useless info. -->
     <env name="GLOG_minloglevel" value="2"/>

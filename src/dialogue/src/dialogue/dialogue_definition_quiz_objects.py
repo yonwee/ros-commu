@@ -94,15 +94,15 @@ class DialogueLibraryQuiz(DialogueLibrary):
             dog1[1] = {"utterance": "Are you interested in {}", "cancelable": "No","nextaction": "g11".format(self.__add_a_to_noun(self.__get_object_noun(topic)))}
             dog1[2] = {"utterance": "And why is that so?", "cancelable": "No", "nextaction": "g12"}
             dog1[3] = {"utterance": "And why is that so?", "cancelable": "No", "nextaction": "None", }
-            dog1['last_interaction'] = {'3'}  # not needed i think
+            dog1["last_interaction"] = {3}  # not needed i think
             # receive code here and assign it to something
 
             chosen_reply = dog1
             # change g1 to received code
 
-            lastintcount = chosen_reply['last_interaction']
+            lastintcount = set.pop(chosen_reply["last_interaction"])
 
-            return self.generating(intcount, lastintcount,topic)
+            return self.generating(intcount,lastintcount,topic,chosen_reply)
 
     def generating(self, intcount, lastintcount, topic, chosen_reply):
 

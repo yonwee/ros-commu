@@ -102,7 +102,10 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
             lastintcount = set.pop(chosen_reply["last_interaction"])
 
-            return self.generating(intcount,lastintcount,topic,chosen_reply)
+            return DialogueActionTalkNoResponse(
+                utterance="doggo",
+                cancelable=False,
+                next_action=None)
 
     def generating(self, intcount, lastintcount, topic, chosen_reply):
 

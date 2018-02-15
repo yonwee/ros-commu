@@ -71,61 +71,6 @@ class DialogueLibraryQuiz(DialogueLibrary):
         # )
 
 
-
-    # import requests
-    # r = requests.get("http://example.com/foo/bar")
-    # print r.header
-    #
-    # print function
-
-    # def select_convo(self,topic,intcount=0,):
-    #
-    #     if topic!='dog':
-    #         return DialogueActionTalkNoResponse(
-    #             utterance="hey",
-    #             cancelable=False,
-    #             next_action=None
-    #         )
-    #
-    #     else:
-    #         # change g1 to received code
-    #
-    #         #######################################################
-    #         # sample dog convo, query from server/dictionary later#
-    #         #######################################################
-    #         dog1 = {}
-    #         dog1[1] = {"utterance": "Are you interested in {}", "cancelable": "No","nextaction": "g11".format(self.__add_a_to_noun(self.__get_object_noun(topic)))}
-    #         dog1[2] = {"utterance": "And why is that so?", "cancelable": "No", "nextaction": "g12"}
-    #         dog1[3] = {"utterance": "And why is that so?", "cancelable": "No", "nextaction": "None", }
-    #         dog1["last_interaction"] = {3}  # not needed i think
-    #         # receive code here and assign it to something
-    #
-    #         chosen_reply = dog1
-    #         # change g1 to received code
-    #
-    #         lastintcount = set.pop(chosen_reply["last_interaction"])
-    #
-    #         return self.generating(intcount,lastintcount,topic,chosen_reply)
-    #
-    # def generating(self,intcount,lastintcount,topic,chosen_reply):
-    #
-    #     intcount += 1
-    #     # if intcount==lastintcount:
-    #     if chosen_reply[intcount]['nextaction'] == 'None':
-    #         return ("None")
-    #
-    #     else:
-    #         # for intcount<lastintcount:
-    #         # not needed if not using lastintcount
-    #         return (DialogueActionTalkNoResponse(
-    #             utterance=chosen_reply['intcount']['utterance'],
-    #             cancelable=chosen_reply['intcount']['cancelable'],
-    #             next_action=self.generating(self, intcount, lastintcount, chosen_reply)
-    #             )
-    #         )
-
-
-
     def __add_a_to_noun(self, noun):
         # type: (str) -> str
 
@@ -156,36 +101,46 @@ class DialogueLibraryQuiz(DialogueLibrary):
         "I can help you. It's over here"
     ]
 
-
     def dialogue_string_test(self):
-
-        dia = self.generation()
+        i=1
+        cjdata = self.request_script()
+        dia = self.generation(cjdata,i)
 
         return eval(dia)
 
-    def generation(self):
+    def request_script(self):
+            convo = urllib2.urlopen('http://192.168.1.225:8080/?json={test}')
+            cjson = convo.read()
+            cjdata = json.loads(cjson)
+            return cjdata
 
-        # if cjson['next_action'] == None:
-        #     return 'None'
-        # if i==0:
-        #     fulldialogue = ''
+    def generation(self,cjdata,i):
 
         fulldialogue = ''
 
-        convo = urllib2.urlopen('http://192.168.1.225:8080/?json={gencow}')
-        cjson = convo.read()
-
         dialogueA = 'DialogueActionTalkNoResponse('
         dialogueU = 'utterance="'
-        dialogueC = '",cancelable="False'
-        dialogueN = '",next_action=None)'
+        dialogueC = '",cancelable="'
+        dialogueN = '",next_action='
 
-        fulldialogue += dialogueA
-        fulldialogue += dialogueU
-        fulldialogue += cjson[2:20]
-        fulldialogue += dialogueC
-        fulldialogue += dialogueN
+        try:
+            i+=1
 
-        # i+=0
+            # utterance  = u
+            # cancelable = c
+            # nextaction = n
+
+            keyvar = str(i)
+
+            fulldialogue += dialogueA
+            fulldialogue += dialogueU
+            fulldialogue += cjdata[keyvar]['1']
+            fulldialogue += dialogueC
+            fulldialogue += cjdata[keyvar]['2']
+            fulldialogue += dialogueN
+            fulldialogue += self.generation(cjdata,i)
+
+        except KeyError:
+            return "None"
 
         return fulldialogue

@@ -156,4 +156,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
 
     def dialogue_string_test(self):
-         return eval("DialogueActionTalkNoResponse(utterance='one',cancelable=False,next_action=DialogueActionTalkNoResponse(utterance='two',next_action=None)))")
+
+        dia = "DialogueActionTalkNoResponse(utterance='one',cancelable=False,next_action=DialogueActionTalkNoResponse(utterance='two',cancelable=False,next_action=None))"
+
+        return eval(dia)

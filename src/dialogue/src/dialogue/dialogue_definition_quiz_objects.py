@@ -17,7 +17,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
         """
-        return Dialogue(DialogueLibraryQuiz.select_convo(self,topic))
+        #return Dialogue(DialogueLibraryQuiz.select_convo(self,topic))
+        return Dialogue(DialogueLibraryQuiz.dialogue_string_test(self))
 
         # return Dialogue(
         #     DialogueActionLook(
@@ -102,12 +103,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
             lastintcount = set.pop(chosen_reply["last_interaction"])
 
-            return DialogueActionTalkNoResponse(
-                utterance="doggo",
-                cancelable=False,
-                next_action=None)
+            return self.generating(intcount,lastintcount,topic,chosen_reply)
 
-    def generating(self, intcount, lastintcount, topic, chosen_reply):
+    def generating(self,intcount,lastintcount,topic,chosen_reply):
 
         intcount += 1
         # if intcount==lastintcount:
@@ -155,3 +153,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         "It's over there",
         "I can help you. It's over here"
     ]
+
+
+    def dialogue_string_test(self):
+         return eval("DialogueActionTalkNoResponse(utterance='one',cancelable=False,next_action=DialogueActionTalkNoResponse(utterance='two',next_action=None)))")

@@ -4,6 +4,8 @@ from dialogue import Dialogue
 from dialogue_action import *
 from dialogue_manager import DialogueLibrary
 
+import urllib2
+import json
 
 class DialogueLibraryQuiz(DialogueLibrary):
     """
@@ -76,51 +78,51 @@ class DialogueLibraryQuiz(DialogueLibrary):
     #
     # print function
 
-    def select_convo(self,topic,intcount=0,):
-
-        if topic!='dog':
-            return DialogueActionTalkNoResponse(
-                utterance="hey",
-                cancelable=False,
-                next_action=None
-            )
-
-        else:
-            # change g1 to received code
-
-            #######################################################
-            # sample dog convo, query from server/dictionary later#
-            #######################################################
-            dog1 = {}
-            dog1[1] = {"utterance": "Are you interested in {}", "cancelable": "No","nextaction": "g11".format(self.__add_a_to_noun(self.__get_object_noun(topic)))}
-            dog1[2] = {"utterance": "And why is that so?", "cancelable": "No", "nextaction": "g12"}
-            dog1[3] = {"utterance": "And why is that so?", "cancelable": "No", "nextaction": "None", }
-            dog1["last_interaction"] = {3}  # not needed i think
-            # receive code here and assign it to something
-
-            chosen_reply = dog1
-            # change g1 to received code
-
-            lastintcount = set.pop(chosen_reply["last_interaction"])
-
-            return self.generating(intcount,lastintcount,topic,chosen_reply)
-
-    def generating(self,intcount,lastintcount,topic,chosen_reply):
-
-        intcount += 1
-        # if intcount==lastintcount:
-        if chosen_reply[intcount]['nextaction'] == 'None':
-            return ("None")
-
-        else:
-            # for intcount<lastintcount:
-            # not needed if not using lastintcount
-            return (DialogueActionTalkNoResponse(
-                utterance=chosen_reply['intcount']['utterance'],
-                cancelable=chosen_reply['intcount']['cancelable'],
-                next_action=self.generating(self, intcount, lastintcount, chosen_reply)
-                )
-            )
+    # def select_convo(self,topic,intcount=0,):
+    #
+    #     if topic!='dog':
+    #         return DialogueActionTalkNoResponse(
+    #             utterance="hey",
+    #             cancelable=False,
+    #             next_action=None
+    #         )
+    #
+    #     else:
+    #         # change g1 to received code
+    #
+    #         #######################################################
+    #         # sample dog convo, query from server/dictionary later#
+    #         #######################################################
+    #         dog1 = {}
+    #         dog1[1] = {"utterance": "Are you interested in {}", "cancelable": "No","nextaction": "g11".format(self.__add_a_to_noun(self.__get_object_noun(topic)))}
+    #         dog1[2] = {"utterance": "And why is that so?", "cancelable": "No", "nextaction": "g12"}
+    #         dog1[3] = {"utterance": "And why is that so?", "cancelable": "No", "nextaction": "None", }
+    #         dog1["last_interaction"] = {3}  # not needed i think
+    #         # receive code here and assign it to something
+    #
+    #         chosen_reply = dog1
+    #         # change g1 to received code
+    #
+    #         lastintcount = set.pop(chosen_reply["last_interaction"])
+    #
+    #         return self.generating(intcount,lastintcount,topic,chosen_reply)
+    #
+    # def generating(self,intcount,lastintcount,topic,chosen_reply):
+    #
+    #     intcount += 1
+    #     # if intcount==lastintcount:
+    #     if chosen_reply[intcount]['nextaction'] == 'None':
+    #         return ("None")
+    #
+    #     else:
+    #         # for intcount<lastintcount:
+    #         # not needed if not using lastintcount
+    #         return (DialogueActionTalkNoResponse(
+    #             utterance=chosen_reply['intcount']['utterance'],
+    #             cancelable=chosen_reply['intcount']['cancelable'],
+    #             next_action=self.generating(self, intcount, lastintcount, chosen_reply)
+    #             )
+    #         )
 
 
 
@@ -157,6 +159,33 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
     def dialogue_string_test(self):
 
-        dia = "DialogueActionTalkNoResponse(utterance='one',cancelable=False,next_action=DialogueActionTalkNoResponse(utterance='two',cancelable=False,next_action=None))"
+        dia = self.generation()
 
         return eval(dia)
+
+    def generation(self):
+
+        # if cjson['next_action'] == None:
+        #     return 'None'
+        # if i==0:
+        #     fulldialogue = ''
+
+        fulldialogue = ''
+
+        convo = urllib2.urlopen('http://192.168.1.225:8080/?json={gencow}')
+        cjson = convo.read()
+
+        dialogueA = 'DialogueActionTalkNoResponse('
+        dialogueU = 'utterance="'
+        dialogueC = '",cancelable="False'
+        dialogueN = '",next_action=None)'
+
+        fulldialogue += dialogueA
+        fulldialogue += dialogueU
+        fulldialogue += cjson[2:20]
+        fulldialogue += dialogueC
+        fulldialogue += dialogueN
+
+        # i+=0
+
+        return fulldialogue

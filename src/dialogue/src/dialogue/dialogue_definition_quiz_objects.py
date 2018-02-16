@@ -106,7 +106,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
         cjdata = self.request_script()
         dia = self.generation(cjdata,i)
 
-        return (dia)
+        return eval("DialogueActionTalkNoResponse(utterance='heya',cancelable='False',next_action=DialogueActionTalkNoResponse(utterance='hey',cancelable='False',next_action=None))")
+
 
     def request_script(self):
             convo = urllib2.urlopen('http://192.168.1.225:8080/?json={tedt}')
@@ -118,10 +119,10 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
         fulldialogue = ''
 
-        dialogueA = 'DialogueActionTalkNoResponse('
-        dialogueU = 'utterance="'
-        dialogueC = '",cancelable="'
-        dialogueN = '",next_action='
+        dialogueA = "DialogueActionTalkNoResponse("
+        dialogueU = "utterance='"
+        dialogueC = "',cancelable='"
+        dialogueN = "',next_action="
 
         try:
             i+=1

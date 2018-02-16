@@ -140,6 +140,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         i=1
         cjdata = self.request_script()
         #dia = self.generation(cjdata,i)
+        keyvar = "1"
         dia = cjdata[keyvar]['1']
 
         return dia

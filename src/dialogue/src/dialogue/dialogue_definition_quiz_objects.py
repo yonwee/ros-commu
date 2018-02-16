@@ -140,9 +140,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
             fulldialogue += dialogueA
             fulldialogue += dialogueU
-            fulldialogue += cjdata[keyvar]['1']
+            fulldialogue += cjdata[keyvar]['u']
             fulldialogue += dialogueC
-            fulldialogue += cjdata[keyvar]['2']
+            fulldialogue += cjdata[keyvar]['c']
             fulldialogue += dialogueN
             fulldialogue += self.generation(cjdata,i)
 

@@ -185,6 +185,4 @@ class DialogueLibraryQuiz(DialogueLibrary):
         return fulldialogue
     
     def funman(self):
-        x = exec(self.dialogue_string_test())
-        return x
-
+        return exec(self.dialogue_string_test())

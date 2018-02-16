@@ -126,8 +126,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
         dialogueA = "DialogueActionTalkNoResponse("
         dialogueU = "utterance='"
-        dialogueC = "',cancelable='"
-        dialogueN = "',next_action="
+        dialogueC = "',cancelable="
+        dialogueN = ",next_action="
 
         try:
             i+=1
@@ -149,4 +149,4 @@ class DialogueLibraryQuiz(DialogueLibrary):
         except KeyError:
             return "None"+ ')'*(i-2)
 
-        return fulldialogue
+        return DialogueActionTalkNoResponse(utterance="heya",cancelable=False,next_action=DialogueActionTalkNoResponse(utterance="heyb",cancelable=False,next_action=None))

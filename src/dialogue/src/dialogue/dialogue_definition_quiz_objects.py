@@ -37,7 +37,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                         cancelable=False,
                         next_action_yes=
                         DialogueActionTalkNoResponse(
-                            utterance=self.dialogue_string_test(),
+                            utterance=random.choice(self.positive_response_list),
                             cancelable=False,
                             next_action=
                             DialogueActionLook(
@@ -132,7 +132,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         "It's over there",
         "I can help you. It's over here"
     ]
-    """
+    
 
     def dialogue_string_test(self):
         i=1
@@ -178,3 +178,4 @@ class DialogueLibraryQuiz(DialogueLibrary):
             return "None"+ ')'
 
         return fulldialogue
+        """

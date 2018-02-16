@@ -106,8 +106,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         i=1
         cjdata = self.request_script()
         #dia = self.generation(cjdata,i)
-        beforedia = str(DialogueActionTalkNoResponse(utterance='heya',cancelable=False,next_action=DialogueActionTalkNoResponse(utterance='hey',cancelable=False,next_action=None)))
-        dia = beforedia
+        dia = repr(self.generation(cjdata,i))
         return eval(dia)
 
 
@@ -150,4 +149,5 @@ class DialogueLibraryQuiz(DialogueLibrary):
         except KeyError:
             return "None"+ ')'*(i-2)
 
-        return DialogueActionTalkNoResponse(utterance="heya",cancelable=False,next_action=DialogueActionTalkNoResponse(utterance="heyb",cancelable=False,next_action=None))
+        return fulldialogue
+

@@ -107,7 +107,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         cjdata = self.request_script()
         dia = self.generation(cjdata,i)
 
-        return eval(dia)
+        return eval("DialogueActionTalkNoResponse(utterance='hey',cancelable=False,next_action=DialogueActionTalkNoResponse(utterance='hey',cancelable=False,next_action=None))")
 
 
     def request_script(self):

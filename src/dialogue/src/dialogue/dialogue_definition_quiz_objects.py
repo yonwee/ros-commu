@@ -106,7 +106,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         i=1
         cjdata = self.request_script()
         #dia = self.generation(cjdata,i)
-        dia = "DialogueActionTalkNoResponse(utterance="heya",cancelable=False,next_action=DialogueActionTalkNoResponse(utterance="heyb",cancelable=False,next_action=None))"
+        dia = "DialogueActionTalkNoResponse(utterance='heya',cancelable=False,next_action=DialogueActionTalkNoResponse(utterance='heyb',cancelable=False,next_action=None))"
         return DialogueActionTalkNoResponse(utterance='hey',cancelable=False,next_action=DialogueActionTalkNoResponse(utterance='hey',cancelable=False,next_action=None))
 
 

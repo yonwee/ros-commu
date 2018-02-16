@@ -20,8 +20,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :return:        The Dialogue concerning the object.
         """
         #return Dialogue(DialogueLibraryQuiz.select_convo(self,topic))
-        #return Dialogue(DialogueLibraryQuiz.dialogue_string_test(self))
+        return Dialogue(DialogueLibraryQuiz.dialogue_string_test(self))
 
+        """
         return Dialogue(
             DialogueActionLook(
                 look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
@@ -140,7 +141,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         return eval(dia)
 
     def request_script(self):
-            convo = urllib2.urlopen('http://192.168.1.225:8080/?json={tedt}')
+            convo = urllib2.urlopen('http://192.168.1.225:8080/?json={test}')
             cjson = convo.read()
             cjdata = json.loads(cjson)
             return cjdata
@@ -155,13 +156,13 @@ class DialogueLibraryQuiz(DialogueLibrary):
         dialogueN = '",next_action='
 
         try:
-            i+=1
+            i=1
 
             # utterance  = u
             # cancelable = c
             # nextaction = n
 
-            keyvar = 'line'+ str(i)
+            keyvar = str(i)
 
             fulldialogue += dialogueA
             fulldialogue += dialogueU
@@ -172,7 +173,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
             fulldialogue += self.generation(cjdata,i)
 
         except KeyError:
-            return "None"+ ')'*(i-2)
+            return "None"+ ')'
 
         return fulldialogue
     """

@@ -132,6 +132,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         "It's over there",
         "I can help you. It's over here"
     ]
+    """
     
 
     def dialogue_string_test(self):
@@ -178,4 +179,4 @@ class DialogueLibraryQuiz(DialogueLibrary):
             return "None"+ ')'
 
         return fulldialogue
-        """
+

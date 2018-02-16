@@ -112,11 +112,6 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
     def request_script(self):
 
-            ##################RIP_requesting_from_server#########################
-            # convo = urllib2.urlopen('http://192.168.1.225:8080/?json={tedt}')##
-            # cjson = convo.read()                                              #
-            # cjdata = json.loads(cjson)                                       ##
-            #####################################################################
             cjdata = convos['convo' + str(random.randint(1, 6))]
             return cjdata
 

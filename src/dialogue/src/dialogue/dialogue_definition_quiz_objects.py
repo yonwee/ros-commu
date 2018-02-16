@@ -40,7 +40,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                             #utterance=random.choice(self.positive_response_list)
                             #utterance=self.dialogue_string_test(),
                             #exec(self.dialogue_string_test()),
-                            self.funman,
+                            self.funman(),
                             cancelable=False,
                             next_action=
                             DialogueActionLook(

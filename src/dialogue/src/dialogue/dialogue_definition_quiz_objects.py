@@ -37,9 +37,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
                         cancelable=False,
                         next_action_yes=
                         DialogueActionTalkNoResponse(
-                            #utterance=random.choice(self.positive_response_list),
-                            utterance=cjdata['1']['1']
-                            #utterance=self.dialogue_string_test(),
+                            #utterance=random.choice(self.positive_response_list)
+                            utterance=self.dialogue_string_test(),
                             #exec(self.dialogue_string_test()),
                             cancelable=False,
                             next_action=
@@ -143,7 +142,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
         cjdata = self.request_script()
         #dia = self.generation(cjdata,i)
         keyvar = "1"
-        dia = 'utterance="' + cjdata[keyvar]['1'] + '"'
+        #dia = 'utterance="' + cjdata[keyvar]['1'] + '"'
+        dia = cjdata[keyvar]['1']
         return dia
 
     def request_script(self):

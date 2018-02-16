@@ -109,7 +109,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         return eval(dia)
 
     def request_script(self):
-            convo = urllib2.urlopen('http://192.168.1.225:8080/?json={test}')
+            convo = urllib2.urlopen('http://192.168.1.225:8080/?json={tedt}')
             cjson = convo.read()
             cjdata = json.loads(cjson)
             return cjdata
@@ -130,7 +130,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
             # cancelable = c
             # nextaction = n
 
-            keyvar = str(i)
+            keyvar = 'line'+ str(i)
 
             fulldialogue += dialogueA
             fulldialogue += dialogueU
@@ -141,6 +141,6 @@ class DialogueLibraryQuiz(DialogueLibrary):
             fulldialogue += self.generation(cjdata,i)
 
         except KeyError:
-            return "None"
+            return "None"+ ')'*(i-2)
 
         return fulldialogue

@@ -20,7 +20,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :return:        The Dialogue concerning the object.
         """
         #return Dialogue(DialogueLibraryQuiz.select_convo(self,topic))
-        return Dialogue(DialogueLibraryQuiz.dialogue_string_test(self))
+        return Dialogue(dialogue_string_test(self))
 
         """
         return Dialogue(

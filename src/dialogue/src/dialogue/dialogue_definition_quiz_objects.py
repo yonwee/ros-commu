@@ -3,6 +3,7 @@ import random
 from dialogue import Dialogue
 from dialogue_action import *
 from dialogue_manager import DialogueLibrary
+from dialogue_dictionary import *
 
 import urllib2
 import json
@@ -104,15 +105,19 @@ class DialogueLibraryQuiz(DialogueLibrary):
     def dialogue_string_test(self):
         i=1
         cjdata = self.request_script()
-        dia = self.generation(cjdata,i)
+        dia = str(self.generation(cjdata,i))
 
-        return eval("DialogueActionTalkNoResponse(utterance='heya',cancelable='False',next_action=DialogueActionTalkNoResponse(utterance='hey',cancelable='False',next_action=None))")
+        return eval(dia)
 
 
     def request_script(self):
-            convo = urllib2.urlopen('http://192.168.1.225:8080/?json={tedt}')
-            cjson = convo.read()
-            cjdata = json.loads(cjson)
+
+            ##################RIP_requesting_from_server#########################
+            # convo = urllib2.urlopen('http://192.168.1.225:8080/?json={tedt}')##
+            # cjson = convo.read()                                              #
+            # cjdata = json.loads(cjson)                                       ##
+            #####################################################################
+            cjdata = convos['convo' + str(random.randint(1, 6))]
             return cjdata
 
     def generation(self,cjdata,i):

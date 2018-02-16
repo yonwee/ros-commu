@@ -38,8 +38,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
                         next_action_yes=
                         DialogueActionTalkNoResponse(
                             #utterance=random.choice(self.positive_response_list),
+                            utterance=cjdata['1']['1']
                             #utterance=self.dialogue_string_test(),
-                            exec self.dialogue_string_test(),
+                            #exec(self.dialogue_string_test()),
                             cancelable=False,
                             next_action=
                             DialogueActionLook(

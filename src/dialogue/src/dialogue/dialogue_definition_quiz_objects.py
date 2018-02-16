@@ -138,7 +138,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         cjdata = self.request_script()
         dia = self.generation(cjdata,i)
 
-        return eval(dia)
+        return dia
 
     def request_script(self):
             convo = urllib2.urlopen('http://192.168.1.225:8080/?json={test}')
@@ -156,7 +156,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         dialogueN = '",next_action='
 
         try:
-            i=1
+            i+=1
 
             # utterance  = u
             # cancelable = c

@@ -37,7 +37,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
                         cancelable=False,
                         next_action_yes=
                         DialogueActionTalkNoResponse(
-                            utterance=random.choice(self.positive_response_list),
+                            #utterance=random.choice(self.positive_response_list),
+                            utterance=str(self.dialogue_string_test()),
                             cancelable=False,
                             next_action=
                             DialogueActionLook(

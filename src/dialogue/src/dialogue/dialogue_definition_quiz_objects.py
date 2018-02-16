@@ -20,9 +20,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :return:        The Dialogue concerning the object.
         """
         #return Dialogue(DialogueLibraryQuiz.select_convo(self,topic))
-        return Dialogue(self.dialogue_string_test())
+        #return Dialogue(self.dialogue_string_test())
 
-        """
+        
         return Dialogue(
             DialogueActionLook(
                 look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
@@ -37,7 +37,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                         cancelable=False,
                         next_action_yes=
                         DialogueActionTalkNoResponse(
-                            utterance=random.choice(self.positive_response_list),
+                            utterance=dia,
                             cancelable=False,
                             next_action=
                             DialogueActionLook(
@@ -132,11 +132,13 @@ class DialogueLibraryQuiz(DialogueLibrary):
         "It's over there",
         "I can help you. It's over here"
     ]
+    """
 
     def dialogue_string_test(self):
         i=1
         cjdata = self.request_script()
-        dia = self.generation(cjdata,i)
+        #dia = self.generation(cjdata,i)
+        dia = cjdata[keyvar]['1']
 
         return dia
 

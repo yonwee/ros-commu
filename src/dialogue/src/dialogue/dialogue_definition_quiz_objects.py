@@ -37,7 +37,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                         cancelable=False,
                         next_action_yes=
                         DialogueActionTalkNoResponse(
-                            utterance=dia,
+                            utterance=self.dialogue_string_test(),
                             cancelable=False,
                             next_action=
                             DialogueActionLook(

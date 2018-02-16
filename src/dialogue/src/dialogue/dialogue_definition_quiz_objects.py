@@ -105,7 +105,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
     def dialogue_string_test(self):
         i=1
         cjdata = self.request_script()
-        dia = str(self.generation(cjdata,i))
+        dia = self.generation(cjdata,i)
 
         return eval(dia)
 
@@ -149,4 +149,4 @@ class DialogueLibraryQuiz(DialogueLibrary):
         except KeyError:
             return "None"+ ')'*(i-2)
 
-        return DialogueActionTalkNoResponse(utterance="heya",cancelable=False,next_action=DialogueActionTalkNoResponse(utterance="heyb",cancelable=False,next_action=None))
+        return str(DialogueActionTalkNoResponse(utterance="heya",cancelable=False,next_action=DialogueActionTalkNoResponse(utterance="heyb",cancelable=False,next_action=None)))

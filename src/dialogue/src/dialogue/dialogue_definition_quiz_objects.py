@@ -39,7 +39,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                         DialogueActionTalkNoResponse(
                             #utterance=random.choice(self.positive_response_list),
                             #utterance=self.dialogue_string_test(),
-                            eval(self.dialogue_string_test()),
+                            exec(self.dialogue_string_test()),
                             cancelable=False,
                             next_action=
                             DialogueActionLook(

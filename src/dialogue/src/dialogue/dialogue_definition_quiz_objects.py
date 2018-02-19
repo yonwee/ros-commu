@@ -27,7 +27,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         linkget.close()
 
         return Dialogue(
-            mystr
+            compile(mystr,'mystr0','exec')
         )
 
     """
@@ -61,4 +61,3 @@ class DialogueLibraryQuiz(DialogueLibrary):
         "I can help you. It's over here"
     ]
     """
-

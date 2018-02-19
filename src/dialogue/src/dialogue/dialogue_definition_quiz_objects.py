@@ -26,9 +26,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         mystr = json.loads(mybytes)
         linkget.close()
 
-        return Dialogue(
-            compile(mystr,'mystr0','exec')
-        )
+        return exec mystr
 
     """
     def __add_a_to_noun(self, noun):

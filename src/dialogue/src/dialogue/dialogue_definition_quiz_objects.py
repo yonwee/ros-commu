@@ -21,7 +21,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :return:        The Dialogue concerning the object.
         """
         #return Dialogue(DialogueLibraryQuiz.select_convo(self,topic))
-        return Dialogue(eval(self.dialogue_string_test()))
+        return Dialogue(exec(self.dialogue_string_test()))
 
         # return Dialogue(
         #     DialogueActionLook(

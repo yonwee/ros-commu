@@ -3,7 +3,7 @@ import random
 from dialogue import Dialogue
 from dialogue_action import *
 from dialogue_manager import DialogueLibrary
-from dialogue_dictionary import *
+from dialogue_dictionary import convos
 
 import urllib2
 import json
@@ -21,7 +21,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :return:        The Dialogue concerning the object.
         """
         #return Dialogue(DialogueLibraryQuiz.select_convo(self,topic))
-        return Dialogue(DialogueLibraryQuiz.dialogue_string_test(self))
+        return Dialogue(eval(self.dialogue_string_test()))
 
         # return Dialogue(
         #     DialogueActionLook(
@@ -112,8 +112,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
     def request_script(self):
 
-            cjdata = convos['convo' + str(random.randint(1, 6))]
-            return cjdata
+        return convos['convo' + str(random.randint(1, 6))]
 
     def generation(self,cjdata,i):
 
@@ -135,9 +134,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
             fulldialogue += dialogueA
             fulldialogue += dialogueU
-            fulldialogue += cjdata[keyvar]['u']
+            fulldialogue += cjdata[keyvar]['u'] #u refers to sublist for utterance, change if server syntax changes
             fulldialogue += dialogueC
-            fulldialogue += cjdata[keyvar]['c']
+            fulldialogue += cjdata[keyvar]['c'] #c refers to sublist for cancelable, change if server syntax changes
             fulldialogue += dialogueN
             fulldialogue += self.generation(cjdata,i)
 

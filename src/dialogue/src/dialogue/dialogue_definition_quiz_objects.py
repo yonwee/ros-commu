@@ -7,6 +7,7 @@ from dialogue_manager import DialogueLibrary
 import json
 import urllib2
 
+
 class DialogueLibraryQuiz(DialogueLibrary):
     """
     A DialogueLibrary that can be used when a CommU robot sees an object. This plays 'object hide-and-seek' with the user.
@@ -19,15 +20,16 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
         """
-        
-        linkget = urllib.request.urlopen("http://localhost:192.168.1.171/?json={gen" + topic + "}")
+
+        linkget = urllib2.urlopen("http://localhost:192.168.1.171/?json={gen" + topic + "}")
         mybytes = linkget.read()
         mystr = json.loads(mybytes)
         linkget.close()
-        
+
         return Dialogue(
-            exec(mystr)
+            mystr
         )
+
     """
     def __add_a_to_noun(self, noun):
         # type: (str) -> str
@@ -59,3 +61,4 @@ class DialogueLibraryQuiz(DialogueLibrary):
         "I can help you. It's over here"
     ]
     """
+

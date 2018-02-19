@@ -1,4 +1,5 @@
 import random
+import rospy
 
 from dialogue import Dialogue
 from dialogue_action import *
@@ -21,7 +22,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :return:        The Dialogue concerning the object.
         """
         #return Dialogue(DialogueLibraryQuiz.select_convo(self,topic))
-        return Dialogue(exec(self.dialogue_string_test()))
+        return Dialogue(DialogueLibraryQuiz.dialogue_string_test())
 
         # return Dialogue(
         #     DialogueActionLook(
@@ -105,9 +106,11 @@ class DialogueLibraryQuiz(DialogueLibrary):
     def dialogue_string_test(self):
         i=1
         cjdata = self.request_script()
+        rospy.loginfo("cjdata is %s", cjdata)
         #dia = self.generation(cjdata,i)
         dia = repr(self.generation(cjdata,i))
-        return dia
+        rospy.loginfo("repr generation is %s", dia)
+        return DialogueActionTalkNoResponse(utterance='heya',cancelable=False,next_action=DialogueActionTalkNoResponse(utterance='heyb',cancelable=False,next_action=None))
 
 
     def request_script(self):

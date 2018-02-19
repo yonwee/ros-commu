@@ -13,24 +13,29 @@ class DialogueLibraryQuiz(DialogueLibrary):
     A DialogueLibrary that can be used when a CommU robot sees an object. This plays 'object hide-and-seek' with the user.
     """
 
+    global f
+    f = {}
+    
     def get_dialogue_for_topic(self, topic):
         # type: (str) -> Dialogue
         """
         Get the dialogue that can be used when CommU sees an object.
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
+        """
 
         #return Dialogue(DialogueLibraryQuiz.select_convo(self,topic))
         #return Dialogue(self.dialogue_string_test())
-        return Dialogue(DialogueActionTalkNoResponse(funman()))
-        """
-        return Dialogue(
-            DialogueActionTalkNoResponse(
-                            utterance="hey",
-                            cancelable=False,
-                            next_action=None
-            )
-        )
+        funman()
+        return Dialogue(DialogueActionTalkNoResponse(f[1], f[2], f[3]))
+        
+#         return Dialogue(
+#             DialogueActionTalkNoResponse(
+#                             utterance="hey",
+#                             cancelable=False,
+#                             next_action=None
+#             )
+#         )
 # """
 #             DialogueActionLook(
 #                 look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
@@ -118,16 +123,15 @@ class DialogueLibraryQuiz(DialogueLibrary):
         "I can help you. It's over here"
     ]
 
+#    def dialogue_string_test(self):
+#        i=1
+#        cjdata = self.request_script()
+#        #dia = self.generation(cjdata,i)
+#        keyvar = "1"
+#        #dia = 'utterance=' + cjdata[keyvar]['1']
+#        #dia = cjdata[keyvar]['1']
+#        return cjdata
 
-"""
-   def dialogue_string_test(self):
-       i=1
-       cjdata = self.request_script()
-       #dia = self.generation(cjdata,i)
-       keyvar = "1"
-       #dia = 'utterance=' + cjdata[keyvar]['1']
-       #dia = cjdata[keyvar]['1']
-       return cjdata
    def request_script(self):
        convo = urllib2.urlopen('http://192.168.1.225:8080/?json={tast}')
        cjson = convo.read()
@@ -137,13 +141,13 @@ class DialogueLibraryQuiz(DialogueLibrary):
    def funman(self):
        cjdata = self.request_script()
        keyvar = 1
-       while cjdata[keyvar]:
        utterance = cjdata[keyvar]['1'].format(self.__add_a_to_noun(self.__get_object_noun(topic))
        cancelable = cjdata[keyvar]['2']
        next_action = cjdata[keyvar]['3']
-       keyvar += 1
-       return utterance, cancelable, next_action
-
+       f[1]=utterance
+       f[2]=cancelable
+       f[3]=next_action                                      
+       keyvar += 1    
 
    def generation(self,cjdata,i):
        fulldialogue = ''
@@ -171,8 +175,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
    #def funman(self):
        #return exec(self.dialogue_string_test())
 
-   def funman2(self):
-       code = compile(dialogue_string_test, '<string>', 'exec')
-       exec (code)
+#    def funman2(self):
+#        code = compile(dialogue_string_test, '<string>', 'exec')
+#        exec (code)
 
-       """
+

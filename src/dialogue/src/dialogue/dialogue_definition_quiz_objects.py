@@ -7,7 +7,6 @@ from dialogue_manager import DialogueLibrary
 import json
 import urllib2
 
-global mystr
 
 class DialogueLibraryQuiz(DialogueLibrary):
     """
@@ -25,9 +24,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
         mybytes = linkget.read()
         mystr = json.loads(mybytes)
         linkget.close()
+        code = compile(mystr,'<Script>','exec')
+        exec (code)
 
-    code = compile(mystr,'<Script>','exec')
-    exec (code)
 
     """
     def __add_a_to_noun(self, noun):

@@ -21,8 +21,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
         """
         #return Dialogue(DialogueLibraryQuiz.select_convo(self,topic))
         #return Dialogue(self.dialogue_string_test())
+        return Dialogue(DialogueActionTalkNoResponse(funman()))
 
-        
+        """
         return Dialogue(
             DialogueActionLook(
                 look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
@@ -75,6 +76,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                 )
             )
         )
+        """
 
     def __add_a_to_noun(self, noun):
         # type: (str) -> str
@@ -107,39 +109,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
     ]
 
 
-    """
-    def __add_a_to_noun(self, noun):
-        # type: (str) -> str
-
-        if noun[0].lower() in ['a', 'e', 'i', 'o', 'u']:
-            return 'an ' + noun
-        else:
-            return 'a ' + noun
-
-    def __get_object_noun(self, label):
-        return self.object_proper_name_map.get(label, label)
-
-    object_proper_name_map = {
-        'aeroplane': 'airplane',
-        'diningtable': 'dining table',
-        'pottedplant': 'potted plant',
-        'tvmonitor': 'screen'
-    }
-
-    positive_response_list = [
-        "Cool, you're good!",
-        "Nice, me too!",
-        "I see it too!"
-    ]
-
-    negative_response_list = [
-        "I see it over there",
-        "It's over there",
-        "I can help you. It's over here"
-    ]
-    """
-    
-
+      
+ """
     def dialogue_string_test(self):
         i=1
         cjdata = self.request_script()
@@ -148,12 +119,23 @@ class DialogueLibraryQuiz(DialogueLibrary):
         #dia = 'utterance=' + cjdata[keyvar]['1']
         #dia = cjdata[keyvar]['1']
         return cjdata
+"""
 
     def request_script(self):
-            convo = urllib2.urlopen('http://192.168.1.225:8080/?json={tast}')
-            cjson = convo.read()
-            cjdata = json.loads(cjson)
-            return cjdata
+        convo = urllib2.urlopen('http://192.168.1.225:8080/?json={tast}')
+        cjson = convo.read()
+        cjdata = json.loads(cjson)
+        return cjdata
+    
+    def funman(self):
+        keyvar = 1
+        while cjdata[keyvar]:
+        utterance = cjdata[keyvar]['1'].format(self.__add_a_to_noun(self.__get_object_noun(topic))
+        cancelable = cjdata[keyvar]['2']
+        next_action = cjdata[keyvar]['3']
+     
+        
+"""
 
     def generation(self,cjdata,i):
 
@@ -185,6 +167,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
             return "None"+ ')'
 
         return fulldialogue
+
     
     #def funman(self):
         #return exec(self.dialogue_string_test())
@@ -192,3 +175,5 @@ class DialogueLibraryQuiz(DialogueLibrary):
     def funman2(self):
         code = compile(dialogue_string_test, '<string>', 'exec')
         exec (code)
+        
+        """

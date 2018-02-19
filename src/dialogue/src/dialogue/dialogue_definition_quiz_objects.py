@@ -39,11 +39,11 @@ class DialogueLibraryQuiz(DialogueLibrary):
                         DialogueActionTalkNoResponse(
                             #utterance=random.choice(self.positive_response_list)
                             #utterance=self.dialogue_string_test().format(self.__add_a_to_noun(self.__get_object_noun(topic))),
-                            utterance = "hey"
+                            utterance = "hey",
                             #exec(self.dialogue_string_test()),
                             #self.funman(),
                             #cancelable=False,
-                            cancelable=self.dialogue_string_test()
+                            cancelable=self.dialogue_string_test(),
                             next_action=
                             DialogueActionLook(
                                 look_type=DialogueActionLook.LOOK_TYPE_WATCH_ENVIRONMENT,

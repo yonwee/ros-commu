@@ -24,10 +24,11 @@ class DialogueLibraryQuiz(DialogueLibrary):
         linkget = urllib2.urlopen("http://192.168.1.171:8080/?json={gen" + topic + "}")
         mybytes = linkget.read()
         mystr = json.loads(mybytes)
+        code = compile(mystr,'<String>','exec')
         linkget.close()
 
         return Dialogue(
-            compile(mystr,'<String>','exec')
+            exec(code)
             )
 
     """

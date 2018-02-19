@@ -15,7 +15,6 @@ class DialogueLibraryQuiz(DialogueLibrary):
     """
 
     def get_dialogue_for_topic(self, topic):
-        def get_dialogue_for_topic(self, topic):
             # type: (str) -> Dialogue
             """
             Get the dialogue that can be used when CommU sees an object.

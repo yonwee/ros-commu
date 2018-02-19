@@ -23,7 +23,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
             :return:        The Dialogue concerning the object.
             """
 
-            convo = urllib2.urlopen('http://192.168.1.225:8080/?json={tast}') #add .format(topic) when full implemented
+            convo = urllib2.urlopen('http://192.168.1.225:8080/?json={test}') #add .format(topic) when full implemented
             cjson = convo.read()
             cjdata = json.loads(cjson)
             keyvar = 1

@@ -28,7 +28,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         linkget.close()
 
         return Dialogue(
-            exec(code)
+            code
             )
 
     """

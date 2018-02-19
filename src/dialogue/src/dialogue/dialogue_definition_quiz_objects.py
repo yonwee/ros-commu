@@ -5,7 +5,7 @@ from dialogue_action import *
 from dialogue_manager import DialogueLibrary
 
 import json
-import urllib.request
+import urllib2
 
 class DialogueLibraryQuiz(DialogueLibrary):
     """

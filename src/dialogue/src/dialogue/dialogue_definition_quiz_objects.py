@@ -21,7 +21,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :return:        The Dialogue concerning the object.
         """
 
-        linkget = urllib2.urlopen("http://192.168.1.171/?json={gen" + topic + "}")
+        linkget = urllib2.urlopen("http://192.168.1.171:8080/?json={gen" + topic + "}")
         mybytes = linkget.read()
         mystr = json.loads(mybytes)
         linkget.close()

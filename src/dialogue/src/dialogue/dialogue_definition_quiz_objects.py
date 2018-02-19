@@ -27,10 +27,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
         mystr = json.loads(mybytes)
         linkget.close()
 
-        return Dialogue(DialogueLibraryQuiz.dialogue_map)
-
-    def dialogue_map(self):
-        exec(mystr)
+        code = compile(mystr,'<Script>','exec')
+        exec (code)
 
     """
     def __add_a_to_noun(self, noun):

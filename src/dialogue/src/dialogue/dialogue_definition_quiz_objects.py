@@ -20,15 +20,14 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
         """
-
         global mystr
         linkget = urllib2.urlopen("http://192.168.1.171:8080/?json={gen" + topic + "}")
         mybytes = linkget.read()
         mystr = json.loads(mybytes)
         linkget.close()
 
-        code = compile(mystr,'<Script>','exec')
-        exec (code)
+    code = compile(mystr,'<Script>','exec')
+    exec (code)
 
     """
     def __add_a_to_noun(self, noun):

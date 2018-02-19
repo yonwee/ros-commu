@@ -25,64 +25,67 @@ class DialogueLibraryQuiz(DialogueLibrary):
         return Dialogue(DialogueActionTalkNoResponse(funman()))
         """
         return Dialogue(
-            DialogueActionTalkNoResponse(
-                utterance="Do you also see {}?".format(self.__add_a_to_noun(self.__get_object_noun(topic))),
+            DialogueActionLook(
+                look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
                 cancelable=False,
-                next_action_yes=None
-            )
-        )
-    """
-    DialogueActionLook(
-        look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
-        cancelable=False,
-        next_action=
-        DialogueActionSleep(
-            sleep_time=1,
-            cancelable=False,
-            next_action=
-            DialogueActionTalkBinaryResponse(
-                utterance="Do you also see {}?".format(self.__add_a_to_noun(self.__get_object_noun(topic))),
-                cancelable=False,
-                next_action_yes=
-                DialogueActionTalkNoResponse(
-                    #utterance=random.choice(self.positive_response_list)
-                    #utterance=self.dialogue_string_test().format(self.__add_a_to_noun(self.__get_object_noun(topic))),
-                    #self.funman2(),
-                    #exec(self.dialogue_string_test()),
-                    #self.funman(),
-                    cancelable=False,
-                    #cancelable=self.dialogue_string_test(),
-                    next_action=
-                    DialogueActionLook(
-                        look_type=DialogueActionLook.LOOK_TYPE_WATCH_ENVIRONMENT,
-                        cancelable=True,
-                        next_action=None
-                    )
-                ),
-                next_action_no=
-                DialogueActionLook(
-                    look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_TOPIC,
+                next_action=
+                DialogueActionSleep(
+                    sleep_time=1,
                     cancelable=False,
                     next_action=
-                    DialogueActionTalkNoResponse(
-                        utterance=random.choice(self.negative_response_list),
+                    DialogueActionTalkBinaryResponse(
+                        utterance="Do you also see {}?".format(self.__add_a_to_noun(self.__get_object_noun(topic))),
                         cancelable=False,
-                        next_action=
-                        DialogueActionSleep(
-                            sleep_time=2,
+                        next_action_yes=
+                        DialogueActionTalkNoResponse(
+                            utterance="hey",
                             cancelable=False,
-                            next_action=DialogueActionLook(
+                            next_action=None
+                            )
+                        )
+                    )
+                )
+            )
+    """
+    
+                            #utterance=random.choice(self.positive_response_list)
+                            #utterance=self.dialogue_string_test().format(self.__add_a_to_noun(self.__get_object_noun(topic))),
+                            #self.funman2(),
+                            #exec(self.dialogue_string_test()),
+                            #self.funman(),
+                            cancelable=False,
+                            #cancelable=self.dialogue_string_test(),
+                            next_action=
+                            DialogueActionLook(
                                 look_type=DialogueActionLook.LOOK_TYPE_WATCH_ENVIRONMENT,
                                 cancelable=True,
                                 next_action=None
                             )
+                        ),
+                        next_action_no=
+                        DialogueActionLook(
+                            look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_TOPIC,
+                            cancelable=False,
+                            next_action=
+                            DialogueActionTalkNoResponse(
+                                utterance=random.choice(self.negative_response_list),
+                                cancelable=False,
+                                next_action=
+                                DialogueActionSleep(
+                                    sleep_time=2,
+                                    cancelable=False,
+                                    next_action=DialogueActionLook(
+                                        look_type=DialogueActionLook.LOOK_TYPE_WATCH_ENVIRONMENT,
+                                        cancelable=True,
+                                        next_action=None
+                                    )
+                                )
+                            ),
                         )
-                    ),
+                    )
                 )
             )
-        )
-    )
-)        
+        )        
 """
 
     def __add_a_to_noun(self, noun):

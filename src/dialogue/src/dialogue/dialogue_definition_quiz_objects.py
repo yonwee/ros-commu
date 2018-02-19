@@ -29,17 +29,16 @@ class DialogueLibraryQuiz(DialogueLibrary):
             keyvar = 1
             rospy.loginfo("topic generation is %s", topic)
 
-            while cjdata[keyvar]['u']:
+            while keyvar in cjdata:
 
                 utterance = cjdata[keyvar]['u']  # u refers to sublist for utterance, change if server syntax changes
                 cancelable = cjdata[keyvar]['c']
                 next_action = None  # c refers to sublist for cancelable, change if server syntax changes
-                DialogueActionTalkNoResponse(utterance, cancelable, next_action)
 
                 keyvar += 1
 
-            else:
-                return 0
+                return Dialogue(DialogueActionTalkNoResponse(utterance, cancelable, next_action))
+
 
         # return Dialogue(
         #     DialogueActionLook(

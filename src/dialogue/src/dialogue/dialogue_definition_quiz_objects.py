@@ -29,7 +29,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                 utterance="Do you also see {}?".format(self.__add_a_to_noun(self.__get_object_noun(topic))),
                 cancelable=False,
                 next_action_yes=None))
-        """
+"""
             DialogueActionLook(
                 look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
                 cancelable=False,
@@ -81,7 +81,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                 )
             )
         )        
-        """
+"""
             
     def __add_a_to_noun(self, noun):
         # type: (str) -> str

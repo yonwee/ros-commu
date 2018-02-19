@@ -30,9 +30,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         return Dialogue(DialogueLibraryQuiz.dialogue_map)
 
     def dialogue_map(self):
-        code = compile(mystr, '<String>', 'exec')
-        print(code)
-        exec(code)
+        exec(mystr)
 
     """
     def __add_a_to_noun(self, noun):

@@ -28,6 +28,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
         return Dialogue(
             code = compile(mystr,'<String>','exec')
+            print(code)
             exec(code)
             )
 

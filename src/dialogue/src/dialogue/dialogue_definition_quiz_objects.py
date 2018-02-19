@@ -7,6 +7,7 @@ from dialogue_manager import DialogueLibrary
 import json
 import urllib2
 
+global mystr
 
 class DialogueLibraryQuiz(DialogueLibrary):
     """
@@ -20,7 +21,6 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
         """
-        global mystr
         linkget = urllib2.urlopen("http://192.168.1.171:8080/?json={gen" + topic + "}")
         mybytes = linkget.read()
         mystr = json.loads(mybytes)

@@ -128,6 +128,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         return cjdata
     
     def funman(self):
+        cjdata = self.request_script()
         keyvar = 1
         while cjdata[keyvar]:
         utterance = cjdata[keyvar]['1'].format(self.__add_a_to_noun(self.__get_object_noun(topic))

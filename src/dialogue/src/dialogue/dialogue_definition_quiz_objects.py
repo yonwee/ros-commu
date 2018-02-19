@@ -31,13 +31,13 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
             while keyvar in cjdata:
 
-                utterance = cjdata[keyvar]['u']  # u refers to sublist for utterance, change if server syntax changes
-                cancelable = cjdata[keyvar]['c']
+                utterance = 'hey' #cjdata[keyvar]['u']  # u refers to sublist for utterance, change if server syntax changes
+                cancelable = False
                 next_action = None  # c refers to sublist for cancelable, change if server syntax changes
 
                 keyvar += 1
 
-                return Dialogue(DialogueActionTalkNoResponse(utterance, cancelable, next_action))
+                return Dialogue(DialogueActionTalkNoResponse(utterance,cancelable,next_action))
 
 
         # return Dialogue(

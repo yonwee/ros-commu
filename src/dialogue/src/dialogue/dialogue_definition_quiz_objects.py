@@ -4,6 +4,8 @@ from dialogue import Dialogue
 from dialogue_action import *
 from dialogue_manager import DialogueLibrary
 
+import json
+import urllib.request
 
 class DialogueLibraryQuiz(DialogueLibrary):
     """
@@ -17,55 +19,14 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
         """
-
-        return Dialogue(
-            DialogueActionLook(
-                look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
-                cancelable=False,
-                next_action=
-                DialogueActionSleep(
-                    sleep_time=1,
-                    cancelable=False,
-                    next_action=
-                    DialogueActionTalkBinaryResponse(
-                        utterance="Do you also see {}?".format(self.__add_a_to_noun(self.__get_object_noun(topic))),
-                        cancelable=False,
-                        next_action_yes=
-                        DialogueActionTalkNoResponse(
-                            utterance=random.choice(self.positive_response_list),
-                            cancelable=False,
-                            next_action=
-                            DialogueActionLook(
-                                look_type=DialogueActionLook.LOOK_TYPE_WATCH_ENVIRONMENT,
-                                cancelable=True,
-                                next_action=None
-                            )
-                        ),
-                        next_action_no=
-                        DialogueActionLook(
-                            look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_TOPIC,
-                            cancelable=False,
-                            next_action=
-                            DialogueActionTalkNoResponse(
-                                utterance=random.choice(self.negative_response_list),
-                                cancelable=False,
-                                next_action=
-                                DialogueActionSleep(
-                                    sleep_time=2,
-                                    cancelable=False,
-                                    next_action=DialogueActionLook(
-                                        look_type=DialogueActionLook.LOOK_TYPE_WATCH_ENVIRONMENT,
-                                        cancelable=True,
-                                        next_action=None
-                                    )
-                                )
-                            ),
-                        )
-                    )
-                )
-            )
-        )
-
+        
+        linkget = urllib.request.urlopen("http://localhost:8080/?json={gen" + topic + "}")
+        mybytes = linkget.read()
+        mystr = json.loads(mybytes)
+        linkget.close()
+        
+        return exec(mystr)
+    """
     def __add_a_to_noun(self, noun):
         # type: (str) -> str
 
@@ -95,3 +56,4 @@ class DialogueLibraryQuiz(DialogueLibrary):
         "It's over there",
         "I can help you. It's over here"
     ]
+    """

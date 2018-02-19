@@ -15,14 +15,31 @@ class DialogueLibraryQuiz(DialogueLibrary):
     """
 
     def get_dialogue_for_topic(self, topic):
-        # type: (str) -> Dialogue
-        """
-        Get the dialogue that can be used when CommU sees an object.
-        :param topic:   The label assigned by the ssd network
-        :return:        The Dialogue concerning the object.
-        """
-        #return Dialogue(DialogueLibraryQuiz.select_convo(self,topic))
-        return Dialogue(DialogueLibraryQuiz.dialogue_string_test())
+        def get_dialogue_for_topic(self, topic):
+            # type: (str) -> Dialogue
+            """
+            Get the dialogue that can be used when CommU sees an object.
+            :param topic:   The label assigned by the ssd network
+            :return:        The Dialogue concerning the object.
+            """
+
+            convo = urllib2.urlopen('http://192.168.1.225:8080/?json={{}}'.format(topic))
+            cjson = convo.read()
+            cjdata = json.loads(cjson)
+            keyvar = 0
+            rospy.loginfo("topic generation is %s", topic)
+
+            while cjdata[keyvar]['u']:
+
+                utterance = cjdata[keyvar]['u']  # u refers to sublist for utterance, change if server syntax changes
+                cancelable = cjdata[keyvar]['c']
+                next_action = None  # c refers to sublist for cancelable, change if server syntax changes
+                DialogueActionTalkNoResponse(utterance, cancelable, next_action)
+
+                keyvar += 1
+
+            else:
+                return 0
 
         # return Dialogue(
         #     DialogueActionLook(
@@ -103,48 +120,48 @@ class DialogueLibraryQuiz(DialogueLibrary):
         "I can help you. It's over here"
     ]
 
-    def dialogue_string_test(self):
-        i=1
-        cjdata = self.request_script()
-        rospy.loginfo("cjdata is %s", cjdata)
-        #dia = self.generation(cjdata,i)
-        dia = repr(self.generation(cjdata,i))
-        rospy.loginfo("repr generation is %s", dia)
-        return DialogueActionTalkNoResponse(utterance='heya',cancelable=False,next_action=DialogueActionTalkNoResponse(utterance='heyb',cancelable=False,next_action=None))
-
-
-    def request_script(self):
-
-        return convos['convo' + str(random.randint(1, 6))]
-
-    def generation(self,cjdata,i):
-
-        fulldialogue = ''
-
-        dialogueA = "DialogueActionTalkNoResponse("
-        dialogueU = "utterance='"
-        dialogueC = "',cancelable="
-        dialogueN = ",next_action="
-
-        try:
-            i+=1
-
-            # utterance  = u
-            # cancelable = c
-            # nextaction = n
-
-            keyvar = 'line'+ str(i)
-
-            fulldialogue += dialogueA
-            fulldialogue += dialogueU
-            fulldialogue += cjdata[keyvar]['u'] #u refers to sublist for utterance, change if server syntax changes
-            fulldialogue += dialogueC
-            fulldialogue += cjdata[keyvar]['c'] #c refers to sublist for cancelable, change if server syntax changes
-            fulldialogue += dialogueN
-            fulldialogue += self.generation(cjdata,i)
-
-        except KeyError:
-            return "None"+ ')'*(i-2)
-
-        return fulldialogue
-
+    # def dialogue_string_test(self):
+    #     i=1
+    #     cjdata = self.request_script()
+    #     rospy.loginfo("cjdata is %s", cjdata)
+    #     #dia = self.generation(cjdata,i)
+    #     dia = repr(self.generation(cjdata,i))
+    #     rospy.loginfo("repr generation is %s", dia)
+    #     return DialogueActionTalkNoResponse(utterance='heya',cancelable=False,next_action=DialogueActionTalkNoResponse(utterance='heyb',cancelable=False,next_action=None))
+    #
+    #
+    # def request_script(self):
+    #
+    #     return convos['convo' + str(random.randint(1, 6))]
+    #
+    # def generation(self,cjdata,i):
+    #
+    #     fulldialogue = ''
+    #
+    #     dialogueA = "DialogueActionTalkNoResponse("
+    #     dialogueU = "utterance='"
+    #     dialogueC = "',cancelable="
+    #     dialogueN = ",next_action="
+    #
+    #     try:
+    #         i+=1
+    #
+    #         # utterance  = u
+    #         # cancelable = c
+    #         # nextaction = n
+    #
+    #         keyvar = 'line'+ str(i)
+    #
+    #         fulldialogue += dialogueA
+    #         fulldialogue += dialogueU
+    #         fulldialogue += cjdata[keyvar]['u'] #u refers to sublist for utterance, change if server syntax changes
+    #         fulldialogue += dialogueC
+    #         fulldialogue += cjdata[keyvar]['c'] #c refers to sublist for cancelable, change if server syntax changes
+    #         fulldialogue += dialogueN
+    #         fulldialogue += self.generation(cjdata,i)
+    #
+    #     except KeyError:
+    #         return "None"+ ')'*(i-2)
+    #
+    #     return fulldialogue
+    #

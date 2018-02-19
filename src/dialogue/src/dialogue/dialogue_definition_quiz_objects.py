@@ -24,13 +24,15 @@ class DialogueLibraryQuiz(DialogueLibrary):
         linkget = urllib2.urlopen("http://192.168.1.171:8080/?json={gen" + topic + "}")
         mybytes = linkget.read()
         mystr = json.loads(mybytes)
+        global mystr
         linkget.close()
 
-        return Dialogue(
-            code = compile(mystr,'<String>','exec')
-            print(code)
-            exec(code)
-            )
+        return Dialogue(DialogueLibraryQuiz.dialogue_map)
+
+    def dialogue_map(self):
+        code = compile(mystr, '<String>', 'exec')
+        print(code)
+        exec(code)
 
     """
     def __add_a_to_noun(self, noun):

@@ -24,7 +24,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
         mybytes = linkget.read()
         mystr = json.loads(mybytes)
         linkget.close()
-        exec (mystr)
+        
+        return Dialogue(mystr)
 
 
     """

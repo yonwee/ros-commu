@@ -23,10 +23,10 @@ class DialogueLibraryQuiz(DialogueLibrary):
             :return:        The Dialogue concerning the object.
             """
 
-            convo = urllib2.urlopen('http://192.168.1.225:8080/?json={{}}'.format(topic))
+            convo = urllib2.urlopen('http://192.168.1.225:8080/?json={}'.format(topic))
             cjson = convo.read()
             cjdata = json.loads(cjson)
-            keyvar = 0
+            keyvar = 1
             rospy.loginfo("topic generation is %s", topic)
 
             while cjdata[keyvar]['u']:

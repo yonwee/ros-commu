@@ -18,14 +18,14 @@ class DialogueLibraryQuiz(DialogueLibrary):
         Get the dialogue that can be used when CommU sees an object.
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
-        """
+        
         #return Dialogue(DialogueLibraryQuiz.select_convo(self,topic))
         #return Dialogue(self.dialogue_string_test())
         return Dialogue(DialogueActionTalkNoResponse(funman()))
 
         """
         return Dialogue(
-            DialogueActionLook(
+                    """DialogueActionLook(
                 look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
                 cancelable=False,
                 next_action=
@@ -40,7 +40,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                         DialogueActionTalkNoResponse(
                             #utterance=random.choice(self.positive_response_list)
                             #utterance=self.dialogue_string_test().format(self.__add_a_to_noun(self.__get_object_noun(topic))),
-                            self.funman2(),
+                            #self.funman2(),
                             #exec(self.dialogue_string_test()),
                             #self.funman(),
                             cancelable=False,
@@ -75,8 +75,12 @@ class DialogueLibraryQuiz(DialogueLibrary):
                     )
                 )
             )
-        )
-        """
+        )        """
+            DialogueActionTalkNoResponse(
+                        utterance="Do you also see {}?".format(self.__add_a_to_noun(self.__get_object_noun(topic))),
+                        cancelable=False,
+                        next_action_yes=None))
+
 
     def __add_a_to_noun(self, noun):
         # type: (str) -> str
@@ -119,7 +123,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         #dia = 'utterance=' + cjdata[keyvar]['1']
         #dia = cjdata[keyvar]['1']
         return cjdata
-"""
+
 
     def request_script(self):
         convo = urllib2.urlopen('http://192.168.1.225:8080/?json={tast}')
@@ -134,9 +138,12 @@ class DialogueLibraryQuiz(DialogueLibrary):
         utterance = cjdata[keyvar]['1'].format(self.__add_a_to_noun(self.__get_object_noun(topic))
         cancelable = cjdata[keyvar]['2']
         next_action = cjdata[keyvar]['3']
-     
+        keyvar += 1
+        return utterance, cancelable, next_action
+                                              
+
         
-"""
+
 
     def generation(self,cjdata,i):
 

@@ -39,7 +39,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                         DialogueActionTalkNoResponse(
                             #utterance=random.choice(self.positive_response_list)
                             #utterance=self.dialogue_string_test().format(self.__add_a_to_noun(self.__get_object_noun(topic))),
-                            funman2(),
+                            self.funman2(),
                             #exec(self.dialogue_string_test()),
                             #self.funman(),
                             cancelable=False,
@@ -146,11 +146,11 @@ class DialogueLibraryQuiz(DialogueLibrary):
         #dia = self.generation(cjdata,i)
         keyvar = "1"
         #dia = 'utterance=' + cjdata[keyvar]['1']
-        dia = cjdata[keyvar]['2']
-        return dia
+        #dia = cjdata[keyvar]['1']
+        return cjdata
 
     def request_script(self):
-            convo = urllib2.urlopen('http://192.168.1.225:8080/?json={test}')
+            convo = urllib2.urlopen('http://192.168.1.225:8080/?json={tast}')
             cjson = convo.read()
             cjdata = json.loads(cjson)
             return cjdata

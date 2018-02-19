@@ -26,7 +26,6 @@ class DialogueLibraryQuiz(DialogueLibrary):
         linkget.close()
         
         exec(mystr)
-        return 0
     """
     def __add_a_to_noun(self, noun):
         # type: (str) -> str

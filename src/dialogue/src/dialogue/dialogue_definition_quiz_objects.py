@@ -35,7 +35,10 @@ class DialogueLibraryQuiz(DialogueLibrary):
             f[0]=str(x)
             self.funman()
             if x > 2:
-                f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[3])
+                f[4] = DialogueActionSleep(
+                        sleep_time=1,
+                        cancelable=False,
+                        next_action=DialogueActionTalkNoResponse(f[1], f[2], f[3])
             if x < 3:
                 if x > 0:
                     f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[4])
@@ -116,9 +119,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
     #                                 utterance=random.choice(self.negative_response_list),
     #                                 cancelable=False,
     #                                 next_action=
-    #                                 DialogueActionSleep(
-    #                                     sleep_time=2,
-    #                                     cancelable=False,
+#                                     DialogueActionSleep(
+#                                         sleep_time=2,
+#                                         cancelable=False,
     #                                     next_action=DialogueActionLook(
     #                                         look_type=DialogueActionLook.LOOK_TYPE_WATCH_ENVIRONMENT,
     #                                         cancelable=True,

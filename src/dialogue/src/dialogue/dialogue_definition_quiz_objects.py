@@ -26,7 +26,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
         # return Dialogue(DialogueLibraryQuiz.select_convo(self,topic))
         # return Dialogue(self.dialogue_string_test())
-        f[0]=1
+        f[0]="1"
         self.funman()
         return Dialogue(DialogueActionTalkNoResponse(f[1], f[2], f[3]))
     

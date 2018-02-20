@@ -52,7 +52,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         cjdata = json.loads(cjson)
         #keyvar = "1"
         #dia = cjdata[keyvar]['1']
-        #return cjdata
+        return cjdata
     
     
     def funman(self):

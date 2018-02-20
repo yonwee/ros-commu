@@ -70,7 +70,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                     )
                 )
             )
-
+"""
         if utterance_list[3] != None:
             return Dialogue(
                 DialogueActionLook(
@@ -120,6 +120,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                     )
                 )
             )
+"""            
 
     def __add_a_to_noun(self, noun):
         # type: (str) -> str

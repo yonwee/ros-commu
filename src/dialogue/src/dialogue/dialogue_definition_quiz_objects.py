@@ -68,11 +68,11 @@ class DialogueLibraryQuiz(DialogueLibrary):
         utterance_list[0] = mydic["U1"]
         utterance_list[1] = mydic["U2"]
         utterance_list[2] = mydic["U3"]
-        if i = 1:
+        if i == 1:
             return utterance_list[0]
-        if i = 2:
+        if i == 2:
             return utterance_list[1]
-        if i = 3:
+        if i == 3:
             return utterance_list[2]
         
     def __add_a_to_noun(self, noun):

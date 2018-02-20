@@ -1,5 +1,5 @@
 import random
-import rospy
+#import rospy
 
 from dialogue import Dialogue
 from dialogue_action import *
@@ -26,7 +26,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         """
         cjdata = self.request_script()
         cjdatalen = len(cjdata)
-        rospy.loginfo("Got Dialogue from server.")
+        #rospy.loginfo("Got Dialogue from server.")
 
         #try:
         for x in range(cjdatalen-1, 0, -1):

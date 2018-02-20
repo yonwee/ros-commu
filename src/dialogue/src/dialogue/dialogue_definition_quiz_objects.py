@@ -48,8 +48,6 @@ class DialogueLibraryQuiz(DialogueLibrary):
         f[1] = utterance
         f[2] = cancelable
         f[3] = next_action
-       
-
 
     def __get_object_noun(self, label):
         return self.object_proper_name_map.get(label, label)

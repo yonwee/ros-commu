@@ -35,9 +35,23 @@ class DialogueLibraryQuiz(DialogueLibrary):
             f[0]=str(x)
             self.funman()
             if x > 2:
-                f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[3])
+                f[4] =DialogueActionLook(
+                    look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
+                    cancelable=False,
+                    next_action=
+                    DialogueActionSleep(
+                        sleep_time=1,
+                        cancelable=False,
+                        next_action=DialogueActionTalkNoResponse(f[1], f[2], f[3])
             if x < 3:
-                f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[4])
+                f[4] =DialogueActionLook(
+                    look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
+                    cancelable=False,
+                    next_action=
+                    DialogueActionSleep(
+                        sleep_time=1,
+                        cancelable=False,
+                        next_action=DialogueActionTalkNoResponse(f[1], f[2], f[4])
         return Dialogue(f[4])
     
     
@@ -71,14 +85,14 @@ class DialogueLibraryQuiz(DialogueLibrary):
     #             )
     #         )
     # """
-    #             DialogueActionLook(
-    #                 look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
-    #                 cancelable=False,
-    #                 next_action=
-    #                 DialogueActionSleep(
-    #                     sleep_time=1,
-    #                     cancelable=False,
-    #                     next_action=
+#                 DialogueActionLook(
+#                     look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
+#                     cancelable=False,
+#                     next_action=
+#                     DialogueActionSleep(
+#                         sleep_time=1,
+#                         cancelable=False,
+#                         next_action=
     #                     DialogueActionTalkBinaryResponse(
     #                         utterance="Do you also see {}?".format(self.__add_a_to_noun(self.__get_object_noun(topic))),
     #                         cancelable=False,

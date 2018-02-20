@@ -24,6 +24,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         mybytes = linkget.read()
         mydic = json.loads(mybytes)
         linkget.close()
+        global utterance_list
         utterance_list = {}
         utterance_list[0] = mydic["U1"]
         utterance_list[1] = mydic["U2"]
@@ -39,7 +40,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                     cancelable=False,
                     next_action=
                     DialogueActionTalkNoResponse(
-                        utterance="{'0'}".format(**utterance_list),
+                        utterance="{}".format(utterance_list[0]),
                         cancelable=False,
                         next_action=
                         DialogueActionSleep(
@@ -47,7 +48,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                             cancelable=False,
                             next_action=
                             DialogueActionTalkNoResponse(
-                                utterance="{'1'}".format(**utterance_list),
+                                utterance="{}".format(utterance_list[1]),
                                 cancelable=False,
                                 next_action=
                                 DialogueActionSleep(
@@ -55,7 +56,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                                     cancelable=False,
                                     next_action=
                                     DialogueActionTalkNoResponse(
-                                        utterance="{'2'}".format(**utterance_list),
+                                        utterance="{}".format(utterance_list[2]),
                                         cancelable=False,
                                         next_action=None
                                     )

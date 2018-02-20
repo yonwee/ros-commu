@@ -32,7 +32,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         for x in range(cjdatalen, 0, -1):
             keyvar = str(x)
             if cjdata[keyvar] == '':
-                f[x] = ''  # will this be a problem...?
+                f[x] = cjdata[keyvar]['3']  # will this be a problem...?
             else:
                 utterance = cjdata[keyvar]['1']
                 cancelable = cjdata[keyvar]['2']

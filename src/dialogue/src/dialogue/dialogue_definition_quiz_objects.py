@@ -137,7 +137,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
         convo = urllib2.urlopen('http://192.168.1.225:8080/?json={test}')
         cjson = convo.read()
         cjdata = json.loads(cjson)
-        return cjdata[keyvar]['1']
+        keyvar = "1"
+        dia = cjdata[keyvar]['1']
+        return dia
     
     
     def funman(self):

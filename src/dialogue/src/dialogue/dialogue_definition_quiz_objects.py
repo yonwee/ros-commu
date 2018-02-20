@@ -35,7 +35,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
             x=x-1
             f[0]=str(x)
             self.funman()
-            f[4] = (DialogueActionTalkNoResponse(f[1], f[2], gitgud))
+            #f[4] = (DialogueActionTalkNoResponse(f[1], f[2], gitgud))
         return Dialogue(f[4])
     
     

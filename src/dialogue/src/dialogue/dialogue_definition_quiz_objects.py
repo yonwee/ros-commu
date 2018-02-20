@@ -29,8 +29,13 @@ class DialogueLibraryQuiz(DialogueLibrary):
         utterance_list[0] = mydic["U1"]
         utterance_list[1] = mydic["U2"]
         utterance_list[2] = mydic["U3"]
-        utterance_list[3] = None
-        utterance_list[4] = None
+        
+        if mydic.find('U4') > 0:
+            utterance_list[3] = mydic["U4"]
+            utterance_list[4] = mydic["U5"]
+        else:
+            utterance_list[3] = None
+            utterance_list[4] = None
 
         if utterance_list[3] == None:
             return Dialogue(

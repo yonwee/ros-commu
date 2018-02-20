@@ -1,9 +1,12 @@
+
 import random
 
 from dialogue import Dialogue
 from dialogue_action import *
 from dialogue_manager import DialogueLibrary
 
+import json
+import urllib2
 
 class DialogueLibraryQuiz(DialogueLibrary):
     """
@@ -17,45 +20,98 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
         """
+        linkget = urllib2.urlopen("http://192.168.1.171:8080/?json={gen" + topic + "}")
+        mybytes = linkget.read()
+        mydic = json.loads(mybytes)
+        linkget.close()
+        global utterance_list
+        utterance_list = {}
+        utterance_list[0] = mydic["U1"]
+        utterance_list[1] = mydic["U2"]
+        utterance_list[2] = mydic["U3"]
+        utterance_list[3] = mydic["U4"]
+        utterance_list[4] = mydic["U5"]
 
-        return Dialogue(
-            DialogueActionLook(
-                look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
-                cancelable=False,
-                next_action=
-                DialogueActionSleep(
-                    sleep_time=1,
+        if utterance_list[3] == None:
+            return Dialogue(
+                DialogueActionLook(
+                    look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
                     cancelable=False,
                     next_action=
-                    DialogueActionTalkBinaryResponse(
-                        utterance="Do you also see {}?".format(self.__add_a_to_noun(self.__get_object_noun(topic))),
+                    DialogueActionSleep(
+                        sleep_time=1,
                         cancelable=False,
-                        next_action_yes=
+                        next_action=
                         DialogueActionTalkNoResponse(
-                            utterance=random.choice(self.positive_response_list),
+                            utterance="{}".format(utterance_list[0]),
                             cancelable=False,
                             next_action=
-                            DialogueActionLook(
-                                look_type=DialogueActionLook.LOOK_TYPE_WATCH_ENVIRONMENT,
-                                cancelable=True,
-                                next_action=None
+                            DialogueActionSleep(
+                                sleep_time=1,
+                                cancelable=False,
+                                next_action=
+                                DialogueActionTalkNoResponse(
+                                    utterance="{}".format(utterance_list[1]),
+                                    cancelable=False,
+                                    next_action=
+                                    DialogueActionSleep(
+                                        sleep_time=1,
+                                        cancelable=False,
+                                        next_action=
+                                        DialogueActionTalkNoResponse(
+                                            utterance="{}".format(utterance_list[2]),
+                                            cancelable=False,
+                                            next_action=None
+                                        )
+                                    )
+                                )
                             )
-                        ),
-                        next_action_no=
-                        DialogueActionLook(
-                            look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_TOPIC,
+                        )
+                    )
+                )
+            )
+
+        if utterance_list[3] != None:
+            return Dialogue(
+                DialogueActionLook(
+                    look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
+                    cancelable=False,
+                    next_action=
+                    DialogueActionSleep(
+                        sleep_time=1,
+                        cancelable=False,
+                        next_action=
+                        DialogueActionTalkBinaryResponse(
+                            utterance="{}".format(utterance_list[0]),
                             cancelable=False,
-                            next_action=
+                            next_action_yes=
                             DialogueActionTalkNoResponse(
-                                utterance=random.choice(self.negative_response_list),
+                                utterance="{}".format(utterance_list[1]),
                                 cancelable=False,
                                 next_action=
                                 DialogueActionSleep(
-                                    sleep_time=2,
+                                    sleep_time=1,
                                     cancelable=False,
-                                    next_action=DialogueActionLook(
-                                        look_type=DialogueActionLook.LOOK_TYPE_WATCH_ENVIRONMENT,
-                                        cancelable=True,
+                                    next_action=
+                                    DialogueActionTalkNoResponse(
+                                        utterance="{}".format(utterance_list[2]),
+                                        cancelable=False,
+                                        next_action=None
+                                    )
+                                )
+                            ),
+                            next_action_no=
+                            DialogueActionTalkNoResponse(
+                                utterance="{}".format(utterance_list[3]),
+                                cancelable=False,
+                                next_action=
+                                DialogueActionSleep(
+                                    sleep_time=1,
+                                    cancelable=False,
+                                    next_action=
+                                    DialogueActionTalkNoResponse(
+                                        utterance="{}".format(utterance_list[4]),
+                                        cancelable=False,
                                         next_action=None
                                     )
                                 )
@@ -64,7 +120,6 @@ class DialogueLibraryQuiz(DialogueLibrary):
                     )
                 )
             )
-        )
 
     def __add_a_to_noun(self, noun):
         # type: (str) -> str

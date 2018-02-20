@@ -12,7 +12,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
     """
     A DialogueLibrary that can be used when a CommU robot sees an object. This plays 'object hide-and-seek' with the user.
     """
-    
+
     def get_dialogue_for_topic(self, topic):
         # type: (str) -> Dialogue
         """
@@ -28,7 +28,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         utterance_list[0] = mydic["U1"]
         utterance_list[1] = mydic["U2"]
         utterance_list[2] = mydic["U3"]
-        
+
         return Dialogue(
             DialogueActionLook(
                 look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
@@ -39,7 +39,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                     cancelable=False,
                     next_action=
                     DialogueActionTalkNoResponse(
-                        utterance="{}".format.utterance_list[0],
+                        utterance="{}".format(self.get_dialogue_for_topic(topic).utterance_list[0]),
                         cancelable=False,
                         next_action=
                         DialogueActionSleep(
@@ -47,7 +47,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                             cancelable=False,
                             next_action=
                             DialogueActionTalkNoResponse(
-                                utterance="{}".format.utterance_list[1],
+                                utterance="{}".format(self.get_dialogue_for_topic(topic).utterance_list[1]),
                                 cancelable=False,
                                 next_action=
                                 DialogueActionSleep(
@@ -55,7 +55,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                                     cancelable=False,
                                     next_action=
                                     DialogueActionTalkNoResponse(
-                                        utterance="{}".format.utterance_list[2],
+                                        utterance="{}".format(self.get_dialogue_for_topic(topic).utterance_list[2]),
                                         cancelable=False,
                                         next_action=None
                                     )
@@ -66,9 +66,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                 )
             )
         )
-    
 
-        
     def __add_a_to_noun(self, noun):
         # type: (str) -> str
 

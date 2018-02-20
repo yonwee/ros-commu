@@ -35,7 +35,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                             cancelable=False,
                             next_action=
                             DialogueActionTalkNoResponse(
-                                utterance="fuck",
+                                utterance="Do you",
                                 cancelable=False,
                                 next_action=
                                 DialogueActionSleep(
@@ -43,7 +43,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                                     cancelable=False,
                                     next_action=
                                     DialogueActionTalkNoResponse(
-                                        utterance="shit",
+                                        utterance="Hello",
                                         cancelable=False,
                                         next_action=None
                                     )

@@ -40,7 +40,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                     cancelable=False,
                     next_action=
                     DialogueActionTalkNoResponse(
-                        utterance="{}".format(utterance_list[0]),
+                        utterance=self.__U1(),
                         cancelable=False,
                         next_action=
                         DialogueActionSleep(
@@ -48,7 +48,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                             cancelable=False,
                             next_action=
                             DialogueActionTalkNoResponse(
-                                utterance="{}".format(utterance_list[1]),
+                                utterance="fuck",
                                 cancelable=False,
                                 next_action=
                                 DialogueActionSleep(
@@ -56,7 +56,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                                     cancelable=False,
                                     next_action=
                                     DialogueActionTalkNoResponse(
-                                        utterance="{}".format(utterance_list[2]),
+                                        utterance="shit",
                                         cancelable=False,
                                         next_action=None
                                     )
@@ -67,6 +67,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
                 )
             )
         )
+    def __U1(self):
+        return utterance_list[0]
 
     def __add_a_to_noun(self, noun):
         # type: (str) -> str

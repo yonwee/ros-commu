@@ -1,5 +1,5 @@
 import random
-#import rospy
+import rospy
 
 from dialogue import Dialogue
 from dialogue_action import *
@@ -26,14 +26,14 @@ class DialogueLibraryQuiz(DialogueLibrary):
         """
         cjdata = self.request_script()
         cjdatalen = len(cjdata)
-        #rospy.loginfo("Got Dialogue from server.")
-
+        rospy.loginfo("Got Dialogue from server.")
+        store = {}
         #try:
         for x in range(cjdatalen-1, 0, -1):
             keyvar = str(x)
             #if cjdata[keyvar] == '':
             if keyvar == '3':
-                f[x] = cjdata[keyvar]['3']  # will this be a problem...?
+                store[x] = cjdata[keyvar]['3']  # will this be a problem...?
             else:
                 utterance = cjdata[keyvar]['1']
                 cancelable = cjdata[keyvar]['2']

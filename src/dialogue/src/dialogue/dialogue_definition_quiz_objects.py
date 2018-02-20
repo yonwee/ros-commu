@@ -12,6 +12,16 @@ class DialogueLibraryQuiz(DialogueLibrary):
     """
     A DialogueLibrary that can be used when a CommU robot sees an object. This plays 'object hide-and-seek' with the user.
     """
+    
+#    linkget = urllib2.urlopen("http://192.168.1.171:8080/?json={gen" + topic + "}")
+#    mybytes = linkget.read()
+#    mydic = json.loads(mybytes)
+#    linkget.close()
+#    global utterance_list
+#    utterance_list = {}
+#    utterance_list[0] = mydic["U1"]
+#    utterance_list[1] = mydic["U2"]
+#    utterance_list[2] = mydic["U3"]
 
     def get_dialogue_for_topic(self, topic):
         # type: (str) -> Dialogue
@@ -20,15 +30,6 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
         """
-        linkget = urllib2.urlopen("http://192.168.1.171:8080/?json={gen" + topic + "}")
-        mybytes = linkget.read()
-        mydic = json.loads(mybytes)
-        linkget.close()
-        global utterance_list
-        utterance_list = {}
-        utterance_list[0] = mydic["U1"]
-        utterance_list[1] = mydic["U2"]
-        utterance_list[2] = mydic["U3"]
 
         return Dialogue(
             DialogueActionLook(

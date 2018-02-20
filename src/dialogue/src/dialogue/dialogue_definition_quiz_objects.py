@@ -33,7 +33,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                     DialogueActionTalkNoResponse(
                         utterance=self.__get_from_server(topic),
                         cancelable=False,
-                        next_action=,
+                        next_action=
                         DialogueActionSleep(
                             Sleep_time=3,
                             cancelable=False,

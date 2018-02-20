@@ -14,35 +14,38 @@ class DialogueLibraryQuiz(DialogueLibrary):
     A DialogueLibrary that can be used when a CommU robot sees an object. This plays 'object hide-and-seek' with the user.
     """
 
+    global f, utterance, cancelable, next_action
+    f = {}
+
     def get_dialogue_for_topic(self, topic):
-            # type: (str) -> Dialogue
-            """
-            Get the dialogue that can be used when CommU sees an object.
-            :param topic:   The label assigned by the ssd network
-            :return:        The Dialogue concerning the object.
-            """
+        # type: (str) -> Dialogue
+        """
+        Get the dialogue that can be used when CommU sees an object.
+        :param topic:   The label assigned by the ssd network
+        :return:        The Dialogue concerning the object.
+        """
+        cjdata = self.request_script()
+        cjdatalen = len(cjdata)
+        rospy.loginfo("Got Dialogue from server.")
 
-            convo = urllib2.urlopen('http://192.168.1.225:8080/?json={test}') #add .format(topic) when full implemented
-            cjson = convo.read()
-            cjdata = json.loads(cjson)
-            keyvar = 1
-            #rospy.loginfo("topic generation is %s", topic)
-            rospy.loginfo("Got Dialogue from server.")
+        #try:
+        for x in range(cjdatalen, 0, -1):
+            keyvar = str(x)
+            if cjdata[keyvar] == '':
+                f[x] = None  # will this be a problem...?
+            else:
+                utterance = cjdata[keyvar]['1']
+                cancelable = cjdata[keyvar]['2']
+                next_action = f[(x + 1)]
+                f[x] = DialogueActionTalkNoResponse(utterance, cancelable, next_action)
+        return Dialogue(f[0])
 
-            #try:
-            while keyvar in cjdata:
 
-                    utterance = cjdata[keyvar]['1'] #cjdata[keyvar]['u']  # u refers to sublist for utterance, change if server syntax changes
-                    cancelable = False
-                    next_action = None  # c refers to sublist for cancelable, change if server syntax changes
-
-                    keyvar += 1
-
-                    return Dialogue(DialogueActionTalkNoResponse(utterance,cancelable,next_action))
-
-            #except TypeError:
-            #    return Dialogue(DialogueActionTalkNoResponse(utterance="end",cancelable=False,next_action=None))
-
+    def request_script(self):
+        convo = urllib2.urlopen('http://192.168.1.225:8080/?json={test}')
+        cjson = convo.read()
+        cjdata = json.loads(cjson)
+        return cjdata
 
         # return Dialogue(
         #     DialogueActionLook(

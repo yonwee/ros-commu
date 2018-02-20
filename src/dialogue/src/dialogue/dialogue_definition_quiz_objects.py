@@ -143,7 +143,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
     def funman(self):
         cjdata = self.request_script()
         keyvar = 1
-        utterance = cjdata[keyvar]['1']
+        #utterance = cjdata[keyvar]['1']
         cancelable = cjdata[keyvar]['2']
         #next_action = cjdata[keyvar]['3']
         #utterance="hey"

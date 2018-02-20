@@ -24,6 +24,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :return:        The Dialogue concerning the object.
         """
         self.funcheck()
+        i = i-1
         for x in range (i,0,-1):            
             f[0]=str(x)
             self.funman()

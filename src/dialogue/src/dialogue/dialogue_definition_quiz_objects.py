@@ -4,8 +4,8 @@ from dialogue import Dialogue
 from dialogue_action import *
 from dialogue_manager import DialogueLibrary
 
-#import json
-#import urllib2
+import json
+import urllib2
 
 
 class DialogueLibraryQuiz(DialogueLibrary):
@@ -31,7 +31,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                     cancelable=False,
                     next_action=
                     DialogueActionTalkBinaryResponse(
-                        utterance="Do you also see {}?".format(self.__add_a_to_noun(self.__get_object_noun(topic))),
+                        utterance=self.__get_from_server(topic),
                         cancelable=False,
                         next_action_yes=
                         DialogueActionTalkNoResponse(
@@ -68,6 +68,14 @@ class DialogueLibraryQuiz(DialogueLibrary):
                 )
             )
         )
+    
+    def __get_from_server(self, topic):
+        # type: (str) -> str
+        linkget = urllib2.urlopen("http://192.168.1.171:8080/?json={gen" + topic + "}")
+        mybytes = linkget.read()
+        mystr = json.loads(mybytes)
+        linkget.close()
+        return mystr
 
     def __add_a_to_noun(self, noun):
         # type: (str) -> str

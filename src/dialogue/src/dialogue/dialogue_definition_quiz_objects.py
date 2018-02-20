@@ -119,8 +119,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                         )
                     )
                 )
-            )
-"""            
+            )            
 
     def __add_a_to_noun(self, noun):
         # type: (str) -> str
@@ -151,3 +150,4 @@ class DialogueLibraryQuiz(DialogueLibrary):
         "It's over there",
         "I can help you. It's over here"
     ]
+"""

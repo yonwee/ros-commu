@@ -25,6 +25,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         mystr = json.loads(mybytes)
         linkget.close()
         
+        compile (mystr,'<String>','exec')
         exec (mystr)
 
 

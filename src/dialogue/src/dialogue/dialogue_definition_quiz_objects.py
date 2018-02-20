@@ -4,6 +4,8 @@ from dialogue import Dialogue
 from dialogue_action import *
 from dialogue_manager import DialogueLibrary
 
+import json
+import urllib2
 
 class DialogueLibraryQuiz(DialogueLibrary):
     """
@@ -17,22 +19,31 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
         """
-        
+        linkget = urllib2.urlopen("http://192.168.1.171:8080/?json={gen" + topic + "}")
+        mybytes = linkget.read()
+        mydic = json.loads(mybytes)
+        linkget.close()
+        global utterance_list
+        utterance_list = {}
+        utterance_list[0] = mydic["U1"]
+        utterance_list[1] = mydic["U2"]
+        utterance_list[2] = mydic["U3"]
+
         return Dialogue(
             DialogueActionLook(
                 look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
                 cancelable=False,
                 next_action=
                 DialogueActionTalkNoResponse(
-                    utterance="Hey",
+                    utterance="{}".format(utterance_list[0]),
                     cancelable=False,
                     next_action=
                     DialogueActionTalkNoResponse(
-                        utterance="Do you",
+                        utterance="{}".format(utterance_list[1]),
                         cancelable=False,
                         next_action=
                         DialogueActionTalkNoResponse(
-                            utterance="Hello",
+                            utterance="{}".format(utterance_list[2]),
                             cancelable=False,
                             next_action=None
                         )

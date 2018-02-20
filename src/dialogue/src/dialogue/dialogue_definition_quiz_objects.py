@@ -29,8 +29,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
             #rospy.loginfo("topic generation is %s", topic)
             rospy.loginfo("Got Dialogue from server.")
 
-            try:
-                for keyvar in cjdata:
+            #try:
+            while keyvar in cjdata:
 
                     utterance = cjdata[keyvar]['1'] #cjdata[keyvar]['u']  # u refers to sublist for utterance, change if server syntax changes
                     cancelable = False
@@ -40,8 +40,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
                     return Dialogue(DialogueActionTalkNoResponse(utterance,cancelable,next_action))
 
-            except TypeError:
-                return Dialogue(DialogueActionTalkNoResponse(utterance="end",cancelable=False,next_action=None))
+            #except TypeError:
+            #    return Dialogue(DialogueActionTalkNoResponse(utterance="end",cancelable=False,next_action=None))
 
 
         # return Dialogue(

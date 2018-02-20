@@ -26,17 +26,22 @@ class DialogueLibraryQuiz(DialogueLibrary):
             cjson = convo.read()
             cjdata = json.loads(cjson)
             keyvar = 1
-            rospy.loginfo("topic generation is %s", topic)
+            #rospy.loginfo("topic generation is %s", topic)
+            rospy.loginfo("Got Dialogue from server.")
 
-            # while keyvar in cjdata:
+            try:
+                for keyvar in cjdata:
 
-            utterance = cjdata['1']['1'] #cjdata[keyvar]['u']  # u refers to sublist for utterance, change if server syntax changes
-            cancelable = False
-            next_action = None  # c refers to sublist for cancelable, change if server syntax changes
+                    utterance = cjdata[keyvar]['1'] #cjdata[keyvar]['u']  # u refers to sublist for utterance, change if server syntax changes
+                    cancelable = False
+                    next_action = None  # c refers to sublist for cancelable, change if server syntax changes
 
-            keyvar += 1
+                    keyvar += 1
 
-            return Dialogue(DialogueActionTalkNoResponse(utterance,cancelable,next_action))
+                    return Dialogue(DialogueActionTalkNoResponse(utterance,cancelable,next_action))
+
+            except TypeError:
+                return Dialogue(DialogueActionTalkNoResponse(utterance="end",cancelable=False,next_action=None))
 
 
         # return Dialogue(

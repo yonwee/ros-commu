@@ -23,33 +23,18 @@ class DialogueLibraryQuiz(DialogueLibrary):
                 look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
                 cancelable=False,
                 next_action=
-                DialogueActionSleep(
-                    sleep_time=1,
+                DialogueActionTalkNoResponse(
+                    utterance="Hey",
                     cancelable=False,
                     next_action=
                     DialogueActionTalkNoResponse(
-                        utterance="Hey",
+                        utterance="Do you",
                         cancelable=False,
                         next_action=
-                        DialogueActionSleep(
-                            Sleep_time=3,
+                        DialogueActionTalkNoResponse(
+                            utterance="Hello",
                             cancelable=False,
-                            next_action=
-                            DialogueActionTalkNoResponse(
-                                utterance="Do you",
-                                cancelable=False,
-                                next_action=
-                                DialogueActionSleep(
-                                    Sleep_time=3,
-                                    cancelable=False,
-                                    next_action=
-                                    DialogueActionTalkNoResponse(
-                                        utterance="Hello",
-                                        cancelable=False,
-                                        next_action=None
-                                    )
-                                )
-                            )
+                            next_action=None
                         )
                     )
                 )

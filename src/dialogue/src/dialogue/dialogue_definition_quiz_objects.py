@@ -29,7 +29,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         rospy.loginfo("Got Dialogue from server.")
 
         #try:
-        for x in range(cjdatalen, 0, -1):
+        for x in range(cjdatalen-1, 0, -1):
             keyvar = str(x)
             if cjdata[keyvar] == '':
                 f[x] = cjdata[keyvar]['3']  # will this be a problem...?

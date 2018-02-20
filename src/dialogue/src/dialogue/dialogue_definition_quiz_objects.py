@@ -20,6 +20,14 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
         """
+        linkget = urllib2.urlopen("http://192.168.1.171:8080/?json={gen" + topic + "}")
+        mybytes = linkget.read()
+        mydic = json.loads(mybytes)
+        linkget.close()
+        utterance_list = {}
+        utterance_list[0] = mydic["U1"]
+        utterance_list[1] = mydic["U2"]
+        utterance_list[2] = mydic["U3"]
         
         return Dialogue(
             DialogueActionLook(
@@ -31,7 +39,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                     cancelable=False,
                     next_action=
                     DialogueActionTalkNoResponse(
-                        utterance="{}".format(self.__get_from_server(topic).utterance_list[0]),
+                        utterance=utterance_list[0],
                         cancelable=False,
                         next_action=
                         DialogueActionSleep(
@@ -39,7 +47,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                             cancelable=False,
                             next_action=
                             DialogueActionTalkNoResponse(
-                                utterance="{}".format(self.__get_from_server(topic).utterance_list[1]),
+                                utterance=utterance_list[1],
                                 cancelable=False,
                                 next_action=
                                 DialogueActionSleep(
@@ -47,7 +55,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                                     cancelable=False,
                                     next_action=
                                     DialogueActionTalkNoResponse(
-                                        utterance="{}".format(self.__get_from_server(topic).utterance_list[2]),
+                                        utterance=utterance_list[2],
                                         cancelable=False,
                                         next_action=None
                                     )
@@ -59,16 +67,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
             )
         )
     
-    def __get_from_server(self,topic):
-        linkget = urllib2.urlopen("http://192.168.1.171:8080/?json={gen" + topic + "}")
-        mybytes = linkget.read()
-        mydic = json.loads(mybytes)
-        linkget.close()
-        utterance_list = {}
-        utterance_list[0] = mydic["U1"]
-        utterance_list[1] = mydic["U2"]
-        utterance_list[2] = mydic["U3"]
-        return utterance_list
+
         
     def __add_a_to_noun(self, noun):
         # type: (str) -> str

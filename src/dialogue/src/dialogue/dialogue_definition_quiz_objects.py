@@ -26,15 +26,15 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
         # return Dialogue(DialogueLibraryQuiz.select_convo(self,topic))
         # return Dialogue(self.dialogue_string_test())
-        x = 3
-        f[0]=str(x)
-        self.funman()
-        f[4] = (DialogueActionTalkNoResponse(f[1], f[2], f[3]))
-#         for y in range (-2,0):
-#             x = y*-1
-#             f[0]=str(x)
-#             self.funman()
-#             f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[4])
+#         x = 3
+#         f[0]=str(x)
+#         self.funman()
+#         f[4] = (DialogueActionTalkNoResponse(f[1], f[2], f[3]))
+        for y in range (-3,-2):
+            x = y*-1
+            f[0]=str(x)
+            self.funman()
+            f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[3])
         return Dialogue(f[4])
     
     

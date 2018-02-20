@@ -31,7 +31,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #         self.funman()
 #         f[4] = (DialogueActionTalkNoResponse(f[1], f[2], f[3]))
         f[4]=0
-        for x in range (3,0,-1):            
+        for x in range (4,0,-1):            
             f[0]=str(x)
             self.funman()
             if x > 2:
@@ -42,7 +42,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
     
     
     def request_script(self):
-        convo = urllib2.urlopen('http://192.168.1.225:8080/?json={test}')
+        convo = urllib2.urlopen('http://192.168.1.225:8080/?json={tedt}')
         cjson = convo.read()
         cjdata = json.loads(cjson)
         #keyvar = "1"

@@ -40,7 +40,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                     cancelable=False,
                     next_action=
                     DialogueActionTalkNoResponse(
-                        utterance="Hey {}".format(self.__U1()),
+                        utterance="Hey",
                         cancelable=False,
                         next_action=
                         DialogueActionSleep(

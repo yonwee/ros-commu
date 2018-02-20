@@ -38,7 +38,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                 f[4] = DialogueActionSleep(
                         sleep_time=1,
                         cancelable=False,
-                        next_action=DialogueActionTalkNoResponse(f[1], f[2], f[3])
+                        next_action=DialogueActionTalkNoResponse(f[1], f[2], f[3]))
             if x < 3:
                 if x > 0:
                     f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[4])

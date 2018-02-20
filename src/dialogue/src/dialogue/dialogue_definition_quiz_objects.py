@@ -68,8 +68,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
                 )
             )
         )
-    def __U1(self):
-        return utterance_list[0]
+#    def __U1(self):
+#        return utterance_list[0]
 
     def __add_a_to_noun(self, noun):
         # type: (str) -> str

@@ -29,8 +29,6 @@ class DialogueLibraryQuiz(DialogueLibrary):
         utterance_list[0] = mydic["U1"]
         utterance_list[1] = mydic["U2"]
         utterance_list[2] = mydic["U3"]
-        utterance_list[3] = mydic["U4"]
-        utterance_list[4] = mydic["U5"]
 
         return Dialogue(
             DialogueActionLook(
@@ -69,56 +67,6 @@ class DialogueLibraryQuiz(DialogueLibrary):
                 )
             )
         )
-"""
-        if utterance_list[3] != None:
-            return Dialogue(
-                DialogueActionLook(
-                    look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
-                    cancelable=False,
-                    next_action=
-                    DialogueActionSleep(
-                        sleep_time=1,
-                        cancelable=False,
-                        next_action=
-                        DialogueActionTalkBinaryResponse(
-                            utterance="{}".format(utterance_list[0]),
-                            cancelable=False,
-                            next_action_yes=
-                            DialogueActionTalkNoResponse(
-                                utterance="{}".format(utterance_list[1]),
-                                cancelable=False,
-                                next_action=
-                                DialogueActionSleep(
-                                    sleep_time=1,
-                                    cancelable=False,
-                                    next_action=
-                                    DialogueActionTalkNoResponse(
-                                        utterance="{}".format(utterance_list[2]),
-                                        cancelable=False,
-                                        next_action=None
-                                    )
-                                )
-                            ),
-                            next_action_no=
-                            DialogueActionTalkNoResponse(
-                                utterance="{}".format(utterance_list[3]),
-                                cancelable=False,
-                                next_action=
-                                DialogueActionSleep(
-                                    sleep_time=1,
-                                    cancelable=False,
-                                    next_action=
-                                    DialogueActionTalkNoResponse(
-                                        utterance="{}".format(utterance_list[4]),
-                                        cancelable=False,
-                                        next_action=None
-                                    )
-                                )
-                            ),
-                        )
-                    )
-                )
-            )            
 
     def __add_a_to_noun(self, noun):
         # type: (str) -> str
@@ -149,4 +97,4 @@ class DialogueLibraryQuiz(DialogueLibrary):
         "It's over there",
         "I can help you. It's over here"
     ]
-"""
+

@@ -30,52 +30,43 @@ class DialogueLibraryQuiz(DialogueLibrary):
                     sleep_time=1,
                     cancelable=False,
                     next_action=
-                    DialogueActionTalkBinaryResponse(
+                    DialogueActionTalkNoResponse(
                         utterance=self.__get_from_server(topic),
                         cancelable=False,
-                        next_action_yes=
-                        DialogueActionTalkNoResponse(
-                            utterance=random.choice(self.positive_response_list),
-                            cancelable=False,
-                            next_action=
-                            DialogueActionLook(
-                                look_type=DialogueActionLook.LOOK_TYPE_WATCH_ENVIRONMENT,
-                                cancelable=True,
-                                next_action=None
-                            )
-                        ),
-                        next_action_no=
-                        DialogueActionLook(
-                            look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_TOPIC,
+                        next_action=,
+                        DialogueActionSleep(
+                            Sleep_time=3,
                             cancelable=False,
                             next_action=
                             DialogueActionTalkNoResponse(
-                                utterance=random.choice(self.negative_response_list),
+                                utterance=,
                                 cancelable=False,
                                 next_action=
                                 DialogueActionSleep(
-                                    sleep_time=2,
+                                    Sleep_time=3,
                                     cancelable=False,
-                                    next_action=DialogueActionLook(
-                                        look_type=DialogueActionLook.LOOK_TYPE_WATCH_ENVIRONMENT,
-                                        cancelable=True,
+                                    next_action=
+                                    DialogueActionTalkNoResponse(
+                                        utterance=
+                                        cancelable=False,
                                         next_action=None
                                     )
                                 )
-                            ),
+                            )
                         )
                     )
                 )
             )
         )
     
+    
     def __get_from_server(self, topic):
         # type: (str) -> str
         linkget = urllib2.urlopen("http://192.168.1.171:8080/?json={gen" + topic + "}")
         mybytes = linkget.read()
-        mystr = json.loads(mybytes)
+        mydic = json.loads(mybytes)
         linkget.close()
-        return mystr
+        return mydic["U1"]
 
     def __add_a_to_noun(self, noun):
         # type: (str) -> str

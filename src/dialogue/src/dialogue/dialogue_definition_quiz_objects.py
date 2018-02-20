@@ -17,18 +17,25 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
         """
-
         return Dialogue(
-                    DialogueActionLook(
-                        look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
+            DialogueActionLook(
+                look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
+                cancelable=False,
+                next_action=
+                DialogueActionSleep(
+                    sleep_time=1,
+                    cancelable=False,
+                    next_action=
+                    DialogueActionTalkNoResponse(
+                        utterance="Hey",
                         cancelable=False,
                         next_action=
                         DialogueActionSleep(
-                            sleep_time=1,
+                            Sleep_time=3,
                             cancelable=False,
                             next_action=
                             DialogueActionTalkNoResponse(
-                                utterance="Hey",
+                                utterance="fuck",
                                 cancelable=False,
                                 next_action=
                                 DialogueActionSleep(
@@ -36,25 +43,17 @@ class DialogueLibraryQuiz(DialogueLibrary):
                                     cancelable=False,
                                     next_action=
                                     DialogueActionTalkNoResponse(
-                                        utterance="fuck",
+                                        utterance="shit",
                                         cancelable=False,
-                                        next_action=
-                                        DialogueActionSleep(
-                                            Sleep_time=3,
-                                            cancelable=False,
-                                            next_action=
-                                            DialogueActionTalkNoResponse(
-                                                utterance="shit",
-                                                cancelable=False,
-                                                next_action=None
-                                            )
-                                        )
+                                        next_action=None
                                     )
                                 )
                             )
                         )
                     )
                 )
+            )
+        )
 
     def __add_a_to_noun(self, noun):
         # type: (str) -> str

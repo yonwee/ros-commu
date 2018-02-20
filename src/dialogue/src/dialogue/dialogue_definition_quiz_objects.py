@@ -36,8 +36,10 @@ class DialogueLibraryQuiz(DialogueLibrary):
             self.funman()
             if x > 2:
                 f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[3])
-            else:
+            if x < 3:
+                if x > 0:
                 f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[4])
+                else: break
         return Dialogue(f[4])
 #         return Dialogue(DialogueActionTalkNoResponse(
 #                             utterance="hey",

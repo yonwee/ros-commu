@@ -34,7 +34,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
             x = y*-1
             f[0]=str(x)
             self.funman()
-            f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[3])
+            if x > 2:
+                f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[3])
         return Dialogue(f[4])
     
     

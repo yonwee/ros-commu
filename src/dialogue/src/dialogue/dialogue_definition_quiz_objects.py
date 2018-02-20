@@ -20,7 +20,12 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
         """
-
+        global mydic
+        linkget = urllib2.urlopen("http://192.168.1.171:8080/?json={gen" + topic + "}")
+        mybytes = linkget.read()
+        mydic = json.loads(mybytes)
+        linkget.close()
+        
         return Dialogue(
             DialogueActionLook(
                 look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
@@ -31,7 +36,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                     cancelable=False,
                     next_action=
                     DialogueActionTalkNoResponse(
-                        utterance=self.__get_from_server(topic),
+                        utterance=utterance_list[0],
                         cancelable=False,
                         next_action=
                         DialogueActionSleep(
@@ -39,7 +44,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                             cancelable=False,
                             next_action=
                             DialogueActionTalkNoResponse(
-                                utterance="Nothing",
+                                utterance=utterance_list[1],
                                 cancelable=False,
                                 next_action=
                                 DialogueActionSleep(
@@ -47,7 +52,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                                     cancelable=False,
                                     next_action=
                                     DialogueActionTalkNoResponse(
-                                        utterance="Nothing",
+                                        utterance=utterance_list[2],
                                         cancelable=False,
                                         next_action=None
                                     )
@@ -58,15 +63,12 @@ class DialogueLibraryQuiz(DialogueLibrary):
                 )
             )
         )
-    
-    
-    def __get_from_server(self, topic):
-        # type: (str) -> str
-        linkget = urllib2.urlopen("http://192.168.1.171:8080/?json={gen" + topic + "}")
-        mybytes = linkget.read()
-        mydic = json.loads(mybytes)
-        linkget.close()
-        return mydic["U1"]
+        
+    utterance_list = {
+        mydic["U1"],
+        mydic["U2"],
+        mydic["U3"]
+    }
 
     def __add_a_to_noun(self, noun):
         # type: (str) -> str

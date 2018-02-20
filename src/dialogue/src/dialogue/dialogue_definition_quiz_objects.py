@@ -24,16 +24,13 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :return:        The Dialogue concerning the object.
         """
         #self.funcheck()
-
         for x in range (3,0,-1):            
             f[0]=str(x)
             self.funman()
             if x > 2:
                 f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[3])
             if x < 3:
-                #if x > 0:
                 f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[4])
-                #else: break
         return Dialogue(f[4])
 #         return Dialogue(DialogueActionTalkNoResponse(
 #                             utterance="hey",
@@ -55,8 +52,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
         f[2] = cancelable
         f[3] = next_action
        
-#     def funcheck(self):
-#         cjdata = self.request_script()
-#         i = 1
-#         while cjdata[f[i]]['1']:
-#             i = i + 1
+    def funcheck(self):
+        cjdata = self.request_script()
+        i = 1
+        while cjdata[f[i]]['1']:
+            i = i + 1

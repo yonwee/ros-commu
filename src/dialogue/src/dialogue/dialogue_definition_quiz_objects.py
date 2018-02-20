@@ -34,18 +34,33 @@ class DialogueLibraryQuiz(DialogueLibrary):
                 look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
                 cancelable=False,
                 next_action=
-                DialogueActionTalkNoResponse(
-                    utterance="{}".format(utterance_list[0]),
+                DialogueActionSleep(
+                    sleep_time=1,
                     cancelable=False,
                     next_action=
                     DialogueActionTalkNoResponse(
-                        utterance="{}".format(utterance_list[1]),
+                        utterance="{}".format(utterance_list[0]),
                         cancelable=False,
                         next_action=
-                        DialogueActionTalkNoResponse(
-                            utterance="{}".format(utterance_list[2]),
+                        DialogueActionSleep(
+                            sleep_time=3,
                             cancelable=False,
-                            next_action=None
+                            next_action=
+                            DialogueActionTalkNoResponse(
+                                utterance="{}".format(utterance_list[1]),
+                                cancelable=False,
+                                next_action=
+                                DialogueActionSleep(
+                                    sleep_time=1,
+                                    cancelable=False,
+                                    next_action=
+                                    DialogueActionTalkNoResponse(
+                                        utterance="{}".format(utterance_list[2]),
+                                        cancelable=False,
+                                        next_action=None
+                                    )
+                                )
+                            )
                         )
                     )
                 )

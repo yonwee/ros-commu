@@ -24,8 +24,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :return:        The Dialogue concerning the object.
         """
         self.funcheck()
-        i = i-1
-        for x in range (i,0,-1):            
+        for x in range (f[5],0,-1):            
             f[0]=str(x)
             self.funman()
             if x > 2:
@@ -59,3 +58,4 @@ class DialogueLibraryQuiz(DialogueLibrary):
         j = str(i)
         while cjdata[f[j]]['1']:
             i = i + 1
+            f[5]=i

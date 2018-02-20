@@ -43,7 +43,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                         cancelable=False,
                         next_action=
                         DialogueActionSleep(
-                            sleep_time=3,
+                            sleep_time=1,
                             cancelable=False,
                             next_action=
                             DialogueActionTalkNoResponse(

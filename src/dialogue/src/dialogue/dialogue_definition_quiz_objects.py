@@ -27,7 +27,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         # return Dialogue(DialogueLibraryQuiz.select_convo(self,topic))
         # return Dialogue(self.dialogue_string_test())
         self.funman()
-        return Dialogue(DialogueActionTalkNoResponse(utterance = cjdata[keyvar]['1'], f[2], f[3]))
+        return Dialogue(DialogueActionTalkNoResponse(f[1], f[2], f[3]))
 
     #         return Dialogue(
     #             DialogueActionTalkNoResponse(
@@ -138,17 +138,17 @@ class DialogueLibraryQuiz(DialogueLibrary):
         cjson = convo.read()
         cjdata = json.loads(cjson)
         keyvar = "1"
-        dia = cjdata[keyvar]['1']
-        return dia
+        #dia = cjdata[keyvar]['1']
+        return cjdata
     
     
     def funman(self):
         cjdata = self.request_script()
         keyvar = 1
-        utterance = cjdata[keyvar]['1']
+        #utterance = cjdata[keyvar]['1']
         #cancelable = cjdata[keyvar]['2']
         #next_action = cjdata[keyvar]['3']
-        #utterance="hey"
+        utterance="hey"
         cancelable=False
         next_action=None
         f[1] = utterance

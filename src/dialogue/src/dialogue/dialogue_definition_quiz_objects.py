@@ -29,9 +29,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
             f[0]=str(x)
             self.funman()
             if x > 2:
-                f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[3])
+                f[4] = DialogueActionTalkNoResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[3])
             else:
-                f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[4])
+                f[4] = DialogueActionTalkNoResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[4])
         return Dialogue(f[4])
 #         return Dialogue(DialogueActionTalkNoResponse(
 #                             utterance="hey",
@@ -46,7 +46,6 @@ class DialogueLibraryQuiz(DialogueLibrary):
         
     def funman(self):
         #cjdata = self.request_script()
-        #utterance = f[5][f[0]]['1'].format(self.__get_object_noun(topic))
         utterance = f[5][f[0]]['1']
         cancelable = f[5][f[0]]['2']
         next_action = f[5][f[0]]['3'].replace("zz","None")

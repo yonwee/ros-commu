@@ -30,7 +30,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #         f[0]=str(x)
 #         self.funman()
 #         f[4] = (DialogueActionTalkNoResponse(f[1], f[2], f[3]))
-        for x in range (3,0,-1):
+        f[4]=0
+        for x in range (3,0,-1):            
             f[0]=str(x)
             self.funman()
             if x > 2:

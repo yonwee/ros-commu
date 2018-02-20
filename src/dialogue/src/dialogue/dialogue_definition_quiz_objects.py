@@ -46,7 +46,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
         
     def funman(self):
         #cjdata = self.request_script()
-        utterance = f[5][f[0]]['1'].format(self.__get_object_noun(topic))
+        #utterance = f[5][f[0]]['1'].format(self.__get_object_noun(topic))
+        utterance = f[5][f[0]]['1']
         cancelable = f[5][f[0]]['2']
         next_action = f[5][f[0]]['3'].replace("zz","None")
         f[1] = utterance
@@ -69,12 +70,12 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #         else:
 #             return 'a ' + noun
 
-    def __get_object_noun(self, label):
-        return self.object_proper_name_map.get(label, label)
+#     def __get_object_noun(self, label):
+#         return self.object_proper_name_map.get(label, label)
 
-    object_proper_name_map = {
-        'aeroplane': 'airplane',
-        'diningtable': 'dining table',
-        'pottedplant': 'potted plant',
-        'tvmonitor': 'screen'
-    }
+#     object_proper_name_map = {
+#         'aeroplane': 'airplane',
+#         'diningtable': 'dining table',
+#         'pottedplant': 'potted plant',
+#         'tvmonitor': 'screen'
+#     }

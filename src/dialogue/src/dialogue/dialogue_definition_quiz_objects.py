@@ -29,7 +29,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         x = 3
         f[0]=str(x)
         self.funman()
-        gitgud = (DialogueActionTalkNoResponse(f[1], f[2],f[3])
+        gitgud = (DialogueActionTalkNoResponse(f[1], f[2],f[3]))
         while x > 0:
             x-=1
             f[0]=str(x)

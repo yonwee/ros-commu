@@ -55,5 +55,6 @@ class DialogueLibraryQuiz(DialogueLibrary):
     def funcheck(self):
         cjdata = self.request_script()
         i = 1
-        while cjdata[f[i]]['1']:
+        j = str(i)
+        while cjdata[f[j]]['1']:
             i = i + 1

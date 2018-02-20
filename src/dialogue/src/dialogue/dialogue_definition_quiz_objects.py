@@ -28,6 +28,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         # return Dialogue(self.dialogue_string_test())
 #         x = 3
 #         f[0]=str(x)
+#         self.funcheck()
 #         self.funman()
 #         f[4] = (DialogueActionTalkNoResponse(f[1], f[2], f[3]))
 #         f[4]=0

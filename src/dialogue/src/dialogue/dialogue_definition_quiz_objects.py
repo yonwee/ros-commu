@@ -36,9 +36,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
             f[0]=str(x)
             self.funman()
             if x > 2:
-                f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[3])
+                f[4] = DialogueActionTalkNoResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[3])
             else:
-                f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[4])
+                f[4] = DialogueActionTalkNoResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[4])
         return Dialogue(f[4])
 #         return Dialogue(DialogueActionTalkNoResponse(
 #                             utterance="hey",
@@ -140,15 +140,15 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #         else:
 #             return 'a ' + noun
 
-#     def __get_object_noun(self, label):
-#         return self.object_proper_name_map.get(label, label)
+    def __get_object_noun(self, label):
+        return self.object_proper_name_map.get(label, label)
 
-#     object_proper_name_map = {
-#         'aeroplane': 'airplane',
-#         'diningtable': 'dining table',
-#         'pottedplant': 'potted plant',
-#         'tvmonitor': 'screen'
-#     }
+    object_proper_name_map = {
+        'aeroplane': 'airplane',
+        'diningtable': 'dining table',
+        'pottedplant': 'potted plant',
+        'tvmonitor': 'screen'
+    }
 
 #     positive_response_list = [
 #         "Cool, you're good!",
@@ -203,3 +203,11 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #    def funman2(self):
 #        code = compile(dialogue_string_test, '<string>', 'exec')
 #        exec (code)
+
+#     def funcheck(self):
+#         cjdata = self.request_script()
+#         i = 1
+#         j = str(i)
+#         while cjdata[f[j]]['1']:
+#             i = i + 1
+#             f[5]=i

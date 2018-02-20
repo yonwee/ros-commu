@@ -30,7 +30,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
             # while keyvar in cjdata:
 
-            utterance = 'cow' #cjdata[keyvar]['u']  # u refers to sublist for utterance, change if server syntax changes
+            utterance = cjdata['1']['1'] #cjdata[keyvar]['u']  # u refers to sublist for utterance, change if server syntax changes
             cancelable = False
             next_action = None  # c refers to sublist for cancelable, change if server syntax changes
 

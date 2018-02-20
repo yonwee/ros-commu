@@ -39,7 +39,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                     cancelable=False,
                     next_action=
                     DialogueActionTalkNoResponse(
-                        utterance="{0}".format(**utterance_list),
+                        utterance="{'0'}".format(**utterance_list),
                         cancelable=False,
                         next_action=
                         DialogueActionSleep(
@@ -47,7 +47,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                             cancelable=False,
                             next_action=
                             DialogueActionTalkNoResponse(
-                                utterance="{1}".format(**utterance_list),
+                                utterance="{'1'}".format(**utterance_list),
                                 cancelable=False,
                                 next_action=
                                 DialogueActionSleep(
@@ -55,7 +55,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                                     cancelable=False,
                                     next_action=
                                     DialogueActionTalkNoResponse(
-                                        utterance="{2}".format(**utterance_list),
+                                        utterance="{'2'}".format(**utterance_list),
                                         cancelable=False,
                                         next_action=None
                                     )

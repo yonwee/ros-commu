@@ -55,8 +55,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
         f[2] = cancelable
         f[3] = next_action
        
-    def funcheck(self):
-        cjdata = self.request_script()
-        i = 1
-        while cjdata[f[i]]['1']:
-            i = i + 1
+#     def funcheck(self):
+#         cjdata = self.request_script()
+#         i = 1
+#         while cjdata[f[i]]['1']:
+#             i = i + 1

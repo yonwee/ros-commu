@@ -23,7 +23,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
         """
-        #self.funcheck()
+
         f[5] = self.request_script()
         for x in range (3,0,-1):            
             f[0]=str(x)
@@ -33,10 +33,6 @@ class DialogueLibraryQuiz(DialogueLibrary):
             else:
                 f[4] = DialogueActionTalkNoResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[4])
         return Dialogue(f[4])
-#         return Dialogue(DialogueActionTalkNoResponse(
-#                             utterance="hey",
-#                             cancelable=False,
-#                             next_action=None))
         
     def request_script(self):
         convo = urllib2.urlopen('http://192.168.1.225:8080/?json={test}')
@@ -53,21 +49,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         f[2] = cancelable
         f[3] = next_action
        
-#     def funcheck(self):
-#         cjdata = self.request_script()
-#         i = 1
-#         j = str(i)
-#         while cjdata[f[j]]['1']:
-#             i = i + 1
-#             f[5]=i
 
-#     def __add_a_to_noun(self, noun):
-#         # type: (str) -> str
-
-#         if noun[0].lower() in ['a', 'e', 'i', 'o', 'u']:
-#             return 'an ' + noun
-#         else:
-#             return 'a ' + noun
 
     def __get_object_noun(self, label):
         return self.object_proper_name_map.get(label, label)

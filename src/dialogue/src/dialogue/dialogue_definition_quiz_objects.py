@@ -26,6 +26,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
         # return Dialogue(DialogueLibraryQuiz.select_convo(self,topic))
         # return Dialogue(self.dialogue_string_test())
+        f[0]=1
         self.funman()
         return Dialogue(DialogueActionTalkNoResponse(f[1], f[2], f[3]))
     
@@ -41,10 +42,10 @@ class DialogueLibraryQuiz(DialogueLibrary):
     
     def funman(self):
         cjdata = self.request_script()
-        keyvar = "1"
-        utterance = cjdata[keyvar]['1']
-        cancelable = cjdata[keyvar]['2']
-        next_action = cjdata[keyvar]['3']
+        #keyvar = "1"
+        utterance = cjdata[f[0]]['1']
+        cancelable = cjdata[f[0]]['2']
+        next_action = cjdata[f[0]]['3']
         #utterance="hey"
         #cancelable=False
         #next_action=None

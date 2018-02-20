@@ -28,6 +28,29 @@ class DialogueLibraryQuiz(DialogueLibrary):
         # return Dialogue(self.dialogue_string_test())
         self.funman()
         return Dialogue(DialogueActionTalkNoResponse(f[1], f[2], f[3]))
+    
+    
+    def request_script(self):
+        convo = urllib2.urlopen('http://192.168.1.225:8080/?json={test}')
+        cjson = convo.read()
+        cjdata = json.loads(cjson)
+        #keyvar = "1"
+        #dia = cjdata[keyvar]['1']
+        return cjdata
+    
+    
+    def funman(self):
+        cjdata = self.request_script()
+        keyvar = "1"
+        utterance = cjdata[keyvar]['1']
+        #cancelable = cjdata[keyvar]['2']
+        #next_action = cjdata[keyvar]['3']
+        #utterance="hey"
+        cancelable=False
+        next_action=None
+        f[1] = utterance
+        f[2] = cancelable
+        f[3] = next_action 
 
     #         return Dialogue(
     #             DialogueActionTalkNoResponse(
@@ -93,35 +116,35 @@ class DialogueLibraryQuiz(DialogueLibrary):
     #         )        
     # """
 
-    def __add_a_to_noun(self, noun):
-        # type: (str) -> str
+#     def __add_a_to_noun(self, noun):
+#         # type: (str) -> str
 
-        if noun[0].lower() in ['a', 'e', 'i', 'o', 'u']:
-            return 'an ' + noun
-        else:
-            return 'a ' + noun
+#         if noun[0].lower() in ['a', 'e', 'i', 'o', 'u']:
+#             return 'an ' + noun
+#         else:
+#             return 'a ' + noun
 
-    def __get_object_noun(self, label):
-        return self.object_proper_name_map.get(label, label)
+#     def __get_object_noun(self, label):
+#         return self.object_proper_name_map.get(label, label)
 
-    object_proper_name_map = {
-        'aeroplane': 'airplane',
-        'diningtable': 'dining table',
-        'pottedplant': 'potted plant',
-        'tvmonitor': 'screen'
-    }
+#     object_proper_name_map = {
+#         'aeroplane': 'airplane',
+#         'diningtable': 'dining table',
+#         'pottedplant': 'potted plant',
+#         'tvmonitor': 'screen'
+#     }
 
-    positive_response_list = [
-        "Cool, you're good!",
-        "Nice, me too!",
-        "I see it too!"
-    ]
+#     positive_response_list = [
+#         "Cool, you're good!",
+#         "Nice, me too!",
+#         "I see it too!"
+#     ]
 
-    negative_response_list = [
-        "I see it over there",
-        "It's over there",
-        "I can help you. It's over here"
-    ]
+#     negative_response_list = [
+#         "I see it over there",
+#         "It's over there",
+#         "I can help you. It's over here"
+#     ]
 
     #    def dialogue_string_test(self):
     #        i=1
@@ -131,29 +154,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
     #        #dia = 'utterance=' + cjdata[keyvar]['1']
     #        #dia = cjdata[keyvar]['1']
     #        return cjdata
-
-
-    def request_script(self):
-        convo = urllib2.urlopen('http://192.168.1.225:8080/?json={test}')
-        cjson = convo.read()
-        cjdata = json.loads(cjson)
-        keyvar = "1"
-        #dia = cjdata[keyvar]['1']
-        return cjdata
-    
-    
-    def funman(self):
-        cjdata = self.request_script()
-        keyvar = 1
-        #utterance = cjdata[keyvar]['1']
-        #cancelable = cjdata[keyvar]['2']
-        #next_action = cjdata[keyvar]['3']
-        utterance="hey"
-        cancelable=False
-        next_action=None
-        f[1] = utterance
-        f[2] = cancelable
-        f[3] = next_action        
+   
         
 
         # def generation(self, cjdata, i):

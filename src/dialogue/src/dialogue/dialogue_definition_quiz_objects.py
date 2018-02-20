@@ -31,7 +31,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                     cancelable=False,
                     next_action=
                     DialogueActionTalkNoResponse(
-                        utterance=self.__get_from_server(topic,1),
+                        utterance="{}".format(self.__get_from_server(topic).utterance_list[0]),
                         cancelable=False,
                         next_action=
                         DialogueActionSleep(
@@ -39,7 +39,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                             cancelable=False,
                             next_action=
                             DialogueActionTalkNoResponse(
-                                utterance=self.__get_from_server(topic,2),
+                                utterance="{}".format(self.__get_from_server(topic).utterance_list[1]),
                                 cancelable=False,
                                 next_action=
                                 DialogueActionSleep(
@@ -47,7 +47,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                                     cancelable=False,
                                     next_action=
                                     DialogueActionTalkNoResponse(
-                                        utterance=self.__get_from_server(topic,3),
+                                        utterance="{}".format(self.__get_from_server(topic).utterance_list[2]),
                                         cancelable=False,
                                         next_action=None
                                     )
@@ -59,7 +59,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
             )
         )
     
-    def __get_from_server(self,topic,i):
+    def __get_from_server(self,topic):
         linkget = urllib2.urlopen("http://192.168.1.171:8080/?json={gen" + topic + "}")
         mybytes = linkget.read()
         mydic = json.loads(mybytes)
@@ -68,12 +68,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         utterance_list[0] = mydic["U1"]
         utterance_list[1] = mydic["U2"]
         utterance_list[2] = mydic["U3"]
-        if i == 1:
-            return utterance_list[0]
-        if i == 2:
-            return utterance_list[1]
-        if i == 3:
-            return utterance_list[2]
+        return utterance_list
         
     def __add_a_to_noun(self, noun):
         # type: (str) -> str

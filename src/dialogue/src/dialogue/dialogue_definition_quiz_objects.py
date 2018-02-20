@@ -37,8 +37,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
             else:
                 utterance = cjdata[keyvar]['1']
                 cancelable = cjdata[keyvar]['2']
-                next_action = DialogueActionTalkNoResponse(utterance='dummy', cancelable=False, next_action=None) #dummy line holds no meaning
-                next_action = f[(x + 1)]
+                f[x] = DialogueActionTalkNoResponse(utterance='dummy', cancelable=False,next_action=None)  # dummy line, holds no meaning other than initiation
+                next_action = f[x+1]
+                f[x] = DialogueActionTalkNoResponse(utterance='dummy', cancelable=False,next_action=None)  # dummy line, holds no meaning other than initiation
                 f[x] = DialogueActionTalkNoResponse(utterance, cancelable, next_action)
         return Dialogue(f[0])
 

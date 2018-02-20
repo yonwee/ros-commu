@@ -31,13 +31,11 @@ class DialogueLibraryQuiz(DialogueLibrary):
         self.funman()
         #gitgud = (DialogueActionTalkNoResponse(f[1], f[2], f[3]))
         f[4] = (DialogueActionTalkNoResponse(f[1], f[2], f[3]))
-        try:
-            x=x-1
+        for y in range (-2,0):
+            x = y*-1
             f[0]=str(x)
             self.funman()
-            f[4] = (DialogueActionTalkNoResponse(f[1], f[2], gitgud))
-            except Keyerror:
-                pass
+            f[4] = (DialogueActionTalkNoResponse(f[1], f[2], f[4]))
         return Dialogue(f[4])
     
     

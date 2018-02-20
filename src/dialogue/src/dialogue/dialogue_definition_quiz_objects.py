@@ -12,7 +12,6 @@ class DialogueLibraryQuiz(DialogueLibrary):
     """
     A DialogueLibrary that can be used when a CommU robot sees an object. This plays 'object hide-and-seek' with the user.
     """
-    global mydic
     
     def get_dialogue_for_topic(self, topic):
         # type: (str) -> Dialogue
@@ -21,11 +20,6 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
         """
-        
-        linkget = urllib2.urlopen("http://192.168.1.171:8080/?json={gen" + topic + "}")
-        mybytes = linkget.read()
-        mydic = json.loads(mybytes)
-        linkget.close()
         
         return Dialogue(
             DialogueActionLook(
@@ -37,7 +31,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                     cancelable=False,
                     next_action=
                     DialogueActionTalkNoResponse(
-                        utterance=utterance_list[0],
+                        utterance=self.__get_from_server(topic,1),
                         cancelable=False,
                         next_action=
                         DialogueActionSleep(
@@ -45,7 +39,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                             cancelable=False,
                             next_action=
                             DialogueActionTalkNoResponse(
-                                utterance=utterance_list[1],
+                                utterance=self.__get_from_server(topic,2),
                                 cancelable=False,
                                 next_action=
                                 DialogueActionSleep(
@@ -53,7 +47,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                                     cancelable=False,
                                     next_action=
                                     DialogueActionTalkNoResponse(
-                                        utterance=utterance_list[2],
+                                        utterance=self.__get_from_server(topic,3),
                                         cancelable=False,
                                         next_action=None
                                     )
@@ -64,13 +58,23 @@ class DialogueLibraryQuiz(DialogueLibrary):
                 )
             )
         )
+    
+    def __get_from_server(self,topic,i):
+        linkget = urllib2.urlopen("http://192.168.1.171:8080/?json={gen" + topic + "}")
+        mybytes = linkget.read()
+        mydic = json.loads(mybytes)
+        linkget.close()
+        utterance_list = {}
+        utterance_list[0] = mydic["U1"]
+        utterance_list[1] = mydic["U2"]
+        utterance_list[2] = mydic["U3"]
+        if i = 1:
+            return utterance_list[0]
+        if i = 2:
+            return utterance_list[1]
+        if i = 3:
+            return utterance_list[2]
         
-    utterance_list = {
-        mydic["U1"],
-        mydic["U2"],
-        mydic["U3"]
-    }
-
     def __add_a_to_noun(self, noun):
         # type: (str) -> str
 

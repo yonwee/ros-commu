@@ -29,7 +29,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         f[0]="1"
         self.funman()
         gitgud = Dialogue(DialogueActionTalkNoResponse(f[1], f[2], f[3]))
-        return getgud
+        return gitgud
     
     
     def request_script(self):

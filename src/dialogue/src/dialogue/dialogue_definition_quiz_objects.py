@@ -17,6 +17,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
         """
+        
         return Dialogue(
             DialogueActionLook(
                 look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,

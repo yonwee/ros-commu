@@ -23,8 +23,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
         """
-        #self.funcheck()
-        for x in range (3,0,-1):            
+        self.funcheck()
+        for x in range (i,0,-1):            
             f[0]=str(x)
             self.funman()
             if x > 2:

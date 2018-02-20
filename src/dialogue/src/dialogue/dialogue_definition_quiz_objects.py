@@ -31,14 +31,14 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #         self.funman()
 #         f[4] = (DialogueActionTalkNoResponse(f[1], f[2], f[3]))
 #         f[4]=0
-        for x in range (3,0,-1):            
+        i = 1
+        while f[i]:
+            i+=1
+        for x in range (i,0,-1):            
             f[0]=str(x)
             self.funman()
             if x > 2:
-                f[4] = DialogueActionSleep(
-                        sleep_time=1,
-                        cancelable=False,
-                        next_action=DialogueActionTalkNoResponse(f[1], f[2], f[3]))
+                f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[3]))
             if x < 3:
                 if x > 0:
                     f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[4])

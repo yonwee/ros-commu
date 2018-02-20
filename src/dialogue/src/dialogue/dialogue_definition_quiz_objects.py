@@ -70,12 +70,12 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #         else:
 #             return 'a ' + noun
 
-#     def __get_object_noun(self, label):
-#         return self.object_proper_name_map.get(label, label)
+    def __get_object_noun(self, label):
+        return self.object_proper_name_map.get(label, label)
 
-#     object_proper_name_map = {
-#         'aeroplane': 'airplane',
-#         'diningtable': 'dining table',
-#         'pottedplant': 'potted plant',
-#         'tvmonitor': 'screen'
-#     }
+    object_proper_name_map = {
+        'aeroplane': 'airplane',
+        'diningtable': 'dining table',
+        'pottedplant': 'potted plant',
+        'tvmonitor': 'screen'
+    }

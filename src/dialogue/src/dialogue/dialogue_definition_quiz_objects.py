@@ -27,7 +27,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         # return Dialogue(DialogueLibraryQuiz.select_convo(self,topic))
         # return Dialogue(self.dialogue_string_test())
         self.funman()
-        return Dialogue(DialogueActionTalkNoResponse(f[1], f[2], f[3]))
+        return Dialogue(DialogueActionTalkNoResponse(utterance = cjdata[keyvar]['1'], f[2], f[3]))
 
     #         return Dialogue(
     #             DialogueActionTalkNoResponse(
@@ -137,7 +137,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         convo = urllib2.urlopen('http://192.168.1.225:8080/?json={test}')
         cjson = convo.read()
         cjdata = json.loads(cjson)
-        return cjdata
+        return cjdata[keyvar]['1']
     
     
     def funman(self):

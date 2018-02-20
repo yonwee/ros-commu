@@ -32,37 +32,35 @@ class DialogueLibraryQuiz(DialogueLibrary):
         utterance_list[3] = mydic["U4"]
         utterance_list[4] = mydic["U5"]
 
-        if utterance_list[3] == None:
-            return Dialogue(
-                DialogueActionLook(
-                    look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
+        return Dialogue(
+            DialogueActionLook(
+                look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
+                cancelable=False,
+                next_action=
+                DialogueActionSleep(
+                    sleep_time=1,
                     cancelable=False,
                     next_action=
-                    DialogueActionSleep(
-                        sleep_time=1,
+                    DialogueActionTalkNoResponse(
+                        utterance="{}".format(utterance_list[0]),
                         cancelable=False,
                         next_action=
-                        DialogueActionTalkNoResponse(
-                            utterance="{}".format(utterance_list[0]),
+                        DialogueActionSleep(
+                            sleep_time=1,
                             cancelable=False,
                             next_action=
-                            DialogueActionSleep(
-                                sleep_time=1,
+                            DialogueActionTalkNoResponse(
+                                utterance="{}".format(utterance_list[1]),
                                 cancelable=False,
                                 next_action=
-                                DialogueActionTalkNoResponse(
-                                    utterance="{}".format(utterance_list[1]),
+                                DialogueActionSleep(
+                                    sleep_time=1,
                                     cancelable=False,
                                     next_action=
-                                    DialogueActionSleep(
-                                        sleep_time=1,
+                                    DialogueActionTalkNoResponse(
+                                        utterance="{}".format(utterance_list[2]),
                                         cancelable=False,
-                                        next_action=
-                                        DialogueActionTalkNoResponse(
-                                            utterance="{}".format(utterance_list[2]),
-                                            cancelable=False,
-                                            next_action=None
-                                        )
+                                        next_action=None
                                     )
                                 )
                             )
@@ -70,6 +68,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                     )
                 )
             )
+        )
 """
         if utterance_list[3] != None:
             return Dialogue(

@@ -38,7 +38,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
             f[0]=str(x)
             self.funman()
             if x > 2:
-                f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[3]))
+                f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[3])
             if x < 3:
                 if x > 0:
                     f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[4])

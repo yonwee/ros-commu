@@ -42,7 +42,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         return Dialogue(DialogueActionTalkNoResponse(
                             utterance="hey",
                             cancelable=False,
-                            next_action=None )
+                            next_action=None))
     
     
     def request_script(self):

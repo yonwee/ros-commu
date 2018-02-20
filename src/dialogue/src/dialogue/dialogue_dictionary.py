@@ -1,8 +1,5 @@
-convos = {
-'convo1' : {"line1": {"u": "hey", "c": "False", "n": "None"}, "line2": {"u": "heya", "c": "False", "n": "None"}, "line3": {"u": "heyb", "c": "False", "n": "None"}},
-'convo2' : {"line1": {"u": "hey", "c": "False", "n": "None"}, "line2": {"u": "heya", "c": "False", "n": "None"}, "line3": {"u": "heyb", "c": "False", "n": "None"}},
-'convo3' : {"line1": {"u": "hey", "c": "False", "n": "None"}, "line2": {"u": "heya", "c": "False", "n": "None"}, "line3": {"u": "heyb", "c": "False", "n": "None"}},
-'convo4' : {"line1": {"u": "hey", "c": "False", "n": "None"}, "line2": {"u": "heya", "c": "False", "n": "None"}, "line3": {"u": "heyb", "c": "False", "n": "None"}},
-'convo5' : {"line1": {"u": "hey", "c": "False", "n": "None"}, "line2": {"u": "heya", "c": "False", "n": "None"}, "line3": {"u": "heyb", "c": "False", "n": "None"}},
-'convo6' : {"line1": {"u": "hey", "c": "False", "n": "None"}, "line2": {"u": "heya", "c": "False", "n": "None"}, "line3": {"u": "heyb", "c": "False", "n": "None"}}
+convos = {1:
+{"1": {"1": "Are you interested in {}? That looks special.", "2": "false", "3": "None"}, "2": {"1": "And why is that so?", "2": "False", "3": "None"}, "3": {"1": "I've never seen it that way before. Good to hear.", "2": "False", "3": "None"}, "4": ""}
 }
+
+print len(convos[1])

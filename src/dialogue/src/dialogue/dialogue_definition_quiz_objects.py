@@ -26,15 +26,16 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
         # return Dialogue(DialogueLibraryQuiz.select_convo(self,topic))
         # return Dialogue(self.dialogue_string_test())
-        x = 3
-        f[0]=str(x)
-        self.funman()
-        #gitgud = (DialogueActionTalkNoResponse(f[1], f[2], f[3]))
-        f[4] = (DialogueActionTalkNoResponse(f[1], f[2], f[3]))
-        for y in range (-2,0):
+#         x = 3
+#         f[0]=str(x)
+#         self.funman()
+#         f[4] = (DialogueActionTalkNoResponse(f[1], f[2], f[3]))
+        for y in range (-3,0):
             x = y*-1
             f[0]=str(x)
             self.funman()
+            if x = 3:
+                f[4] = (DialogueActionTalkNoResponse(f[1], f[2], f[3]))
             f[4] = (DialogueActionTalkNoResponse(f[1], f[2], f[4]))
         return Dialogue(f[4])
     
@@ -52,8 +53,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
         cjdata = self.request_script()
         #keyvar = "1"
         utterance = cjdata[f[0]]['1']
-        cancelable = cjdata[f[0]]['2']
-        next_action = cjdata[f[0]]['3']
+        c
+        next_action = cjdata[f[0]]['3ancelable = cjdata[f[0]]['2']']
         #utterance="hey"
         #cancelable=False
         #next_action=None

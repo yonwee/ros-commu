@@ -24,7 +24,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
         """
-        self.request_script()
+        #self.request_script()
         f[5] = self.request_script()
         for x in range (3,0,-1):            
             f[0]=str(x)

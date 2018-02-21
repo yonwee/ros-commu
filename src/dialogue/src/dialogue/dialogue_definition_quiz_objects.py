@@ -33,18 +33,18 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #         f[4] = (DialogueActionTalkNoResponse(f[1], f[2], f[3]))
 #         f[4]=0
         f[5] = self.request_script()
-        for x in range (3,0,-1):            
-            f[0]=str(x)
-            self.funman()
-            if x > 2:
-                f[4] = DialogueActionTalkNoResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[3])
-            else:
-                f[4] = DialogueActionTalkNoResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[4])
-        return Dialogue(f[4])
-#         return Dialogue(DialogueActionTalkNoResponse(
-#                             utterance="hey",
-#                             cancelable=False,
-#                             next_action="None"))
+#         for x in range (3,0,-1):            
+#             f[0]=str(x)
+#             self.funman()
+#             if x > 2:
+#                 f[4] = DialogueActionTalkNoResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[3])
+#             else:
+#                 f[4] = DialogueActionTalkNoResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[4])
+#         return Dialogue(f[4])
+        return Dialogue(DialogueActionTalkNoResponse(
+                            utterance="hey",
+                            cancelable=False,
+                            next_action="None"))
     
     
     def request_script(self):

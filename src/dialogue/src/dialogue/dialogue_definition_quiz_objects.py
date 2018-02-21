@@ -13,7 +13,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
     A DialogueLibrary that can be used when a CommU robot sees an object. This plays 'object hide-and-seek' with the user.
     """
 
-    global f, utterance, cancelable, next_action,i
+    global f, utterance, cancelable, next_action
     f = {}
 
     def get_dialogue_for_topic(self, topic):
@@ -33,7 +33,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #         f[4]=0
         f[5] = self.request_script()
         self.funcheck()
-        for x in range (i,0,-1):            
+        for x in range (f[6],0,-1):            
             f[0]=str(x)
             self.funman()
             if x > 2:
@@ -214,5 +214,4 @@ class DialogueLibraryQuiz(DialogueLibrary):
         j = str(i)
         while cjdata[f[j]]['1']:
             i = i + 1
-#             f[6]=i
-        return i
+        f[6]=i

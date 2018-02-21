@@ -209,9 +209,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #        exec (code)
 
     def funcheck(self):
-        cjdata = f[5]
         i = 1
         j = str(i)
-        while cjdata[f[j]]['1']:
+        while f[5][f[j]]['1']:
             i = i + 1
         f[6]=i

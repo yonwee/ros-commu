@@ -32,19 +32,22 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #         self.funman()
 #         f[4] = (DialogueActionTalkNoResponse(f[1], f[2], f[3]))
 #         f[4]=0
-#         f[5] = self.request_script()
-#         for x in range (3,0,-1):            
-#             f[0]=str(x)
-#             self.funman()
-#             if x > 2:
-#                 f[4] = DialogueActionTalkNoResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[3])
-#             else:
-#                 f[4] = DialogueActionTalkNoResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[4])
-#         return Dialogue(f[4])
-        return Dialogue(DialogueActionTalkNoResponse(
-                            utterance="hey",
-                            cancelable=False,
-                            next_action=None))
+        f[5] = self.request_script()
+        for x in range (3,0,-1):            
+            f[0]=str(x)
+            self.funman()
+            if x > 2:
+                f[4] =  DialogueActionSleep(
+                    sleep_time=1,
+                    cancelable=False,
+                    next_action=DialogueActionTalkNoResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[3]))                                                   
+            else:
+                f[4] = DialogueActionTalkNoResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[4])
+        return Dialogue(f[4])
+#         return Dialogue(DialogueActionTalkNoResponse(
+#                             utterance="hey",
+#                             cancelable=False,
+#                             next_action=None))
     
     
     def request_script(self):
@@ -61,7 +64,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         #keyvar = "1"
         utterance = f[5][f[0]]['1']
         cancelable = f[5][f[0]]['2']
-        next_action = f[5][f[0]]['3'].replace("zz","None")
+        next_action = None
         #utterance="hey"
         #cancelable=False
         #next_action=None

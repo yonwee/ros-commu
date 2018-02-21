@@ -31,7 +31,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
             self.funman()
             if x > 2:
                 f[4] =  DialogueActionSleep(
-                    sleep_time=2,
+                    sleep_time=1,
                     cancelable=False,
                     next_action=DialogueActionTalkNoResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[3])                                                   
             else:

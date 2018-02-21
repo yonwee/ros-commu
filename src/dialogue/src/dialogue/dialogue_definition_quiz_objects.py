@@ -48,10 +48,10 @@ class DialogueLibraryQuiz(DialogueLibrary):
     def assign_return_dia(self,x):
         curint = str(x)
         if store['full'][curint]['t']=='last':
-            return None
+            return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=None)
         else:
             return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=self.assign_return_dia(x+1))
-            
+
 
 
 

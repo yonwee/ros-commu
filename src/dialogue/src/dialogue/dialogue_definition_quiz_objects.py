@@ -14,7 +14,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
     A DialogueLibrary that can be used when a CommU robot sees an object. This plays 'object hide-and-seek' with the user.
     """
 
-    global f, utterance, cancelable, next_action
+    global f, utterance, cancelable, next_action, store
+    store = {}
     f = {}
 
     def get_dialogue_for_topic(self, topic):
@@ -24,55 +25,22 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
         """
+        #return Dialogue(DialogueActionTalkNoResponse(utterance='heya', cancelable=False, next_action=None))
+
         cjdata = self.request_script()
         cjdatalen = len(cjdata)
-        rospy.loginfo("Got Dialogue from server.")
-        store = {}
-        #try:
-        for x in range(cjdatalen-1, 0, -1):
-            keyvar = str(x)
-            #if cjdata[keyvar] == '':
-            if keyvar == '3':
-                store[x] = cjdata[keyvar]['3']  # will this be a problem...?
-            else:
-                utterance = cjdata[keyvar]['1']
-                cancelable = cjdata[keyvar]['2']
-                f[x] = DialogueActionTalkNoResponse(utterance='dummy', cancelable=False,next_action=None)  # dummy line, holds no meaning other than initiation
-                next_action = f[x+1]
-                f[x] = DialogueActionTalkNoResponse(utterance, cancelable, next_action)
-        return Dialogue(f[0])
-    #     for x in range (3,-1,-1):
-    #         f[0]=str(x)
-    #         self.funman()
-    #         if x > 2:
-    #             f[4] = DialogueActionSleep(
-    #                     sleep_time=1,
-    #                     cancelable=False,
-    #                     next_action=DialogueActionTalkNoResponse(f[1], f[2], f[3]))
-    #         if x < 3:
-    #             if x > -1:
-    #                 f[4] = DialogueActionTalkNoResponse(f[1], f[2], f[4])
-    #             else: break
-    #     return Dialogue(f[4])
-    #
-    # def funman(self):
-    #     cjdata = self.request_script()
-    #     #keyvar = "1"
-    #     utterance = cjdata[f[0]]['1']
-    #     cancelable = cjdata[f[0]]['2']
-    #     next_action = cjdata[f[0]]['3']
-    #     #utterance="hey"
-    #     #cancelable=False
-    #     #next_action=None
-    #     f[1] = utterance
-    #     f[2] = cancelable
-    #     f[3] = next_action
+        store['full'] = cjdata
+        for x in range (0, cjdatalen):
+            store['block'] = DialogueActionTalkNoResponse(store['full']['1']['u'],store['full']['1']['c'],next_action=None)
+        return Dialogue(store['block'])
+
+
 
     def request_script(self):
-        # convo = urllib2.urlopen('http://192.168.1.225:8080/?json={test}')
-        # cjson = convo.read()
-        # cjdata = json.loads(cjson)
-        cjdata = convos[1]
+        convo = urllib2.urlopen('http://192.168.1.225:8080/?json={test}')
+        cjson = convo.read()
+        cjdata = json.loads(cjson)
+        #cjdata = convos[1]
         return cjdata
 
         # return Dialogue(
@@ -198,4 +166,4 @@ class DialogueLibraryQuiz(DialogueLibrary):
     #         return "None"+ ')'*(i-2)
     #
     #     return fulldialogue
-    #
+

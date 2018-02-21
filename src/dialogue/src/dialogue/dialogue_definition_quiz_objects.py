@@ -31,7 +31,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
         cjdatalen = len(cjdata)
         store['full'] = cjdata
         for x in range (0, cjdatalen):
-            store['block'] = DialogueActionTalkNoResponse(store['full']['1']['u'],store['full']['1']['c'],next_action=None)
+
+            store['block'] = DialogueActionTalkNoResponse(store['full']['1']['u'],store['full']['1']['c'],next_action=self.return_none_bby())
         return Dialogue(store['block'])
 
 
@@ -42,6 +43,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
         cjdata = json.loads(cjson)
         #cjdata = convos[1]
         return cjdata
+
+    def return_none_bby(self):
+        return None
 
         # return Dialogue(
         #     DialogueActionLook(

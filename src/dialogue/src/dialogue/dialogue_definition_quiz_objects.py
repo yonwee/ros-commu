@@ -31,8 +31,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #         self.funman()
 #         f[4] = (DialogueActionTalkNoResponse(f[1], f[2], f[3]))
 #         f[4]=0
-         f[5] = self.request_script()
-#
+        f[5] = self.request_script()
         for x in range (len(f[5]),0,-1):            
             f[0]=str(x)
             self.funman()

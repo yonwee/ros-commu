@@ -31,9 +31,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #         self.funman()
 #         f[4] = (DialogueActionTalkNoResponse(f[1], f[2], f[3]))
 #         f[4]=0
-#         f[5] = self.request_script()
-        self.funcheck()
-        for x in range (f[6],0,-1):            
+         f[5] = self.request_script()
+#
+        for x in range (len(f[5]),0,-1):            
             f[0]=str(x)
             self.funman()
             if x > 2:
@@ -208,10 +208,10 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #        code = compile(dialogue_string_test, '<string>', 'exec')
 #        exec (code)
 
-    def funcheck(self):
-        f[5] = self.request_script()
-        i = 1
-        j = str(i)
-        while f[5][f[j]]['1']:
-            i = i + 1
-        f[6]=i
+#     def funcheck(self):
+#         f[5] = self.request_script()
+#         i = 1
+#         j = str(i)
+#         while f[5][f[j]]['1']:
+#             i = i + 1
+#         f[6]=i

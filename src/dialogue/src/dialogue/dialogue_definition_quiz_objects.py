@@ -32,7 +32,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         utterance_list[3] = mydic["U4"]
         utterance_list[4] = mydic["U5"]
 
-        if utterance_list[3] == [None]:
+        if utterance_list[3] == None:
             return Dialogue(
                 DialogueActionLook(
                     look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
@@ -71,7 +71,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                 )
             )
 
-        if utterance_list[3] != [None]:
+        if utterance_list[3] != None:
             return Dialogue(
                 DialogueActionLook(
                     look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,

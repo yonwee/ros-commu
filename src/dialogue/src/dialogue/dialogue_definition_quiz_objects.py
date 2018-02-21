@@ -30,9 +30,10 @@ class DialogueLibraryQuiz(DialogueLibrary):
         cjdata = self.request_script()
         cjdatalen = len(cjdata)
         store['full'] = cjdata
-        for x in range (0, cjdatalen):
-
-            store['block'] = DialogueActionTalkNoResponse(store['full']['1']['u'],store['full']['1']['c'],next_action=self.return_arb_dia())
+#       for x in range (1, cjdatalen):
+        x=1
+#        self.assign_return_dia(x)
+        store['block'] = self.assign_return_dia(x)
         return Dialogue(store['block'])
 
 
@@ -43,6 +44,16 @@ class DialogueLibraryQuiz(DialogueLibrary):
         cjdata = json.loads(cjson)
         #cjdata = convos[1]
         return cjdata
+
+    def assign_return_dia(self,x):
+        curint = str(x)
+        if store['full'][curint]['t']=='last':
+            return None
+        else:
+            return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=self.assign_return_dia(x+1))
+            
+
+
 
     def return_none_bby(self):
         return None

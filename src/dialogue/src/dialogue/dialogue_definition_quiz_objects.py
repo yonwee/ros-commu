@@ -45,7 +45,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
         #cjdata = self.request_script()
         utterance = f[5][f[0]]['1']
         cancelable = f[5][f[0]]['2']
-        next_action = f[5][f[0]]['3'].replace("zz","None")
+        next_action = f[5][f[0]]['3']
+        #next_action = f[5][f[0]]['3'].replace("zz","None")
         f[1] = utterance
         f[2] = cancelable
         f[3] = next_action

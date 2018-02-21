@@ -32,7 +32,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         store['full'] = cjdata
         for x in range (0, cjdatalen):
 
-            store['block'] = DialogueActionTalkNoResponse(store['full']['1']['u'],store['full']['1']['c'],next_action=self.return_none_bby())
+            store['block'] = DialogueActionTalkNoResponse(store['full']['1']['u'],store['full']['1']['c'],next_action=self.return_arb_dia())
         return Dialogue(store['block'])
 
 
@@ -46,6 +46,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
     def return_none_bby(self):
         return None
+
+    def return_arb_dia(self):
+        return DialogueActionTalkNoResponse(utterance='yes',cancelable=False,next_action=self.return_none_bby())
 
         # return Dialogue(
         #     DialogueActionLook(

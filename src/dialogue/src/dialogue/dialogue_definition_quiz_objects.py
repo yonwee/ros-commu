@@ -37,7 +37,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
 
     def request_script(self):
-        convo = urllib2.urlopen('http://192.168.1.225:8080/?json={test}')
+        convo = urllib2.urlopen('http://192.168.1.166:9000/?json={test}')
         cjson = convo.read()
         cjdata = json.loads(cjson)
         #cjdata = convos[1]

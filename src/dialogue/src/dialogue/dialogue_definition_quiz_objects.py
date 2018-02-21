@@ -31,18 +31,37 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #         self.funman()
 #         f[4] = (DialogueActionTalkNoResponse(f[1], f[2], f[3]))
 #         f[4]=0
+
+###################################################################################################
+#          xinhai is hungry
+#         f[1] = utterance
+#         f[2] = cancelable
+#         f[3] = next_action
+#         f[6] = next_action_yes
+#         f[7] = next_action_no
+###################################################################################################     
+        
         f[5] = self.request_script()
-        a = len(f[5])
-        for x in range (a,0,-1):            
-            f[0]=str(x)
-            self.funman()
-            if x == a:
-                f[4] =  DialogueActionSleep(
-                    sleep_time=1,
-                    cancelable=False,
-                    next_action=DialogueActionTalkNoResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[3]))                                                   
-            else:
-                f[4] = DialogueActionTalkNoResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[4])
+        self.funman()
+#         a = len(f[5])
+#         for x in range (a,0,-1):            
+#             f[0]=str(x)
+#             self.funman()
+#             if x == a:
+#                 f[4] =  DialogueActionSleep(
+#                     sleep_time=1,
+#                     cancelable=False,
+#                     next_action=DialogueActionTalkNoResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[3]))                                                   
+#             else:
+        f[0] = '1'
+            if f[5][f[0]]['3'] == "Binary":
+# #                     f[4] = DialogueActionTalkBinaryResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[6], f[7])
+                f[4] = DialogueActionTalkNoResponse(
+                        utterance="hey",
+                        cancelable=False,
+                        next_action=None)
+#                 else:
+#                     f[4] = DialogueActionTalkNoResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[4])
         return Dialogue(f[4])
 #         return Dialogue(DialogueActionTalkNoResponse(
 #                             utterance="hey",
@@ -64,13 +83,20 @@ class DialogueLibraryQuiz(DialogueLibrary):
         #keyvar = "1"
         utterance = f[5][f[0]]['1']
         cancelable = f[5][f[0]]['2']
+#         if f[5][f[0]]['3'] is "None":           
         next_action = None
+#         else:
+#             next_action = f[5][f[0]]['3']
+        next_action_yes=0
+        next_action_no=0
         #utterance="hey"
         #cancelable=False
-        #next_action=None
+#         next_action=None
         f[1] = utterance
         f[2] = cancelable
-        f[3] = next_action 
+        f[3] = next_action
+        f[6] = next_action_yes
+        f[7] = next_action_no
 
     #         return Dialogue(
     #             DialogueActionTalkNoResponse(

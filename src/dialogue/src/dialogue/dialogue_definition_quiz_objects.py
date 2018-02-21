@@ -54,12 +54,12 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #                     next_action=DialogueActionTalkNoResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[3]))                                                   
 #             else:
         f[0] = '1'
-            if f[5][f[0]]['3'] == "Binary":
+        if f[5][f[0]]['3'] == "Binary":
 # #                     f[4] = DialogueActionTalkBinaryResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[6], f[7])
-                f[4] = DialogueActionTalkNoResponse(
-                        utterance="hey",
-                        cancelable=False,
-                        next_action=None)
+            f[4] = DialogueActionTalkNoResponse(
+                    utterance="hey",
+                    cancelable=False,
+                    next_action=None)
 #                 else:
 #                     f[4] = DialogueActionTalkNoResponse(f[1].format(self.__get_object_noun(topic)), f[2], f[4])
         return Dialogue(f[4])

@@ -52,9 +52,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         if store['full'][curint]['type']=='binary':
             yesloc = int(store['full'][curint]['yesloc'])
             noloc  = int(store['full'][curint]['noloc'])
-            return DialogueActionTalkBinaryResponse('its a binary!',store['full'][curint]['c'],next_action_yes=DialogueActionTalkNoResponse(
-                                                    utterance='yes', cancelable=False, next_action=None)
-                                                    ,next_action_no=DialogueActionTalkNoResponse(utterance='no', cancelable=False, next_action=None))
+            return DialogueActionTalkBinaryResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action_yes=self.assign_return_dia(yesloc),next_action_no=self.assign_return_dia(noloc))
 
 
 

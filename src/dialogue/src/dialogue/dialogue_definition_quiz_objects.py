@@ -32,7 +32,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #         f[4] = (DialogueActionTalkNoResponse(f[1], f[2], f[3]))
 #         f[4]=0
         f[5] = self.request_script()
-        a = len(f[5])
+        a = len(f[5])-1
         for x in range (a,0,-1):            
             f[0]=str(x)
             self.funman()

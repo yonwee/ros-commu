@@ -30,9 +30,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         cjdata = self.request_script()
         cjdatalen = len(cjdata)
         store['full'] = cjdata
-#       for x in range (1, cjdatalen):
         x=1
-#        self.assign_return_dia(x)
         store['block'] = self.assign_return_dia(x)
         return Dialogue(store['block'])
 
@@ -47,10 +45,15 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
     def assign_return_dia(self,x):
         curint = str(x)
-        if store['full'][curint]['t']=='last':
+        if store['full'][curint]['type']=='last':
             return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=None)
-        else:
-            return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=self.assign_return_dia(x+1))
+        if store['full'][curint]['type']=='next':
+            return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=self.assign_return_dia(x+1)) #(x+1) moves interation up by one
+        if store['full'][curint]['type']=='binary':
+            yesloc = int(store['full'][curint]['yesloc'])
+            noloc  = int(store['full'][curint]['noloc'])
+            return DialogueActionTalkBinaryResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action_yes=self.assign_return_dia(x+yesloc),next_action_no=self.assign_return_dia(x+noloc))
+
 
 
 

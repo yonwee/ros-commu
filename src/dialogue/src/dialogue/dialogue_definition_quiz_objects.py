@@ -30,7 +30,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         cjdata = self.request_script()
         store['full'] = cjdata
         x=1
-        store['block'] = self.assign_return_dia(x)
+        store['block'] = self.assign_return_dia(x,topic)
         return Dialogue(store['block'])
 
     def request_script(self):
@@ -40,7 +40,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         #cjdata = convos[1]
         return cjdata
 
-    def assign_return_dia(self,x):
+    def assign_return_dia(self,x,topic):
         curint = str(x)
         if store['full'][curint]['type']=='last':
             return DialogueActionTalkNoResponse(

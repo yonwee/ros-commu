@@ -44,7 +44,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         curint = str(x)
         if store['full'][curint]['type']=='last':
             return DialogueActionTalkNoResponse(
-                store['full'][curint]['u']),
+                store['full'][curint]['u'],
                 store['full'][curint]['c'],
                 next_action=None)
         if store['full'][curint]['type']=='pass':

@@ -43,14 +43,24 @@ class DialogueLibraryQuiz(DialogueLibrary):
     def assign_return_dia(self,x):
         curint = str(x)
         if store['full'][curint]['type']=='last':
-            return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=None)
+            return DialogueActionTalkNoResponse(
+                store['full'][curint]['u'].format(self.__add_a_to_noun(self.__get_object_noun(topic))),
+                store['full'][curint]['c'],
+                next_action=None)
         if store['full'][curint]['type']=='pass':
             next = int(store['full'][curint]['next'])
-            return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=self.assign_return_dia(next)) #(x+1) moves interation up by one
+            return DialogueActionTalkNoResponse(
+                store['full'][curint]['u'].format(self.__add_a_to_noun(self.__get_object_noun(topic))),
+                store['full'][curint]['c'],
+                next_action=self.assign_return_dia(next)) 
         if store['full'][curint]['type']=='binary':
             yesloc = int(store['full'][curint]['yesloc'])
             noloc  = int(store['full'][curint]['noloc'])
-            return DialogueActionTalkBinaryResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action_yes=self.assign_return_dia(yesloc),next_action_no=self.assign_return_dia(noloc))
+            neuloc = int(store['full'][curint]['neuloc'])
+            return DialogueActionTalkBinaryResponse(
+                store['full'][curint]['u'].format(self.__add_a_to_noun(self.__get_object_noun(topic))),
+                store['full'][curint]['c'],next_action_yes=self.assign_return_dia(yesloc),
+                next_action_no=self.assign_return_dia(noloc))
 
     def return_none_bby(self):
         return None

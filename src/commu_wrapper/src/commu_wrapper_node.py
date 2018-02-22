@@ -39,7 +39,7 @@ if __name__ == '__main__':
 
     commu_ip = rospy.get_param("commu_wrapper/commu_ip", "127.0.0.1")
     commu_port = rospy.get_param("commu_wrapper/commu_port", "6009")
-    commu_volume = rospy.get_param("commu_wrapper/commu_volume", 10)
+    commu_volume = rospy.get_param("commu_wrapper/commu_volume", 5)
     debug_mode = rospy.get_param("commu_wrapper/debug_mode", True)
     classification_topic = rospy.get_param("commu_wrapper/classification_topic", "/ssd_node/classification_result")
 

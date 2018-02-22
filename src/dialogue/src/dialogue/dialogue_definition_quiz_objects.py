@@ -57,17 +57,17 @@ class DialogueLibraryQuiz(DialogueLibrary):
         if store['full'][curint]['type']=='binary':
             yesloc = int(store['full'][curint]['yesloc'])
             noloc  = int(store['full'][curint]['noloc'])
-            neuloc = int(store['full'][curint]['neuloc'])
+#             neuloc = int(store['full'][curint]['neuloc'])
             return DialogueActionTalkBinaryResponse(
                 store['full'][curint]['u'],
                 store['full'][curint]['c'],next_action_yes=self.assign_return_dia(yesloc),
                 next_action_no=self.assign_return_dia(noloc))
 
-    def return_none_bby(self):
-        return None
+#     def return_none_bby(self):
+#         return None
 
-    def return_arb_dia(self):
-        return DialogueActionTalkNoResponse(utterance='yes',cancelable=False,next_action=self.return_none_bby())
+#     def return_arb_dia(self):
+#         return DialogueActionTalkNoResponse(utterance='yes',cancelable=False,next_action=self.return_none_bby())
                 
     def __get_object_noun(self, label):
         return self.object_proper_name_map.get(label, label)

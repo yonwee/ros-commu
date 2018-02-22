@@ -30,8 +30,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         cjdata = self.request_script()
         cjdatalen = len(cjdata)
         store['full'] = cjdata
-        x=1
-        store['block'] = self.assign_return_dia(x)
+        store['block'] = self.assign_return_dia(x=1)
         return Dialogue(store['block'])
 
 
@@ -44,12 +43,22 @@ class DialogueLibraryQuiz(DialogueLibrary):
         return cjdata
 
     def assign_return_dia(self,x):
+        '''
+        Assigns the utterances and cancelable parameters of the respective Dialogue functions,
+        and reiterates for next action.
+        :param x:   The current conversation iteration point/number
+        :return:    Dialogue function
+        '''
+
         curint = str(x)
+
         if store['full'][curint]['type']=='last':
             return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=None)
+
         if store['full'][curint]['type']=='pass':
             next = int(store['full'][curint]['next'])
-            return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=self.assign_return_dia(next)) #(x+1) moves interation up by one
+            return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=self.assign_return_dia(next))
+
         if store['full'][curint]['type']=='binary':
             yesloc = int(store['full'][curint]['yesloc'])
             noloc  = int(store['full'][curint]['noloc'])
@@ -140,49 +149,3 @@ class DialogueLibraryQuiz(DialogueLibrary):
         "It's over there",
         "I can help you. It's over here"
     ]
-
-    # def dialogue_string_test(self):
-    #     i=1
-    #     cjdata = self.request_script()
-    #     rospy.loginfo("cjdata is %s", cjdata)
-    #     #dia = self.generation(cjdata,i)
-    #     dia = repr(self.generation(cjdata,i))
-    #     rospy.loginfo("repr generation is %s", dia)
-    #     return DialogueActionTalkNoResponse(utterance='heya',cancelable=False,next_action=DialogueActionTalkNoResponse(utterance='heyb',cancelable=False,next_action=None))
-    #
-    #
-    # def request_script(self):
-    #
-    #     return convos['convo' + str(random.randint(1, 6))]
-    #
-    # def generation(self,cjdata,i):
-    #
-    #     fulldialogue = ''
-    #
-    #     dialogueA = "DialogueActionTalkNoResponse("
-    #     dialogueU = "utterance='"
-    #     dialogueC = "',cancelable="
-    #     dialogueN = ",next_action="
-    #
-    #     try:
-    #         i+=1
-    #
-    #         # utterance  = u
-    #         # cancelable = c
-    #         # nextaction = n
-    #
-    #         keyvar = 'line'+ str(i)
-    #
-    #         fulldialogue += dialogueA
-    #         fulldialogue += dialogueU
-    #         fulldialogue += cjdata[keyvar]['u'] #u refers to sublist for utterance, change if server syntax changes
-    #         fulldialogue += dialogueC
-    #         fulldialogue += cjdata[keyvar]['c'] #c refers to sublist for cancelable, change if server syntax changes
-    #         fulldialogue += dialogueN
-    #         fulldialogue += self.generation(cjdata,i)
-    #
-    #     except KeyError:
-    #         return "None"+ ')'*(i-2)
-    #
-    #     return fulldialogue
-

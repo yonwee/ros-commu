@@ -49,23 +49,23 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :param x:   The current conversation iteration point/number
         :return:    Dialogue function
         '''
-
+        topicstr = str(topic)
         curint = str(x)
 
         if store['full'][curint]['type']=='last':
-            store['full'][curint]['u'] =store['full'][curint]['u'].format(self.__get_object_noun(topic))
+            store['full'][curint]['u'] =store['full'][curint]['u'].format(topicstr)
             return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=None)
 
         if store['full'][curint]['type']=='pass':
             next = int(store['full'][curint]['next'])
-            store['full'][curint]['u'] = store['full'][curint]['u'].format(self.__get_object_noun(topic))
-            return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=self.assign_return_dia(next))
+            store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
+            return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=self.assign_return_dia(topicstr,next))
 
         if store['full'][curint]['type']=='binary':
             yesloc = int(store['full'][curint]['yesloc'])
             noloc  = int(store['full'][curint]['noloc'])
-            store['full'][curint]['u'] = store['full'][curint]['u'].format(self.__get_object_noun(topic))
-            return DialogueActionTalkBinaryResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action_yes=self.assign_return_dia(yesloc),next_action_no=self.assign_return_dia(noloc))
+            store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
+            return DialogueActionTalkBinaryResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action_yes=self.assign_return_dia(topicstr,yesloc),next_action_no=self.assign_return_dia(topicstr,noloc))
 
 
     def return_none_bby(self):

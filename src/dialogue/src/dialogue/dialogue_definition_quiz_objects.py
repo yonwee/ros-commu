@@ -68,7 +68,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
     def return_arb_dia(self):
         return DialogueActionTalkNoResponse(utterance='yes',cancelable=False,next_action=self.return_none_bby())
                 
-     def __get_object_noun(self, label):
+    def __get_object_noun(self, label):
         return self.object_proper_name_map.get(label, label)
 
     object_proper_name_map = {

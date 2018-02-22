@@ -14,9 +14,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
     A DialogueLibrary that can be used when a CommU robot sees an object. This plays 'object hide-and-seek' with the user.
     """
 
-    global f, utterance, cancelable, next_action, store
+    global utterance, cancelable, next_action, store
     store = {}
-    f = {}
+
 
     def get_dialogue_for_topic(self, topic):
         # type: (str) -> Dialogue
@@ -47,15 +47,13 @@ class DialogueLibraryQuiz(DialogueLibrary):
         curint = str(x)
         if store['full'][curint]['type']=='last':
             return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=None)
-        if store['full'][curint]['type']=='next':
-            return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=self.assign_return_dia(x+1)) #(x+1) moves interation up by one
+        if store['full'][curint]['type']=='pass':
+            next = int(store['full'][curint]['next'])
+            return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=self.assign_return_dia(next)) #(x+1) moves interation up by one
         if store['full'][curint]['type']=='binary':
             yesloc = int(store['full'][curint]['yesloc'])
             noloc  = int(store['full'][curint]['noloc'])
             return DialogueActionTalkBinaryResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action_yes=self.assign_return_dia(yesloc),next_action_no=self.assign_return_dia(noloc))
-
-
-
 
 
     def return_none_bby(self):

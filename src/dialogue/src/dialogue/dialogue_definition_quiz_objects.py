@@ -44,13 +44,13 @@ class DialogueLibraryQuiz(DialogueLibrary):
         curint = str(x)
         if store['full'][curint]['type']=='last':
             return DialogueActionTalkNoResponse(
-                store['full'][curint]['u'].format(self.__add_a_to_noun(self.__get_object_noun(topic))),
+                store['full'][curint]['u'].format(self.__get_object_noun(topic)),
                 store['full'][curint]['c'],
                 next_action=None)
         if store['full'][curint]['type']=='pass':
             next = int(store['full'][curint]['next'])
             return DialogueActionTalkNoResponse(
-                store['full'][curint]['u'].format(self.__add_a_to_noun(self.__get_object_noun(topic))),
+                store['full'][curint]['u'].format(self.__get_object_noun(topic)),
                 store['full'][curint]['c'],
                 next_action=self.assign_return_dia(next)) 
         if store['full'][curint]['type']=='binary':
@@ -58,7 +58,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
             noloc  = int(store['full'][curint]['noloc'])
             neuloc = int(store['full'][curint]['neuloc'])
             return DialogueActionTalkBinaryResponse(
-                store['full'][curint]['u'].format(self.__add_a_to_noun(self.__get_object_noun(topic))),
+                store['full'][curint]['u'].format(self.__get_object_noun(topic)),
                 store['full'][curint]['c'],next_action_yes=self.assign_return_dia(yesloc),
                 next_action_no=self.assign_return_dia(noloc))
 
@@ -67,3 +67,13 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
     def return_arb_dia(self):
         return DialogueActionTalkNoResponse(utterance='yes',cancelable=False,next_action=self.return_none_bby())
+                
+     def __get_object_noun(self, label):
+        return self.object_proper_name_map.get(label, label)
+
+    object_proper_name_map = {
+        'aeroplane': 'airplane',
+        'diningtable': 'dining table',
+        'pottedplant': 'potted plant',
+        'tvmonitor': 'screen'
+    }

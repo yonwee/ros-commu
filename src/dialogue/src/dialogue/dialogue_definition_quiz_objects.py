@@ -31,7 +31,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         store['full'] = cjdata
         x=1
         store['block'] = self.assign_return_dia(x)
-        return Dialogue(store['block'].format(self.__get_object_noun(topic))
+        return Dialogue(store['block'].format(self.__get_object_noun(topic)))
 #         return Dialogue(store['block'])
 
     def request_script(self):

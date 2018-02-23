@@ -1,0 +1,8 @@
+# The name by which the gesture can be activated.
+bool gesture_name
+
+# The definition of the gesture. This parameter should contain the actual contents of a .s3r file. 
+bool gesture_definition
+---
+# Whether the CommU added the gesture command successfully.
+bool success

@@ -61,3 +61,31 @@ class CommUWrapper:
             self.debug_handler.commu_look_received(x, y, z)
 
         return self.cumhelper.look_manual(x, y, z)
+    
+    def move_add(self, gesture_name, gesture_definition):
+        # type: (gesture_name, gesture_definition) -> bool
+        """
+        Adds a gesture to the existing list of gestures.
+        :param gesture_name: The name by which the gesture can be activated.
+        :param gesture_definition: The definition of the gesture. Note: this is not the _name_ of a gesture.s3r file.
+            This parameter should contain the actual contents of a .s3r file.
+        :return: Whether the command was successfully parsed by the CommU. This will return false if the gesture
+            is incorrect.
+        """
+        if self.debug_handler is not None:
+            self.debug_handler.commu_look_received(gesture_name, gesture_definition)
+        
+        return self.cumhelper.add_gesture_definition(gesture_name, gesture_definition)
+    
+    def move_exec(self, gesturefile):
+        # type: (gesturefile) -> bool
+        """
+        Executes the gesture.
+        :param gesturefile: This is he gesture file to be executed.
+        :return: Whether the command was successfully parsed by the CommU. This will return false if the gesture
+            is incorrect.
+        """
+        if self.debug_handler is not None:
+            self.debug_handler.commu_look_received(gesturefile)
+        
+        return self.cumhelper.add_gesture_definition(gesturefile)

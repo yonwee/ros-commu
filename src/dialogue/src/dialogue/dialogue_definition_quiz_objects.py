@@ -1,17 +1,22 @@
-
 import random
+import rospy
 
 from dialogue import Dialogue
 from dialogue_action import *
 from dialogue_manager import DialogueLibrary
+from dialogue_dictionary import convos
 
-import json
 import urllib2
+import json
 
 class DialogueLibraryQuiz(DialogueLibrary):
     """
     A DialogueLibrary that can be used when a CommU robot sees an object. This plays 'object hide-and-seek' with the user.
     """
+
+    global utterance, cancelable, next_action, store
+    store = {}
+
 
     def get_dialogue_for_topic(self, topic):
         # type: (str) -> Dialogue
@@ -20,106 +25,103 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :param topic:   The label assigned by the ssd network
         :return:        The Dialogue concerning the object.
         """
-        linkget = urllib2.urlopen("http://192.168.1.171:8080/?json={gen" + topic + "}")
-        mybytes = linkget.read()
-        mydic = json.loads(mybytes)
-        linkget.close()
-        global utterance_list
-        utterance_list = {}
-        utterance_list[0] = mydic["U1"]
-        utterance_list[1] = mydic["U2"]
-        utterance_list[2] = mydic["U3"]
-        utterance_list[3] = mydic["U4"]
-        utterance_list[4] = mydic["U5"]
+        #return Dialogue(DialogueActionTalkNoResponse(utterance='heya', cancelable=False, next_action=None))
 
-        if utterance_list[3] == None:
-            return Dialogue(
-                DialogueActionLook(
-                    look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
-                    cancelable=False,
-                    next_action=
-                    DialogueActionSleep(
-                        sleep_time=1,
-                        cancelable=False,
-                        next_action=
-                        DialogueActionTalkNoResponse(
-                            utterance="{}".format(utterance_list[0]),
-                            cancelable=False,
-                            next_action=
-                            DialogueActionSleep(
-                                sleep_time=1,
-                                cancelable=False,
-                                next_action=
-                                DialogueActionTalkNoResponse(
-                                    utterance="{}".format(utterance_list[1]),
-                                    cancelable=False,
-                                    next_action=
-                                    DialogueActionSleep(
-                                        sleep_time=1,
-                                        cancelable=False,
-                                        next_action=
-                                        DialogueActionTalkNoResponse(
-                                            utterance="{}".format(utterance_list[2]),
-                                            cancelable=False,
-                                            next_action=None
-                                        )
-                                    )
-                                )
-                            )
-                        )
-                    )
-                )
-            )
+        cjdata = self.request_script()
+        cjdatalen = len(cjdata)
+        store['full'] = cjdata
+        store['block'] = self.assign_return_dia(topic,x=1)
+        return Dialogue(store['block'])
 
-        if utterance_list[3] != None:
-            return Dialogue(
-                DialogueActionLook(
-                    look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
-                    cancelable=False,
-                    next_action=
-                    DialogueActionSleep(
-                        sleep_time=1,
-                        cancelable=False,
-                        next_action=
-                        DialogueActionTalkBinaryResponse(
-                            utterance="{}".format(utterance_list[0]),
-                            cancelable=False,
-                            next_action_yes=
-                            DialogueActionTalkNoResponse(
-                                utterance="{}".format(utterance_list[1]),
-                                cancelable=False,
-                                next_action=
-                                DialogueActionSleep(
-                                    sleep_time=1,
-                                    cancelable=False,
-                                    next_action=
-                                    DialogueActionTalkNoResponse(
-                                        utterance="{}".format(utterance_list[2]),
-                                        cancelable=False,
-                                        next_action=None
-                                    )
-                                )
-                            ),
-                            next_action_no=
-                            DialogueActionTalkNoResponse(
-                                utterance="{}".format(utterance_list[3]),
-                                cancelable=False,
-                                next_action=
-                                DialogueActionSleep(
-                                    sleep_time=1,
-                                    cancelable=False,
-                                    next_action=
-                                    DialogueActionTalkNoResponse(
-                                        utterance="{}".format(utterance_list[4]),
-                                        cancelable=False,
-                                        next_action=None
-                                    )
-                                )
-                            ),
-                        )
-                    )
-                )
-            )
+
+
+    def request_script(self):
+        convo = urllib2.urlopen('http://192.168.1.171:8080/?json={test}')
+        cjson = convo.read()
+        cjdata = json.loads(cjson)
+        #cjdata = convos[1]
+        return cjdata
+
+    def assign_return_dia(self,topic,x):
+        '''
+        Assigns the utterances and cancelable parameters of the respective Dialogue functions,
+        and reiterates for next action.
+        :param x:   The current conversation iteration point/number
+        :return:    Dialogue function
+        '''
+        topicstr = str(topic)
+        curint = str(x)
+
+        if store['full'][curint]['type']=='last':
+            store['full'][curint]['u'] =store['full'][curint]['u'].format(topicstr)
+            return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=None)
+
+        if store['full'][curint]['type']=='pass':
+            next = int(store['full'][curint]['next'])
+            store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
+            return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=self.assign_return_dia(topicstr,next))
+
+        if store['full'][curint]['type']=='binary':
+            yesloc = int(store['full'][curint]['yesloc'])
+            noloc  = int(store['full'][curint]['noloc'])
+            store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
+            return DialogueActionTalkBinaryResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action_yes=self.assign_return_dia(topicstr,yesloc),next_action_no=self.assign_return_dia(topicstr,noloc))
+
+
+    def return_none_bby(self):
+        return None
+
+    def return_arb_dia(self):
+        return DialogueActionTalkNoResponse(utterance='yes',cancelable=False,next_action=self.return_none_bby())
+
+        # return Dialogue(
+        #     DialogueActionLook(
+        #         look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER,
+        #         cancelable=False,
+        #         next_action=
+        #         DialogueActionSleep(
+        #             sleep_time=1,
+        #             cancelable=False,
+        #             next_action=
+        #             DialogueActionTalkBinaryResponse(
+        #                 utterance="Do you also see {}?".format(self.__add_a_to_noun(self.__get_object_noun(topic))),
+        #                 cancelable=False,
+        #                 next_action_yes=
+        #                 DialogueActionTalkNoResponse(
+        #                     utterance=random.choice(self.positive_response_list),
+        #                     cancelable=False,
+        #                     next_action=
+        #                     DialogueActionLook(
+        #                         look_type=DialogueActionLook.LOOK_TYPE_WATCH_ENVIRONMENT,
+        #                         cancelable=True,
+        #                         next_action=None
+        #                     )
+        #                 ),
+        #                 next_action_no=
+        #                 DialogueActionLook(
+        #                     look_type=DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_TOPIC,
+        #                     cancelable=False,
+        #                     next_action=
+        #                     DialogueActionTalkNoResponse(
+        #                         utterance=random.choice(self.negative_response_list),
+        #                         cancelable=False,
+        #                         next_action=
+        #                         DialogueActionSleep(
+        #                             sleep_time=2,
+        #                             cancelable=False,
+        #                             next_action=DialogueActionLook(
+        #                                 look_type=DialogueActionLook.LOOK_TYPE_WATCH_ENVIRONMENT,
+        #                                 cancelable=True,
+        #                                 next_action=None
+        #                             )
+        #                         )
+        #                     ),
+        #                 )
+        #             )
+        #         )
+        #     )
+        # )
+
 
     def __add_a_to_noun(self, noun):
         # type: (str) -> str

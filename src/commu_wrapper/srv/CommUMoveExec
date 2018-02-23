@@ -1,0 +1,6 @@
+# The gesturefile to be executed.
+bool gesturefile
+
+---
+# Whether the CommU added the gesture is executed successfully.
+bool success

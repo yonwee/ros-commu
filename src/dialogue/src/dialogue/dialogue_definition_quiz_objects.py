@@ -35,7 +35,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         store['block'] = self.assign_return_dia(x)
 #         return Dialogue(store['block'])
 #         self.return_bby()
-        return Dialogue(utterance='hey',cancelable=false,next_action=none)
+        return Dialogue(DialogueActionTalkNoResponse(utterance='hey',cancelable=False,next_action=None))
 
     def request_script(self):
         convo = urllib2.urlopen('http://192.168.1.166:9000/?json={test}')

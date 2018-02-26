@@ -1,29 +1,9 @@
-import multiprocessing
-import time
-
 import rospy
 from keyboard.msg import Key
 from typing import Union
 
 from abstract_dialogue_action import AbstractDialogueAction
 from abstract_dialogue_action_talk import AbstractDialogueActionTalk
-
-#
-# class Timeout(Exception):
-#     pass
-#
-#
-# def handler(sig, frame):
-#     raise Timeout
-#
-# signal.signal(signal.SIGALRM, handler)  # register interest in SIGALRM events
-#
-# signal.alarm(2)  # timeout in 2 seconds
-# try:
-#     time.sleep(60)
-# except Timeout:
-#     print('took too long')
-
 
 class DialogueActionTalkTernaryResponse(AbstractDialogueActionTalk):
     """
@@ -50,28 +30,19 @@ class DialogueActionTalkTernaryResponse(AbstractDialogueActionTalk):
 
         rospy.loginfo("Waiting for either 'y' or 'n' to be pressed on the keyboard, else timeout will occur")
 
-        # Start wait_for_kb as a process
-        p = multiprocessing.Process(target=self.wait_for_kb())
-        p.start()
+        try:
+            while True:
+                key = rospy.wait_for_message('/keyboard/keydown', Key, timeout=5) # type: Key
 
-        # Wait for 10 seconds or until process finishes
-        p.join(10)
+                rospy.loginfo("Key {} pressed.".format(key.code))
 
-        # If thread is still active
-        if p.is_alive():
-            p.join()
+                if key.code == Key.KEY_y:
+                    return self.next_action_yes
+                if key.code == Key.KEY_n:
+                    return self.next_action_no
+        except ROSException:
             return self.next_action_neutral
 
-
-    def wait_for_kb(self):
-        key = rospy.wait_for_message('/keyboard/keydown', Key) # type: Key
-
-        rospy.loginfo("Key {} pressed.".format(key.code))
-
-        if key.code == Key.KEY_y:
-            return self.next_action_yes
-        if key.code == Key.KEY_n:
-            return self.next_action_no
 
     def can_cancel(self):
         # type () -> bool

@@ -81,7 +81,7 @@ class CommUWrapper:
         # type: (gesturefile) -> bool
         """
         Executes the gesture.
-        :param gesturefile: This is he gesture file to be executed.
+        :param gesturefile: This is the gesture file to be executed.
         :return: Whether the command was successfully parsed by the CommU. This will return false if the gesture
             is incorrect.
         """

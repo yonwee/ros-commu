@@ -69,7 +69,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
     @staticmethod
     def return_bby(self):
 #         service_name = 'look_helper/look_target'
-        set_move_exec = rospy.ServiceProxy(banzai, CommUMoveExec)
+        set_move_exec = rospy.ServiceProxy('gesture/banzai', CommUMoveExec)
         return set_move_exec
 
 #     def return_arb_dia(self):

@@ -40,7 +40,7 @@ class DialogueActionTalkTernaryResponse(AbstractDialogueActionTalk):
                     return self.next_action_yes
                 if key.code == Key.KEY_n:
                     return self.next_action_no
-        except ROSException:
+        except:
             return self.next_action_neutral
 
 

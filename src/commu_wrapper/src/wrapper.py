@@ -88,4 +88,4 @@ class CommUWrapper:
 #         if self.debug_handler is not None:
 #             self.debug_handler.commu_look_received(gesturefile)
         
-        return self.cumhelper.add_gesture_definition(gesturefile)
+        return self.cumhelper.gesture(gesturefile)

@@ -39,6 +39,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         convo = urllib2.urlopen('http://192.168.1.166:9000/?json={test}')
         cjson = convo.read()
         cjdata = json.loads(cjson)
+        rospy.loginfo("Received data from conversation server.")
         #cjdata = convos[1]
         return cjdata
 
@@ -53,19 +54,29 @@ class DialogueLibraryQuiz(DialogueLibrary):
         curint = str(x)
 
         if store['full'][curint]['type']=='last':
-            store['full'][curint]['u'] =store['full'][curint]['u'].format(topicstr)
-            return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=None)
+            #store['full'][curint]['u'] =store['full'][curint]['u'].format(topic=(self.__get_object_noun(topic)), atopic =self.__add_a_to_noun(self.__get_object_noun(topic)))
+            #for future grammar processing of the topic - anoun to add 'a' or 'an' into the topic string
+            #consider using inflect library as well
+            store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
+            return DialogueActionTalkNoResponse(store['full'][curint]['u'],
+                                                store['full'][curint]['c'],
+                                                next_action=None)
 
         if store['full'][curint]['type']=='pass':
             next = int(store['full'][curint]['next'])
             store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
-            return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=self.assign_return_dia(topicstr,next))
+            return DialogueActionTalkNoResponse(store['full'][curint]['u'],
+                                                store['full'][curint]['c'],
+                                                next_action=self.assign_return_dia(topicstr,next))
 
         if store['full'][curint]['type']=='binary':
             yesloc = int(store['full'][curint]['yesloc'])
             noloc  = int(store['full'][curint]['noloc'])
             store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
-            return DialogueActionTalkBinaryResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action_yes=self.assign_return_dia(topicstr,yesloc),next_action_no=self.assign_return_dia(topicstr,noloc))
+            return DialogueActionTalkBinaryResponse(store['full'][curint]['u'],
+                                                    store['full'][curint]['c'],
+                                                    next_action_yes=self.assign_return_dia(topicstr,yesloc),
+                                                    next_action_no=self.assign_return_dia(topicstr,noloc))
 
 
     def return_none_bby(self):

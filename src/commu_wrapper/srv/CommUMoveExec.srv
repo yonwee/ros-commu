@@ -1,5 +1,5 @@
 # The gesturefile to be executed.
-bool gesturefile
+bool move_exec_gesturefile
 
 ---
 # Whether the CommU added the gesture is executed successfully.

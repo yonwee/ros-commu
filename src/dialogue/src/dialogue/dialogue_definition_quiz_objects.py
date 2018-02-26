@@ -34,7 +34,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         x=1
         store['block'] = self.assign_return_dia(x)
 #         return Dialogue(store['block'])
-        self.return_bby()
+#         self.return_bby()
         return Dialogue(utterance='hey',cancelable=false,next_action=none)
 
     def request_script(self):
@@ -67,11 +67,11 @@ class DialogueLibraryQuiz(DialogueLibrary):
                 next_action_no=self.assign_return_dia(noloc))
 
 
-    @staticmethod
-    def return_bby(self):
-#         service_name = 'look_helper/look_target'
-        set_move_exec = rospy.ServiceProxy('gesture/banzai', CommUMoveExec)
-        return set_move_exec
+#     @staticmethod
+#     def return_bby(self):
+# #         service_name = 'look_helper/look_target'
+#         set_move_exec = rospy.ServiceProxy('gesture/banzai', CommUMoveExec)
+#         return set_move_exec
 
 #     def return_arb_dia(self):
 #         return DialogueActionTalkNoResponse(utterance='yes',cancelable=False,next_action=self.return_none_bby())

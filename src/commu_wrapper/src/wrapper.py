@@ -72,8 +72,8 @@ class CommUWrapper:
         :return: Whether the command was successfully parsed by the CommU. This will return false if the gesture
             is incorrect.
         """
-        if self.debug_handler is not None:
-            self.debug_handler.commu_look_received(gesture_name, gesture_definition)
+#         if self.debug_handler is not None:
+#             self.debug_handler.commu_look_received(gesture_name, gesture_definition)
         
         return self.cumhelper.add_gesture_definition(gesture_name, gesture_definition)
     
@@ -85,7 +85,7 @@ class CommUWrapper:
         :return: Whether the command was successfully parsed by the CommU. This will return false if the gesture
             is incorrect.
         """
-        if self.debug_handler is not None:
-            self.debug_handler.commu_look_received(gesturefile)
+#         if self.debug_handler is not None:
+#             self.debug_handler.commu_look_received(gesturefile)
         
         return self.cumhelper.add_gesture_definition(gesturefile)

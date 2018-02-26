@@ -40,7 +40,6 @@ class DialogueLibraryQuiz(DialogueLibrary):
         cjson = convo.read()
         cjdata = json.loads(cjson)
         rospy.loginfo("Received data from conversation server.")
-        #cjdata = convos[1]
         return cjdata
 
     def assign_return_dia(self,topic,x):
@@ -78,12 +77,19 @@ class DialogueLibraryQuiz(DialogueLibrary):
                                                     next_action_yes=self.assign_return_dia(topicstr,yesloc),
                                                     next_action_no=self.assign_return_dia(topicstr,noloc))
 
-
-    def return_none_bby(self):
-        return None
+        if store['full'][curint]['type'] == 'ternary':
+            yesloc = int(store['full'][curint]['yesloc'])
+            noloc = int(store['full'][curint]['noloc'])
+            neuloc = int(store['full'][curint]['neuloc'])
+            store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
+            return DialogueActionTalkTernaryResponse(store['full'][curint]['u'],
+                                                    store['full'][curint]['c'],
+                                                    next_action_yes=self.assign_return_dia(topicstr, yesloc),
+                                                    next_action_no=self.assign_return_dia(topicstr, noloc),
+                                                    next_action_neutral=self.assign_return_dia(topicstr, neuloc))
 
     def return_arb_dia(self):
-        return DialogueActionTalkNoResponse(utterance='yes',cancelable=False,next_action=self.return_none_bby())
+        return DialogueActionTalkNoResponse(utterance='yes',cancelable=False,next_action=None)
 
         # return Dialogue(
         #     DialogueActionLook(

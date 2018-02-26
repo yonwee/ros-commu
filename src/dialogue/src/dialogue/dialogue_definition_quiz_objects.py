@@ -6,6 +6,8 @@ from dialogue_action import *
 from dialogue_manager import DialogueLibrary
 from dialogue_dictionary import convos
 
+from commu_wrapper.srv import CommUMoveExec
+
 import urllib2
 import json
 
@@ -31,7 +33,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
         store['full'] = cjdata
         x=1
         store['block'] = self.assign_return_dia(x)
-        return Dialogue(store['block'])
+#         return Dialogue(store['block'])
+        return self.return_bby()
 
     def request_script(self):
         convo = urllib2.urlopen('http://192.168.1.166:9000/?json={test}')
@@ -62,8 +65,12 @@ class DialogueLibraryQuiz(DialogueLibrary):
                 store['full'][curint]['c'],next_action_yes=self.assign_return_dia(yesloc),
                 next_action_no=self.assign_return_dia(noloc))
 
-#     def return_none_bby(self):
-#         return None
+
+    @staticmethod
+    def return_bby(self):
+#         service_name = 'look_helper/look_target'
+        set_move_exec = rospy.ServiceProxy(banzai, CommUMoveExec)
+        return set_move_exec
 
 #     def return_arb_dia(self):
 #         return DialogueActionTalkNoResponse(utterance='yes',cancelable=False,next_action=self.return_none_bby())

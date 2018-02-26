@@ -31,7 +31,7 @@ class DialogueActionTalkTernaryResponse(AbstractDialogueActionTalk):
         rospy.loginfo("Waiting for either 'y' or 'n' to be pressed on the keyboard, else timeout will occur")
 
         try:
-            while True:
+            # while True:
                 key = rospy.wait_for_message('/keyboard/keydown', Key, timeout=5) # type: Key
 
                 rospy.loginfo("Key {} pressed.".format(key.code))

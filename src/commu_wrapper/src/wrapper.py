@@ -38,6 +38,7 @@ class CommUWrapper:
             self.debug_handler.commu_utter_received(utterance, blocking, english)
 
         if english:
+            self.cumhelper.gesture('jan')
             return self.cumhelper.say_eng(utterance, blocking)
         else:
             return self.cumhelper.say(utterance, blocking)

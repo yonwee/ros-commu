@@ -33,12 +33,12 @@ class CommUWrapper:
         :return: Whether the CommU received the command successfully.
         """
         rospy.loginfo("Saying '%s' in %s..", utterance, ("English" if english else "Japanese"))
-        self.cumhelper.gesture('banzai')
 
         if self.debug_handler is not None:
             self.debug_handler.commu_utter_received(utterance, blocking, english)
 
         if english:
+            self.cumhelper.gesture('acchi_arm_left')
             return self.cumhelper.say_eng(utterance, blocking)
         else:
             return self.cumhelper.say(utterance, blocking)

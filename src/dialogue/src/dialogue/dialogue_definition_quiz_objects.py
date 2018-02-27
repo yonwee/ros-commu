@@ -39,9 +39,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
             utterance='hey',
             cancelable=False,
             next_action=DialogueActionTalkBanzaiResponse(
-                gesture_file=open('gestures/banzai.s3r', 'r'),
+                gesture_file='banzai',
                 cancelable=False,
-                next_action=none
+                next_action=None
             )))
 
     def request_script(self):

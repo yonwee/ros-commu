@@ -26,10 +26,10 @@ class DialogueLibraryQuiz(DialogueLibrary):
         """
         #return Dialogue(DialogueActionTalkNoResponse(utterance='heya', cancelable=False, next_action=None))
 
-        cjdata = self.request_script()
-        cjdatalen = len(cjdata)
-        store['full'] = cjdata
-        store['block'] = self.assign_return_dia(topic,x=1)
+        # cjdata = self.request_script()
+        # cjdatalen = len(cjdata)
+        # store['full'] = cjdata
+        # store['block'] = self.assign_return_dia(topic,x=1)
         # return Dialogue(store['block'])
         return Dialogue('hey', False, next_action=DialogueActionMove(
             'banzai', False, next_action=None))

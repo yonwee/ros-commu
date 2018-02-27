@@ -38,7 +38,7 @@ class CommUWrapper:
             self.debug_handler.commu_utter_received(utterance, blocking, english)
 
         if english:
-            self.cumhelper.gesture('acchi_arm_left')
+            self.cumhelper.gesture('banzai')
             return self.cumhelper.say_eng(utterance, blocking)
         else:
             return self.cumhelper.say(utterance, blocking)

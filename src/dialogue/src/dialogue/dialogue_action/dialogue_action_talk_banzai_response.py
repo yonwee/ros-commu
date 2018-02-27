@@ -11,7 +11,7 @@ class DialogueActionTalkBanzaiResponse(AbstractDialogueAction):
     """
 
     def __init__(self, gesture_file, cancelable, next_action):
-        # type: (bool, bool, Union[AbstractDialogueAction, None]) -> None
+        # type: (str, bool, Union[AbstractDialogueAction, None]) -> None
         self.gesture_file = gesture_file
         self.cancelable = cancelable
         self.next_action = next_action

@@ -38,7 +38,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
             cancelable=False,
             # next_action=None
             next_action=DialogueActionTalkBanzaiResponse(
-                gesture_file='jan',
+                gesture_file='banzai',
                 # gesture_file=open('gestures/banzai.s3r'),
                 cancelable=False,
                 next_action=None

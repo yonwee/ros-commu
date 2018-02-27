@@ -4,7 +4,6 @@ import rospy
 from dialogue import Dialogue
 from dialogue_action import *
 from dialogue_manager import DialogueLibrary
-from dialogue_dictionary import convos
 
 import urllib2
 import json

@@ -59,14 +59,14 @@ class DialogueLibraryQuiz(DialogueLibrary):
             # return DialogueActionTalkNoResponse(store['full'][curint]['u'],
             #                                     store['full'][curint]['c'],
             #                                     next_action=None)
-            return DialogueActionMove("baibai",
+            return DialogueActionMove("acchi_arm_down",
                                                 store['full'][curint]['c'],
                                                 next_action=None)
 
         if store['full'][curint]['type']=='pass':
             next = int(store['full'][curint]['next'])
             store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
-            return DialogueActionMove("baibai",
+            return DialogueActionMove("acchi_arm_down",
                                                 store['full'][curint]['c'],
                                                 next_action=self.assign_return_dia(topicstr,next))
 

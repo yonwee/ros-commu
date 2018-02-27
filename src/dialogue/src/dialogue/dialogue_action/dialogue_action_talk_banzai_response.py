@@ -10,9 +10,9 @@ class DialogueActionTalkBanzaiResponse(AbstractDialogueAction):
     DialogueActionTalkBanzaiResponse makes the Sota utter a sentence with a banzai gesture, without allowing the user to respond.
     """
 
-    def __init__(self, gesture_file, cancelable, next_action):
+    def __init__(self, gesturefile, cancelable, next_action):
         # type: (str, bool, Union[AbstractDialogueAction, None]) -> None
-        self.gesture_file = gesture_file
+        self.gesturefile = gesturefile
         self.cancelable = cancelable
         self.next_action = next_action
 
@@ -24,7 +24,7 @@ class DialogueActionTalkBanzaiResponse(AbstractDialogueAction):
         :return: The next action in the Dialogue. Return None when there is no next action.
         """
 
-        self.move_exec(self.gesture_file)
+        self.move_exec(self.gesturefile)
 
         return self.next_action
 

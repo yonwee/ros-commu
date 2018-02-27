@@ -34,13 +34,13 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #         manager = CUMHelper("10.42.0.159", int(6001))
 #         manager.say_eng("Hello, I am CommU.")
         return Dialogue(DialogueActionTalkNoResponse(
-            utterance='haaaaay aaaaaay aaaaaay aaaaaay',
-            cancelable=False,
+           'hey',
+            False,
             # next_action=None
             next_action=DialogueActionTalkBanzaiResponse(
-                gesture_file='banzai',
+                'banzai',
                 # gesture_file=open('gestures/banzai.s3r'),
-                cancelable=False,
+                False,
                 next_action=None
             )))
 

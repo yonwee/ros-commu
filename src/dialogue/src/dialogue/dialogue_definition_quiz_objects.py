@@ -31,8 +31,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
         # store['full'] = cjdata
         # store['block'] = self.assign_return_dia(topic,x=1)
         # return Dialogue(store['block'])
-        return Dialogue('hey', False, next_action=DialogueActionMove(
-            'banzai', False, next_action=None))
+        return Dialogue(DialogueActionTalkNoResponse('hey', False, next_action=DialogueActionMove(
+            'banzai', False, next_action=None)))
 
 
 

@@ -41,7 +41,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
             next_action=DialogueActionTalkBanzaiResponse(
                 gesture_file='gestures/banzai.s3r',
                 cancelable=False,
-                next_action=none
+                next_action=None
             )))
 
     def request_script(self):

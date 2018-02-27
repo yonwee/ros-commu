@@ -39,7 +39,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
             utterance='hey',
             cancelable=False,
             next_action=DialogueActionTalkBanzaiResponse(
-                gesture_file='banzai',
+                gesture_file='acchi_arm_left',
                 # gesture_file=open('gestures/banzai.s3r'),
                 cancelable=False,
                 next_action=None

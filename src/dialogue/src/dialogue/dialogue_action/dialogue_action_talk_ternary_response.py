@@ -1,4 +1,5 @@
 import rospy
+from rospy.exceptions import ROSException
 from keyboard.msg import Key
 from typing import Union
 
@@ -30,8 +31,9 @@ class DialogueActionTalkTernaryResponse(AbstractDialogueActionTalk):
 
         rospy.loginfo("Waiting for either 'y' or 'n' to be pressed on the keyboard, else timeout will occur")
 
- #       try:
+
         while True:
+            try:
                 key = rospy.wait_for_message('/keyboard/keydown', Key) # type: Key
 
                 rospy.loginfo("Key {} pressed.".format(key.code))
@@ -40,8 +42,8 @@ class DialogueActionTalkTernaryResponse(AbstractDialogueActionTalk):
                     return self.next_action_yes
                 if key.code == Key.KEY_n:
                     return self.next_action_no
-  #      except:
-   #         return self.next_action_neutral
+            except ROSException:
+                return self.next_action_neutral
 
 
     def can_cancel(self):

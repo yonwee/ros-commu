@@ -86,7 +86,20 @@ class DialogueLibraryQuiz(DialogueLibrary):
                                                     store['full'][curint]['c'],
                                                     next_action_yes=self.assign_return_dia(topicstr, yesloc),
                                                     next_action_no=self.assign_return_dia(topicstr, noloc),
-                                                    next_action_neutral=self.assign_return_dia(topicstr, neuloc))
+                                                    next_action_neutral=self.assign_return_dia(topicstr,neuloc))
+        # #unimplemented look command
+        # if store['full'][curint]['type'] == 'look':
+        #     next = int(store['full'][curint]['next'])
+        #     lookat = int(store['full'][curint]['looktarget'])
+        #     #lookat should be DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER or similar
+        #     store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
+        #     return DialogueActionLook(lookat,
+        #                               store['full'][curint]['c'],
+        #                               next_action=self.assign_return_dia(topicstr, next))
+
+
+
+
 
     def return_arb_dia(self):
         return DialogueActionTalkNoResponse(utterance='yes',cancelable=False,next_action=None)

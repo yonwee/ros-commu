@@ -4,7 +4,7 @@ import rospy
 from dialogue import Dialogue
 from dialogue_action import *
 from dialogue_manager import DialogueLibrary
-from dialogue_dictionary import convos
+from gestures import *
 
 from commu_wrapper.srv import CommUMoveExec
 
@@ -35,7 +35,14 @@ class DialogueLibraryQuiz(DialogueLibrary):
         store['block'] = self.assign_return_dia(x)
 #         return Dialogue(store['block'])
         rospy.ServiceProxy('/commu_wrapper/move_exec ', CommUMoveExec)
-        return Dialogue(DialogueActionTalkNoResponse(utterance='hey',cancelable=False,next_action=None))
+        return Dialogue(DialogueActionTalkNoResponse(
+            utterance='hey',
+            cancelable=False,
+            next_action=DialogueActionTalkBanzaiResponse(
+                gesture_file='gestures/banzai.s3r',
+                cancelable=False,
+                next_action=none
+            )))
 
     def request_script(self):
         convo = urllib2.urlopen('http://192.168.1.166:9000/?json={test}')

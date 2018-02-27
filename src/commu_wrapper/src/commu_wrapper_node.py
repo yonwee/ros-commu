@@ -31,7 +31,7 @@ def move_callback(wrapper):
     def move(req):
         # type: (CommUMoveRequest) -> CommUMoveResponse
 
-        success = wrapper.move(req.move_gesturefile)
+        success = wrapper.move(req.gesturefile)
 
         return CommUMoveResponse(success)
 

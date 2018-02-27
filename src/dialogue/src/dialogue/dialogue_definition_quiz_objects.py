@@ -32,7 +32,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         store['block'] = self.assign_return_dia(topic,x=1)
         # return Dialogue(store['block'])
         return Dialogue('hey', False, next_action=DialogueActionMove(
-            "banzai", False, nxt_action=None))
+            'banzai', False, next_action=None))
 
 
 

@@ -1,17 +1,24 @@
+
 import rospy
 from typing import Union
-from commu_wrapper.srv import CommUMoveExec
+from commu_wrapper.srv import CommUMove
 
 from abstract_dialogue_action import AbstractDialogueAction
 
 
-class DialogueActionTalkBanzaiResponse(AbstractDialogueAction):
+class DialogueActionMove(AbstractDialogueAction):
     """
-    DialogueActionTalkBanzaiResponse makes the Sota utter a sentence with a banzai gesture, without allowing the user to respond.
+    DialogueActionMove tells the robot to move according to the gesturefile provided.
     """
 
     def __init__(self, gesturefile, cancelable, next_action):
         # type: (str, bool, Union[AbstractDialogueAction, None]) -> None
+        """
+        Initializes the DialogueLookAction
+        :param look_type: The gesture filename present on the robot
+        :param cancelable: Whether the dialogue can be cancelled after this action.
+        :param next_action: The next action in this dialogue.
+        """
         self.gesturefile = gesturefile
         self.cancelable = cancelable
         self.next_action = next_action
@@ -24,7 +31,7 @@ class DialogueActionTalkBanzaiResponse(AbstractDialogueAction):
         :return: The next action in the Dialogue. Return None when there is no next action.
         """
 
-        self.move_exec(self.gesturefile)
+        self.move(self.gesturefile)
 
         return self.next_action
 
@@ -37,25 +44,23 @@ class DialogueActionTalkBanzaiResponse(AbstractDialogueAction):
         return self.cancelable
 
     @staticmethod
-    def move_exec(move_exec_gesturefile):
+    def move(gesture_name):
         # type: (str) -> bool
         """
-        Call the CommUUtter service to make the CommU/Sota execute the specified gesture.
-        :param move_exec_gesturefile: The specified gesture to execute.
-        :return: Whether the robot executed the gesture successfully.
+        This function calls the `look_helper/look_target` service, to change the object the robot looks at.
+        :param gesture_name: The name of the gesturefile to move to.
+        :return: Whether the request succeeded.
         """
-        service_name = '/commu_wrapper/move_exec'
+        service_name = '/commu_wrapper/move'
 
         rospy.wait_for_service(service_name)
 
         try:
-            move_exec_srv = rospy.ServiceProxy(service_name, CommUMoveExec)
+            rospy.loginfo("Moving according to {}.".format(gesture_name))
 
-            rospy.loginfo("Executing: " + str(move_exec_gesturefile))
+            move_gesture = rospy.ServiceProxy(service_name, CommUMove)
 
-            return move_exec_srv(move_exec_gesturefile)
-
+            return move_gesture(gesture_name)
         except rospy.ServiceException, e:
-            print("Service call failed: %s" % e)
+            print "Service call failed: %s" % e
             raise
-

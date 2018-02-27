@@ -61,31 +61,20 @@ class CommUWrapper:
             self.debug_handler.commu_look_received(x, y, z)
 
         return self.cumhelper.look_manual(x, y, z)
-    
-    def move_add(self, gesture_name, gesture_definition):
-        # type: (gesture_name, gesture_definition) -> bool
+
+    def move(self,gesturefile):
+        # type: (str) -> bool
         """
-        Adds a gesture to the existing list of gestures.
-        :param gesture_name: The name by which the gesture can be activated.
-        :param gesture_definition: The definition of the gesture. Note: this is not the _name_ of a gesture.s3r file.
-            This parameter should contain the actual contents of a .s3r file.
-        :return: Whether the command was successfully parsed by the CommU. This will return false if the gesture
-            is incorrect.
+        Makes the CommU look at the specified pixel location on the camera. The camera translation and rotation relative
+        to the base of the head of the CommU should be provided.
+        :param x: The x coordinate of the position to look at in millimeter.
+            The x-axis is horizontal, increases towards left from the robot and is 0 between its eyes.
+        :param y: The y coordinate of the position to look at in millimeter.
+            The y-axis is vertical, increases towards the head of the robot and is 0 at the bottom of its body.
+        :param z: The z coordinate of the position to look at in millimeter.
+            The z-axis is horizontal, increases in front of the robot with 0 being at the center of rotation of the head yaw.
+        :return: Whether the operation was received by the CommU successfully.
         """
-#         if self.debug_handler is not None:
-#             self.debug_handler.commu_look_received(gesture_name, gesture_definition)
-        
-        return self.cumhelper.add_gesture_definition(gesture_name, gesture_definition)
-    
-    def move_exec(self, gesturefile):
-        # type: (gesturefile) -> bool
-        """
-        Executes the gesture.
-        :param gesturefile: This is the gesture file to be executed.
-        :return: Whether the command was successfully parsed by the CommU. This will return false if the gesture
-            is incorrect.
-        """
-#         if self.debug_handler is not None:
-#             self.debug_handler.commu_look_received(gesturefile)
-        
+        rospy.loginfo("Running gesturefile (%s)", gesturefile)
+
         return self.cumhelper.gesture(gesturefile)

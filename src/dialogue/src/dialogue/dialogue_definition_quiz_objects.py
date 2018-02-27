@@ -38,12 +38,13 @@ class DialogueLibraryQuiz(DialogueLibrary):
         return Dialogue(DialogueActionTalkNoResponse(
             utterance='hey',
             cancelable=False,
-            next_action=DialogueActionTalkBanzaiResponse(
-                gesture_file='banzai',
-                # gesture_file=open('gestures/banzai.s3r'),
-                cancelable=False,
-                next_action=None
-            )))
+            next_action=None
+            # next_action=DialogueActionTalkBanzaiResponse(
+            #     gesture_file='banzai',
+            #     # gesture_file=open('gestures/banzai.s3r'),
+            #     cancelable=False,
+            #     next_action=None)
+            ))
 
     def request_script(self):
         convo = urllib2.urlopen('http://192.168.1.166:9000/?json={test}')

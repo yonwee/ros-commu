@@ -32,7 +32,7 @@ def move_add_callback(wrapper):
     def move_add(req):
         # type: (CommUMoveAddRequest) -> CommUMoveAddResponse
 
-        success = wrapper.move_add(req.move_add_gesture_name, req.move_add_gesture_definition)
+        success = wrapper.move_add(req.gesture_name, req.gesture_definition)
 
         return CommUMoveAddResponse(success)
 
@@ -42,7 +42,7 @@ def move_exec_callback(wrapper):
     def move_exec(req):
         # type: (CommUMoveExecRequest) -> CommUMoveExecResponse
 
-        success = wrapper.move_exec(req.move_exec_gesturefile)
+        success = wrapper.move_exec(req.gesturefile)
 
         return CommUMoveExecResponse(success)
 

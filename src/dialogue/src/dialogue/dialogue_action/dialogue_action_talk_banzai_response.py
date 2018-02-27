@@ -1,6 +1,5 @@
 from typing import Union
 from commu_wrapper.srv import CommUMoveExec
-# from commu_wrapper.src.helper.robot.cumhelper import CUMHelper
 
 from abstract_dialogue_action import AbstractDialogueAction
 
@@ -24,8 +23,6 @@ class DialogueActionTalkBanzaiResponse(AbstractDialogueAction):
         :return: The next action in the Dialogue. Return None when there is no next action.
         """
 
-        # manager = CUMHelper("10.42.0.159", int(6001))
-        # manager.gesture(gesture_file)
         self.move_exec(self.gesture_file)
 
         return self.next_action

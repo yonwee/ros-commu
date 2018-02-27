@@ -38,7 +38,9 @@ class CommUWrapper:
             self.debug_handler.commu_utter_received(utterance, blocking, english)
 
         if english:
-            self.cumhelper.gesture('banzai')
+            self.cumhelper.add_gesture_definition('test_gesture', """0.0 P 0.0 10
+            #10.0 t""")
+            self.cumhelper.gesture('test_gesture')
             return self.cumhelper.say_eng(utterance, blocking)
         else:
             return self.cumhelper.say(utterance, blocking)

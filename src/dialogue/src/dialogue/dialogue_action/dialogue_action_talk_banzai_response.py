@@ -1,3 +1,4 @@
+import rospy
 from typing import Union
 from commu_wrapper.srv import CommUMoveExec
 

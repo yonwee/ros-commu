@@ -34,7 +34,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #         manager = CUMHelper("10.42.0.159", int(6001))
 #         manager.say_eng("Hello, I am CommU.")
         return Dialogue(DialogueActionTalkNoResponse(
-            utterance='hey',
+            utterance='aaaaaaaaaaaaa',
             cancelable=False,
             next_action=None
             # next_action=DialogueActionTalkBanzaiResponse(

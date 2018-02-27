@@ -75,7 +75,7 @@ class CommUWrapper:
             The z-axis is horizontal, increases in front of the robot with 0 being at the center of rotation of the head yaw.
         :return: Whether the operation was received by the CommU successfully.
         """
-        rospy.loginfo("Running gesturefile (%d)", gesturefile)
+        rospy.loginfo("Running gesturefile (%s)", gesturefile)
 
         return self.cumhelper.gesture(gesturefile)
 

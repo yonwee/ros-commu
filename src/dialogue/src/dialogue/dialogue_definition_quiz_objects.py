@@ -1,13 +1,8 @@
 import random
-import rospy
 
 from dialogue import Dialogue
 from dialogue_action import *
 from dialogue_manager import DialogueLibrary
-
-# from gestures import *
-# from commu_wrapper.src.helper.robot.cumhelper import CUMHelper
-# from commu_wrapper.srv import CommUMoveExec
 
 import urllib2
 import json
@@ -43,7 +38,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
             cancelable=False,
             # next_action=None
             next_action=DialogueActionTalkBanzaiResponse(
-                gesture_file='TmpGesture',
+                gesture_file='jan',
                 # gesture_file=open('gestures/banzai.s3r'),
                 cancelable=False,
                 next_action=None

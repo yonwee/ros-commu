@@ -34,7 +34,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         x=1
         store['block'] = self.assign_return_dia(x)
 #         return Dialogue(store['block'])
-        rospy.ServiceProxy('/commu_wrapper/move_exec ', CommUMoveExec)
+#         rospy.ServiceProxy('/commu_wrapper/move_exec ', CommUMoveExec)
         return Dialogue(DialogueActionTalkNoResponse(
             utterance='hey',
             cancelable=False,

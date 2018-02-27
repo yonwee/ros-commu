@@ -26,7 +26,7 @@ class DialogueActionTalkBanzaiResponse(AbstractDialogueAction):
 
         # manager = CUMHelper("10.42.0.159", int(6001))
         # manager.gesture(gesture_file)
-        # self.move_exec(self.gesture_file)
+        self.move_exec(self.gesture_file)
 
         return self.next_action
 

@@ -6,7 +6,7 @@ from dialogue_action import *
 from dialogue_manager import DialogueLibrary
 
 # from gestures import *
-from src.commu_wrapper.src.helper.robot.cumhelper import CUMHelper
+# from commu_wrapper.src.helper.robot.cumhelper import CUMHelper
 # from commu_wrapper.srv import CommUMoveExec
 
 import urllib2
@@ -36,8 +36,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
         store['block'] = self.assign_return_dia(x)
 #         return Dialogue(store['block'])
 #         rospy.ServiceProxy('/commu_wrapper/move_exec ', CommUMoveExec)
-        manager = CUMHelper("10.42.0.159", int(6001))
-        manager.say_eng("Hello, I am CommU.")
+#         manager = CUMHelper("10.42.0.159", int(6001))
+#         manager.say_eng("Hello, I am CommU.")
         return Dialogue(DialogueActionTalkNoResponse(
             utterance='hey',
             cancelable=False,

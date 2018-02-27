@@ -222,9 +222,9 @@ if __name__ =='__main__':
     # args.ipaddress = "192.168.1.210"
     # args.ipaddress = "10.42.0.159"
 
-    # manager=CUMHelper(args.ipaddress,int(args.port))
-    #
-    # gesture_nr = 1
+    manager=CUMHelper(args.ipaddress,int(args.port))
+
+    gesture_nr = 1
 
     #manager.set_config("""\nLookTable:\n  pos_0:\n    name: end\n  ratio_0:\n    name: end\n  speed_0:\n    name: end\n
 #\nGestureTable:\n  ges_0:\n    name: tmp_gesture""" + str(gesture_nr) + """\n    file: gesture/tmp_gesture""" + str(gesture_nr) + """.s3r\n  ges_1:\n    name: end\n""")

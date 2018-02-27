@@ -3,6 +3,8 @@ from typing import Union
 from abstract_dialogue_action import AbstractDialogueAction
 from abstract_dialogue_action_talk import AbstractDialogueActionTalk
 
+from commu_wrapper.src.helper.robot.cumhelper import CUMHelper
+
 
 class DialogueActionTalkNoResponse(AbstractDialogueActionTalk):
     """
@@ -23,6 +25,7 @@ class DialogueActionTalkNoResponse(AbstractDialogueActionTalk):
         :return: The next action in the Dialogue. Return None when there is no next action.
         """
         AbstractDialogueActionTalk.utter(self.utterance)
+        CUMHelper.say_eng("Hello, I am CommU.")
 
         return self.next_action
 

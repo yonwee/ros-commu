@@ -4,7 +4,7 @@ from commu_wrapper.srv import CommUMoveExec
 from abstract_dialogue_action import AbstractDialogueAction
 
 
-class DialogueActionTalkBanzaiResponse(AbstractDialogueActionGesture):
+class DialogueActionTalkBanzaiResponse(AbstractDialogueAction):
     """
     DialogueActionTalkBanzaiResponse makes the Sota utter a sentence with a banzai gesture, without allowing the user to respond.
     """

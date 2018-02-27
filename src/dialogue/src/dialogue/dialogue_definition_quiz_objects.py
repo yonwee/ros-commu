@@ -56,14 +56,17 @@ class DialogueLibraryQuiz(DialogueLibrary):
             #for future grammar processing of the topic - anoun to add 'a' or 'an' into the topic string
             #consider using inflect library as well
             store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
-            return DialogueActionTalkNoResponse(store['full'][curint]['u'],
+            # return DialogueActionTalkNoResponse(store['full'][curint]['u'],
+            #                                     store['full'][curint]['c'],
+            #                                     next_action=None)
+            return DialogueActionMove("banzai",
                                                 store['full'][curint]['c'],
                                                 next_action=None)
 
         if store['full'][curint]['type']=='pass':
             next = int(store['full'][curint]['next'])
             store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
-            return DialogueActionTalkNoResponse(store['full'][curint]['u'],
+            return DialogueActionMove("banzai",
                                                 store['full'][curint]['c'],
                                                 next_action=self.assign_return_dia(topicstr,next))
 

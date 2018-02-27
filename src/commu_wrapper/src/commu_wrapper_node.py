@@ -2,7 +2,7 @@
 
 import rospy
 from commu_wrapper.srv import CommUUtter, CommUUtterResponse, CommUUtterRequest, CommULook, CommULookResponse, \
-    CommULookRequest
+    CommULookRequest, CommUMove, CommUMoveResponse, CommUMoveRequest
 
 from debug_handler import DebugHandler
 from wrapper import CommUWrapper
@@ -27,11 +27,23 @@ def look_callback(wrapper):
 
     return look
 
+def move_callback(wrapper):
+    def move(req):
+        # type: (CommUMoveRequest) -> CommUMoveResponse
+
+        success = wrapper.move(req.move_gesturefile)
+
+        return CommUMoveResponse(success)
+
+    return move
+
 def init_service_handlers(wrapper):
     rospy.loginfo("Initializing CommU wrapper node message listener.")
 
     rospy.Service('/commu_wrapper/utter', CommUUtter, utter_callback(wrapper))
     rospy.Service('/commu_wrapper/look', CommULook, look_callback(wrapper))
+    rospy.Service('/commu_wrapper/move', CommUMove, move_callback(wrapper))
+
 
 
 if __name__ == '__main__':

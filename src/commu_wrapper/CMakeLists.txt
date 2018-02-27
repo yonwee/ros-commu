@@ -61,6 +61,7 @@ find_package(catkin REQUIRED COMPONENTS
    FILES
    CommULook.srv
    CommUUtter.srv
+   CommUMove.srv
  )
 
 ## Generate actions in the 'action' folder

@@ -1,13 +1,8 @@
 import random
-import rospy
 
 from dialogue import Dialogue
 from dialogue_action import *
 from dialogue_manager import DialogueLibrary
-
-# from gestures import *
-# from commu_wrapper.src.helper.robot.cumhelper import CUMHelper
-# from commu_wrapper.srv import CommUMoveExec
 
 import urllib2
 import json
@@ -48,6 +43,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
             #     cancelable=False,
             #     next_action=None
             ))
+
 
     def request_script(self):
         convo = urllib2.urlopen('http://192.168.1.166:9000/?json={test}')

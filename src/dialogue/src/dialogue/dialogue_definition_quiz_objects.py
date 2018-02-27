@@ -6,7 +6,7 @@ from dialogue_action import *
 from dialogue_manager import DialogueLibrary
 
 # from gestures import *
-from commu_wrapper.src.helper.robot.cumhelper import CUMHelper
+from src.commu_wrapper.src.helper.robot.cumhelper import CUMHelper
 # from commu_wrapper.srv import CommUMoveExec
 
 import urllib2

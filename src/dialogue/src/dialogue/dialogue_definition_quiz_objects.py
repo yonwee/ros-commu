@@ -36,13 +36,13 @@ class DialogueLibraryQuiz(DialogueLibrary):
         return Dialogue(DialogueActionTalkNoResponse(
             utterance='haaaaay aaaaaay aaaaaay aaaaaay',
             cancelable=False,
-            next_action=None
-            # next_action=DialogueActionTalkBanzaiResponse(
-            #     gesture_file='jan',
-            #     # gesture_file=open('gestures/banzai.s3r'),
-            #     cancelable=False,
-            #     next_action=None
-            ))
+            # next_action=None
+            next_action=DialogueActionTalkBanzaiResponse(
+                gesture_file='banzai',
+                # gesture_file=open('gestures/banzai.s3r'),
+                cancelable=False,
+                next_action=None
+            )))
 
 
     def request_script(self):

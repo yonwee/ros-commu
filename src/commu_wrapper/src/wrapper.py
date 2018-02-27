@@ -38,14 +38,6 @@ class CommUWrapper:
             self.debug_handler.commu_utter_received(utterance, blocking, english)
 
         if english:
-            self.cumhelper.add_gesture_definition('janke', """0.0	P	0.0	70	4	40	2	40	-1
-2.0	P	0.0	70	4	-40	2	-40	-1
-2.0	P	0.0	70	4	40	2	40	-1
-2.0	P	0.0	70	4	-90	2	-90	-1
-
-1.0	t
-""")
-            self.cumhelper.gesture('janke')
             return self.cumhelper.say_eng(utterance, blocking)
         else:
             return self.cumhelper.say(utterance, blocking)

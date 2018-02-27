@@ -38,7 +38,7 @@ class DialogueActionTalkBanzaiResponse(AbstractDialogueAction):
 
     @staticmethod
     def move_exec(move_exec_gesturefile):
-        # type: (bool) -> bool
+        # type: (str) -> bool
         """
         Call the CommUUtter service to make the CommU/Sota execute the specified gesture.
         :param move_exec_gesturefile: The specified gesture to execute.
@@ -53,13 +53,7 @@ class DialogueActionTalkBanzaiResponse(AbstractDialogueAction):
 
             rospy.loginfo("Executing: " + str(move_exec_gesturefile))
 
-            if move_exec_gesturefile is not None:
-                success = move_exec_srv(move_exec_gesturefile)
-
-                rospy.loginfo("Gesture " + ("succeeded" if success else "failed!"))
-
-                return success
-            return True
+            return move_exec_srv(move_exec_gesturefile)
 
         except rospy.ServiceException, e:
             print("Service call failed: %s" % e)

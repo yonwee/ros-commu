@@ -35,7 +35,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
 
     def request_script(self):
-        convo = urllib2.urlopen('http://192.168.1.166:9000/?json={test}')
+        convo = urllib2.urlopen('http://192.168.1.171:8080/?json={test}')
         cjson = convo.read()
         cjdata = json.loads(cjson)
         rospy.loginfo("Received data from conversation server.")
@@ -56,17 +56,17 @@ class DialogueLibraryQuiz(DialogueLibrary):
             #for future grammar processing of the topic - anoun to add 'a' or 'an' into the topic string
             #consider using inflect library as well
             store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
-            # return DialogueActionTalkNoResponse(store['full'][curint]['u'],
-            #                                     store['full'][curint]['c'],
-            #                                     next_action=None)
-            return DialogueActionMove("banzai",
+            return DialogueActionTalkNoResponse(store['full'][curint]['u'],
                                                 store['full'][curint]['c'],
                                                 next_action=None)
+            # return DialogueActionMove("banzai",
+            #                                     store['full'][curint]['c'],
+            #                                     next_action=None)
 
         if store['full'][curint]['type']=='pass':
             next = int(store['full'][curint]['next'])
             store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
-            return DialogueActionMove("banzai",
+            return DialogueActionTalkNoResponse(store['full'][curint]['u'],
                                                 store['full'][curint]['c'],
                                                 next_action=self.assign_return_dia(topicstr,next))
 

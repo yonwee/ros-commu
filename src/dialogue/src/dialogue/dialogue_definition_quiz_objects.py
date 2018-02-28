@@ -52,9 +52,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
         #                                                                     'gu', False, next_action=DialogueActionMove(
         #                                                                     'gu', False, next_action=None)))))))))))))))))))
 
-        return ((DialogueActionTalkNoResponse(
+        return Dialogue(DialogueActionTalkNoResponse(
             'gu', False, next_action=DialogueActionMove(
-            'gu', False, next_action=None))))
+            'gu', False, next_action=None)))
 
     def request_script(self):
         convo = urllib2.urlopen('http://192.168.1.166:9000/?json={test}')

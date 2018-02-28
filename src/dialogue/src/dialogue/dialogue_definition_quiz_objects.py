@@ -4,7 +4,6 @@ import rospy
 from dialogue import Dialogue
 from dialogue_action import *
 from dialogue_manager import DialogueLibrary
-from dialogue_dictionary import convos
 
 import urllib2
 import json
@@ -39,7 +38,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         convo = urllib2.urlopen('http://192.168.1.171:8080/?json={test}')
         cjson = convo.read()
         cjdata = json.loads(cjson)
-        #cjdata = convos[1]
+        rospy.loginfo("Received data from conversation server.")
         return cjdata
 
     def assign_return_dia(self,topic,x):
@@ -53,26 +52,56 @@ class DialogueLibraryQuiz(DialogueLibrary):
         curint = str(x)
 
         if store['full'][curint]['type']=='last':
-            store['full'][curint]['u'] =store['full'][curint]['u'].format(topicstr)
-            return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=None)
+            #store['full'][curint]['u'] =store['full'][curint]['u'].format(topic=(self.__get_object_noun(topic)), atopic =self.__add_a_to_noun(self.__get_object_noun(topic)))
+            #for future grammar processing of the topic - anoun to add 'a' or 'an' into the topic string
+            #consider using inflect library as well
+            store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
+            return DialogueActionTalkNoResponse(store['full'][curint]['u'],
+                                                store['full'][curint]['c'],
+                                                next_action=None)
 
         if store['full'][curint]['type']=='pass':
             next = int(store['full'][curint]['next'])
             store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
-            return DialogueActionTalkNoResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action=self.assign_return_dia(topicstr,next))
+            return DialogueActionTalkNoResponse(store['full'][curint]['u'],
+                                                store['full'][curint]['c'],
+                                                next_action=self.assign_return_dia(topicstr,next))
 
         if store['full'][curint]['type']=='binary':
             yesloc = int(store['full'][curint]['yesloc'])
             noloc  = int(store['full'][curint]['noloc'])
             store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
-            return DialogueActionTalkBinaryResponse(store['full'][curint]['u'],store['full'][curint]['c'],next_action_yes=self.assign_return_dia(topicstr,yesloc),next_action_no=self.assign_return_dia(topicstr,noloc))
+            return DialogueActionTalkBinaryResponse(store['full'][curint]['u'],
+                                                    store['full'][curint]['c'],
+                                                    next_action_yes=self.assign_return_dia(topicstr,yesloc),
+                                                    next_action_no=self.assign_return_dia(topicstr,noloc))
+
+        if store['full'][curint]['type'] == 'ternary':
+            yesloc = int(store['full'][curint]['yesloc'])
+            noloc = int(store['full'][curint]['noloc'])
+            neuloc = int(store['full'][curint]['neuloc'])
+            store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
+            return DialogueActionTalkTernaryResponse(store['full'][curint]['u'],
+                                                    store['full'][curint]['c'],
+                                                    next_action_yes=self.assign_return_dia(topicstr, yesloc),
+                                                    next_action_no=self.assign_return_dia(topicstr, noloc),
+                                                    next_action_neutral=self.assign_return_dia(topicstr,neuloc))
+        # #unimplemented look command
+        # if store['full'][curint]['type'] == 'look':
+        #     next = int(store['full'][curint]['next'])
+        #     lookat = int(store['full'][curint]['looktarget'])
+        #     #lookat should be DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER or similar
+        #     store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
+        #     return DialogueActionLook(lookat,
+        #                               store['full'][curint]['c'],
+        #                               next_action=self.assign_return_dia(topicstr, next))
 
 
-    def return_none_bby(self):
-        return None
+
+
 
     def return_arb_dia(self):
-        return DialogueActionTalkNoResponse(utterance='yes',cancelable=False,next_action=self.return_none_bby())
+        return DialogueActionTalkNoResponse(utterance='yes',cancelable=False,next_action=None)
 
         # return Dialogue(
         #     DialogueActionLook(

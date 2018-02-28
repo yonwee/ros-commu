@@ -47,7 +47,7 @@ class DialogueActionMove(AbstractDialogueAction):
     def move(gesture_name):
         # type: (str) -> bool
         """
-        This function calls the `look_helper/look_target` service, to change the object the robot looks at.
+        This function calls the move service, to execute a gesture.
         :param gesture_name: The name of the gesturefile to move to.
         :return: Whether the request succeeded.
         """

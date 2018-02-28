@@ -31,8 +31,25 @@ class DialogueLibraryQuiz(DialogueLibrary):
         # store['full'] = cjdata
         # store['block'] = self.assign_return_dia(topic,x=1)
         # return Dialogue(store['block'])
-        return Dialogue(DialogueActionTalkNoResponse('hey', False, next_action=DialogueActionMove(
-            'banzai', False, next_action=None)))
+        return Dialogue(DialogueActionTalkNoResponse(
+            'arm down', False, next_action=DialogueActionMove(
+            'acchi_arm_down', False, next_action=DialogueActionTalkNoResponse(
+                    'arm left', False, next_action=DialogueActionMove(
+                    'acchi_arm_left', False, next_action=DialogueActionTalkNoResponse(
+                            'arm right', False, next_action=DialogueActionMove(
+                            'acchi_arm_right', False, next_action=DialogueActionTalkNoResponse(
+                                    'arm up', False, next_action=DialogueActionMove(
+                                    'acchi_arm_up', False, next_action=DialogueActionTalkNoResponse(
+                                            'atama kaki', False, next_action=DialogueActionMove(
+                                            'atama_kaki', False, next_action=DialogueActionTalkNoResponse(
+                                                    'atama tonton', False, next_action=DialogueActionMove(
+                                                    'atama_tonton', False, next_action=DialogueActionTalkNoResponse(
+                                                            'choki', False, next_action=DialogueActionMove(
+                                                            'choki', False, next_action=DialogueActionTalkNoResponse(
+                                                                    'eyeblink', False, next_action=DialogueActionMove(
+                                                                    'eyeblink', False, next_action=DialogueActionTalkNoResponse(
+                                                                            'gu', False, next_action=DialogueActionMove(
+                                                                            'gu', False, next_action=None)))))))))))))))))))
 
 
 

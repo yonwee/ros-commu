@@ -62,19 +62,27 @@ class CommUWrapper:
 
         return self.cumhelper.look_manual(x, y, z)
 
-    def move(self,gesturefile):
+    def move(self, gesturefile):
         # type: (str) -> bool
         """
         Makes the CommU look at the specified pixel location on the camera. The camera translation and rotation relative
         to the base of the head of the CommU should be provided.
-        :param x: The x coordinate of the position to look at in millimeter.
-            The x-axis is horizontal, increases towards left from the robot and is 0 between its eyes.
-        :param y: The y coordinate of the position to look at in millimeter.
-            The y-axis is vertical, increases towards the head of the robot and is 0 at the bottom of its body.
-        :param z: The z coordinate of the position to look at in millimeter.
-            The z-axis is horizontal, increases in front of the robot with 0 being at the center of rotation of the head yaw.
+        :param gesturefile: The name of the gesture file, without the file extension.
         :return: Whether the operation was received by the CommU successfully.
         """
         rospy.loginfo("Running gesturefile (%s)", gesturefile)
 
         return self.cumhelper.gesture(gesturefile)
+
+    def move_plus(self, gesture_name, gesture_definition):
+        # type: (str, str) -> bool
+        """
+        Makes the CommU look at the specified pixel location on the camera. The camera translation and rotation relative
+        to the base of the head of the CommU should be provided.
+        :param gesture_name: The name of the gesture file, without the file extension.
+        :param gesture_definition: The actual contents of the .s3r file.
+        :return: Whether the operation was received by the CommU successfully.
+        """
+        rospy.loginfo("Adding gesturefile (%s)", gesture_name)
+
+        return self.cumhelper.add_gesture_definition(gesture_name, gesture_definition)

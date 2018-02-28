@@ -1,7 +1,7 @@
 # This service defines a gesture action for a CommU robot. This is done by providing an (`gesturefile`) for the
 # robot to execute.
 
-# The gesturefile shouldn't have it's extension as far as I kow
+# The gesturefile shouldn't have it's extension as far as I know.
 string gesturefile
 
 ---

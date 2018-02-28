@@ -52,7 +52,6 @@ class DialogueLibraryQuiz(DialogueLibrary):
                                                                             'gu', False, next_action=None)))))))))))))))))))
 
 
-
     def request_script(self):
         convo = urllib2.urlopen('http://192.168.1.166:9000/?json={test}')
         cjson = convo.read()

@@ -4,7 +4,7 @@ import rospy
 from commu_wrapper.srv import CommUUtter, CommUUtterResponse, CommUUtterRequest,\
     CommULook, CommULookResponse, CommULookRequest,\
     CommUMove, CommUMoveResponse, CommUMoveRequest, \
-    CommUPlusMove, CommUMovePlusResponse, CommUMovePlusRequest
+    CommUMovePlus, CommUMovePlusResponse, CommUMovePlusRequest
 
 from debug_handler import DebugHandler
 from wrapper import CommUWrapper

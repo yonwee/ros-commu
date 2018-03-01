@@ -1,25 +1,27 @@
 
 import rospy
 from typing import Union
-from commu_wrapper.srv import CommUMove
+from commu_wrapper.srv import CommUMovePlus
 
 from abstract_dialogue_action import AbstractDialogueAction
 
 
-class DialogueActionMove(AbstractDialogueAction):
+class DialogueActionMovePlus(AbstractDialogueAction):
     """
-    DialogueActionMove tells the robot to move according to the gesturefile provided.
+    DialogueActionMove tells the robot to add the gesturefile provided.
     """
 
-    def __init__(self, gesturefile, cancelable, next_action):
-        # type: (str, bool, Union[AbstractDialogueAction, None]) -> None
+    def __init__(self, new_name, definition, cancelable, next_action):
+        # type: (str, str, bool, Union[AbstractDialogueAction, None]) -> None
         """
         Initializes the DialogueLookAction
-        :param gesturefile: The gesture filename present on the robot
+        :param new_name: The new gesture filename to be created.
+        :param definition: The contents of the new gesture file to be created.
         :param cancelable: Whether the dialogue can be cancelled after this action.
         :param next_action: The next action in this dialogue.
         """
-        self.gesturefile = gesturefile
+        self.new_name = new_name
+        self.definition = definition
         self.cancelable = cancelable
         self.next_action = next_action
 
@@ -31,7 +33,7 @@ class DialogueActionMove(AbstractDialogueAction):
         :return: The next action in the Dialogue. Return None when there is no next action.
         """
 
-        self.move(self.gesturefile)
+        self.moveplus(self.new_name, self.definition)
 
         return self.next_action
 
@@ -44,23 +46,24 @@ class DialogueActionMove(AbstractDialogueAction):
         return self.cancelable
 
     @staticmethod
-    def move(gesture_name):
-        # type: (str) -> bool
+    def moveplus(gesture_name, gesture_def):
+        # type: (str, str) -> bool
         """
         This function calls the move service, to execute a gesture.
-        :param gesture_name: The name of the gesturefile to move to.
+        :param gesture_name: The new gesture filename to be created.
+        :param gesture_def: The contents of the new gesture file to be created.
         :return: Whether the request succeeded.
         """
-        service_name = '/commu_wrapper/move'
+        service_name = '/commu_wrapper/move_plus'
 
         rospy.wait_for_service(service_name)
 
         try:
             rospy.loginfo("Moving according to {}.".format(gesture_name))
 
-            move_gesture = rospy.ServiceProxy(service_name, CommUMove)
+            move_plus_gesture = rospy.ServiceProxy(service_name, CommUMovePlus)
 
-            return move_gesture(gesture_name)
+            return move_plus_gesture(gesture_name, gesture_def)
         except rospy.ServiceException, e:
             print "Service call failed: %s" % e
             raise

@@ -32,38 +32,43 @@ class DialogueLibraryQuiz(DialogueLibrary):
         # store['block'] = self.assign_return_dia(topic,x=1)
         # return Dialogue(store['block'])
 
-        return Dialogue(DialogueActionTalkNoResponse(
-            'arm down', False, next_action=DialogueActionMove(
-            'acchi_arm_down', False, next_action=DialogueActionSleep(
-            sleep_time=1, cancelable=False, next_action=DialogueActionTalkNoResponse(
-                    'arm left', False, next_action=DialogueActionMove(
-                    'acchi_arm_left', False, next_action=DialogueActionSleep(
-                    sleep_time=1, cancelable=False, next_action=DialogueActionTalkNoResponse(
-                            'arm right', False, next_action=DialogueActionMove(
-                            'acchi_arm_right', False, next_action=DialogueActionSleep(
-                            sleep_time=1, cancelable=False, next_action=DialogueActionTalkNoResponse(
-                                    'arm up', False, next_action=DialogueActionMove(
-                                    'acchi_arm_up', False, next_action=DialogueActionSleep(
-                                    sleep_time=1, cancelable=False, next_action=DialogueActionTalkNoResponse(
-                                            'atama kaki', False, next_action=DialogueActionMove(
-                                            'atama_kaki', False, next_action=DialogueActionSleep(
-                                            sleep_time=1, cancelable=False, next_action=DialogueActionTalkNoResponse(
-                                                    'atama tonton', False, next_action=DialogueActionMove(
-                                                    'atama_tonton', False, next_action=DialogueActionSleep(
-                                                    sleep_time=1, cancelable=False, next_action=DialogueActionTalkNoResponse(
-                                                            'choki', False, next_action=DialogueActionMove(
-                                                            'choki', False, next_action=DialogueActionSleep(
-                                                            sleep_time=1, cancelable=False, next_action=DialogueActionTalkNoResponse(
-                                                                    'eyeblink', False, next_action=DialogueActionMove(
-                                                                    'eyeblink', False, next_action=DialogueActionSleep(
-                                                                    sleep_time=1, cancelable=False, next_action=DialogueActionTalkNoResponse(
-                                                                            'gu', False, next_action=DialogueActionMove(
-                                                                            'gu', False, next_action=DialogueActionSleep(
-                                                                            sleep_time=1, cancelable=False, next_action=None))))))))))))))))))))))))))))
-
         # return Dialogue(DialogueActionTalkNoResponse(
-        #     'gu', False, next_action=DialogueActionMove(
-        #     'gu', False, next_action=None)))
+        #     'arm down', False, next_action=DialogueActionMove(
+        #     'acchi_arm_down', False, next_action=DialogueActionSleep(
+        #     sleep_time=1, cancelable=False, next_action=DialogueActionTalkNoResponse(
+        #             'arm left', False, next_action=DialogueActionMove(
+        #             'acchi_arm_left', False, next_action=DialogueActionSleep(
+        #             sleep_time=1, cancelable=False, next_action=DialogueActionTalkNoResponse(
+        #                     'arm right', False, next_action=DialogueActionMove(
+        #                     'acchi_arm_right', False, next_action=DialogueActionSleep(
+        #                     sleep_time=1, cancelable=False, next_action=DialogueActionTalkNoResponse(
+        #                             'arm up', False, next_action=DialogueActionMove(
+        #                             'acchi_arm_up', False, next_action=DialogueActionSleep(
+        #                             sleep_time=1, cancelable=False, next_action=DialogueActionTalkNoResponse(
+        #                                     'atama kaki', False, next_action=DialogueActionMove(
+        #                                     'atama_kaki', False, next_action=DialogueActionSleep(
+        #                                     sleep_time=1, cancelable=False, next_action=DialogueActionTalkNoResponse(
+        #                                             'atama tonton', False, next_action=DialogueActionMove(
+        #                                             'atama_tonton', False, next_action=DialogueActionSleep(
+        #                                             sleep_time=1, cancelable=False, next_action=DialogueActionTalkNoResponse(
+        #                                                     'choki', False, next_action=DialogueActionMove(
+        #                                                     'choki', False, next_action=DialogueActionSleep(
+        #                                                     sleep_time=1, cancelable=False, next_action=DialogueActionTalkNoResponse(
+        #                                                             'eyeblink', False, next_action=DialogueActionMove(
+        #                                                             'eyeblink', False, next_action=DialogueActionSleep(
+        #                                                             sleep_time=1, cancelable=False, next_action=DialogueActionTalkNoResponse(
+        #                                                                     'gu', False, next_action=DialogueActionMove(
+        #                                                                     'gu', False, next_action=DialogueActionSleep(
+        #                                                                     sleep_time=1, cancelable=False, next_action=None))))))))))))))))))))))))))))
+
+        return Dialogue(DialogueActionTalkNoResponse(
+            'banzai2', False, next_action=DialogueActionMovePlus(
+            'banzai2', """0.0	P	0.0	70	4	40	1	40	-1
+2.0	P	0.0	70	4	-40	1	-40	-1
+2.0	P	0.0	70	4	40	1	40	-1
+2.0	P	0.0	70	4	-90	1	-90	-1
+
+1.0	t""", False, next_action=DialogueActionMove('banzai2', False, next_action=None))))
 
     def request_script(self):
         convo = urllib2.urlopen('http://192.168.1.166:9000/?json={test}')

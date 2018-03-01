@@ -53,5 +53,3 @@ class DialogueActionTalkTernaryResponse(AbstractDialogueActionTalk):
         :return: Is this a good place in the Dialogue to stop if the Dialogue has to be cancelled?
         """
         return self.cancelable
-
-

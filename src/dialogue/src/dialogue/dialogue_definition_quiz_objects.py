@@ -35,7 +35,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
 
     def request_script(self):
-        convo = urllib2.urlopen('http://192.168.1.171:8080/?json={test}')
+        convo = urllib2.urlopen('http://192.168.1.166:9000/?json={test}')
         cjson = convo.read()
         cjdata = json.loads(cjson)
         rospy.loginfo("Received data from conversation server.")

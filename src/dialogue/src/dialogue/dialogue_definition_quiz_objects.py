@@ -25,21 +25,15 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :return:        The Dialogue concerning the object.
         """
         #return Dialogue(DialogueActionTalkNoResponse(utterance='heya', cancelable=False, next_action=None))
-
-        cjdata = self.request_script()
+        convo = urllib2.urlopen('http://192.168.1.166:9000/?json={topic}')
+        cjson = convo.read()
+        cjdata = json.loads(cjson)
+        rospy.loginfo("Received data from conversation server.")
         cjdatalen = len(cjdata)
         store['full'] = cjdata
         store['block'] = self.assign_return_dia(topic,x=1)
         return Dialogue(store['block'])
 
-
-
-    def request_script(self):
-        convo = urllib2.urlopen('http://192.168.1.166:9000/?json={test}')
-        cjson = convo.read()
-        cjdata = json.loads(cjson)
-        rospy.loginfo("Received data from conversation server.")
-        return cjdata
 
     def assign_return_dia(self,topic,x):
         '''

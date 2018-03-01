@@ -25,7 +25,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         :return:        The Dialogue concerning the object.
         """
         #return Dialogue(DialogueActionTalkNoResponse(utterance='heya', cancelable=False, next_action=None))
-        convo = urllib2.urlopen('http://192.168.1.171:8080/?json={{}}'.format(topic))
+        convo = urllib2.urlopen("http://192.168.1.171:8080/?json={" + topic + "}")
         cjson = convo.read()
         cjdata = json.loads(cjson)
         rospy.loginfo("Received data from conversation server.")

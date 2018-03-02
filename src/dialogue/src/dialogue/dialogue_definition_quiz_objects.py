@@ -53,8 +53,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
         if store['full'][curint]['type']=='last':
             #store['full'][curint]['u'] =store['full'][curint]['u'].format(topic=(self.__get_object_noun(topic)), atopic =self.__add_a_to_noun(self.__get_object_noun(topic)))
-            #for future grammar processing of the topic - anoun to add 'a' or 'an' into the topic string
-            #consider using inflect library as well
+            # for future grammar processing of the topic - anoun to add 'a' or 'an' into the topic string
+            # consider using inflect library as well
             store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
             return DialogueActionTalkNoResponse(store['full'][curint]['u'],
                                                 store['full'][curint]['c'],
@@ -98,6 +98,12 @@ class DialogueLibraryQuiz(DialogueLibrary):
         #     return DialogueActionLook(lookat,
         #                               store['full'][curint]['c'],
         #                               next_action=self.assign_return_dia(topicstr, next))
+
+        # if store['full'][curint]['type']=='move':
+        #     store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
+        #     return DialogueActionMove("banzai",
+        #                                         store['full'][curint]['c'],
+        #                                         next_action=None)
 
 
 

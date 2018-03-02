@@ -60,15 +60,20 @@ class DialogueLibraryQuiz(DialogueLibrary):
         #                                                                     'gu', False, next_action=DialogueActionMove(
         #                                                                     'gu', False, next_action=DialogueActionSleep(
         #                                                                     sleep_time=1, cancelable=False, next_action=None))))))))))))))))))))))))))))
+#
+#         return Dialogue(DialogueActionTalkNoResponse(
+#             'banzai2', False, next_action=DialogueActionMovePlus(
+#             'banzai2', """0.0	P	0.0	100	2	-80	3	0	-1
+# 0.0	P	0.0	100	4	15	5	0	-1
+# 0.1 t""",
+#              False, next_action=DialogueActionMove(
+#                                 'banzai2', False, next_action=DialogueActionSleep(
+#                                     sleep_time=1, cancelable=False, next_action=None)))))
 
         return Dialogue(DialogueActionTalkNoResponse(
-            'banzai2', False, next_action=DialogueActionMovePlus(
-            'banzai2', """0.0	P	0.0	100	2	-80	3	0	-1
-0.0	P	0.0	100	4	15	5	0	-1
-0.1 t""",
-             False, next_action=DialogueActionMove(
-                                'banzai2', False, next_action=DialogueActionSleep(
-                                    sleep_time=1, cancelable=False, next_action=None)))))
+            'acchi_arm_left2.s3r', False, next_action=DialogueActionMove(
+                    'acchi_arm_left2.s3r', False, next_action=DialogueActionSleep(
+                        sleep_time=1, cancelable=False, next_action=None))))
 
     def request_script(self):
         convo = urllib2.urlopen('http://192.168.1.166:9000/?json={test}')

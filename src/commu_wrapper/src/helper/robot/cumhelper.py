@@ -231,8 +231,8 @@ if __name__ =='__main__':
     #manager.look_label(args.look,"normal")
     #manager.gesture('tmp_gesture' + str(gesture_nr))
     #manager.gesture('acchi_arm_left')
-    #print manager.add_gesture_definition('test_gesture', """0.0 P 0.0 10
-#10.0 t""")
+#     print manager.add_gesture_definition('test_gesture', """0.0 P 0.0 10
+# 10.0 t""")
     #print manager.gesture('test_gesture')
 
 

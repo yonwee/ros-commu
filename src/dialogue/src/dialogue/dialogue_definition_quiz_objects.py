@@ -63,11 +63,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
         return Dialogue(DialogueActionTalkNoResponse(
             'banzai2', False, next_action=DialogueActionMovePlus(
-            'banzai2', "0.0	P	0.0	70	4	40	1	40	-1 1.0 t",
-# 2.0	P	0.0	70	4	-40	1	-40	-1
-# 2.0	P	0.0	70	4	40	1	40	-1
-# 2.0	P	0.0	70	4	-90	1	-90	-1
-
+            'banzai2', """0.0	P	0.0	100	2	-80	3	0	-1
+0.0	P	0.0	100	4	15	5	0	-1
+0.1 t""",
              False, next_action=DialogueActionMove(
                                 'banzai2', False, next_action=DialogueActionSleep(
                                     sleep_time=1, cancelable=False, next_action=None)))))

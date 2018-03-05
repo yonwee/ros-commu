@@ -83,14 +83,23 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
         return Dialogue(DialogueActionTalkNoResponse(
             'acchi_arm_left2', False, next_action=DialogueActionMove(
-                    'acchi_arm_left2', False, next_action=DialogueActionSleep(
-                        sleep_time=5, cancelable=False, next_action=DialogueActionTalkNoResponse(
+                'acchi_arm_left2', False, next_action=DialogueActionSleep(
+                    sleep_time=5, cancelable=False, next_action=DialogueActionTalkNoResponse(
+                        'reset', False, next_action=DialogueActionMove(
+                            'reset', False, next_action=DialogueActionSleep(
+                                sleep_time=5, cancelable=False, next_action=DialogueActionTalkNoResponse(
             'hi', False, next_action=DialogueActionMove(
-                    'hi', False, next_action=DialogueActionSleep(
-                        sleep_time=5, cancelable=False, next_action=DialogueActionTalkNoResponse(
+                'hi', False, next_action=DialogueActionSleep(
+                    sleep_time=5, cancelable=False, next_action=DialogueActionTalkNoResponse(
+                        'reset', False, next_action=DialogueActionMove(
+                            'reset', False, next_action=DialogueActionSleep(
+                                sleep_time=5, cancelable=False, next_action=DialogueActionTalkNoResponse(
             'sugoi', False, next_action=DialogueActionMove(
-                    'sugoi', False, next_action=DialogueActionSleep(
-                        sleep_time=5, cancelable=False, next_action=None))))))))))
+                'sugoi', False, next_action=DialogueActionSleep(
+                    sleep_time=5, cancelable=False, next_action=DialogueActionTalkNoResponse(
+                        'reset', False, next_action=DialogueActionMove(
+                            'reset', False, next_action=DialogueActionSleep(
+                                sleep_time=5, cancelable=False, next_action=None)))))))))))))))))))
 
     def request_script(self):
         convo = urllib2.urlopen('http://192.168.1.166:9000/?json={test}')

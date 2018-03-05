@@ -82,9 +82,12 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #                                     sleep_time=1, cancelable=False, next_action=None)))))
 
         return Dialogue(DialogueActionTalkNoResponse(
-            'acchi_arm_left2.s3r', False, next_action=DialogueActionMove(
-                    'acchi_arm_left2.s3r', False, next_action=DialogueActionSleep(
-                        sleep_time=1, cancelable=False, next_action=None))))
+            'acchi_arm_left.s3r', False, next_action=DialogueActionMove(
+                    'acchi_arm_left.s3r', False, next_action=DialogueActionSleep(
+                        sleep_time=1, cancelable=False, next_action=DialogueActionTalkNoResponse(
+            'kill.s3r', False, next_action=DialogueActionMove(
+                    'kill.s3r', False, next_action=DialogueActionSleep(
+                        sleep_time=1, cancelable=False, next_action=None)))))))
 
     def request_script(self):
         convo = urllib2.urlopen('http://192.168.1.166:9000/?json={test}')

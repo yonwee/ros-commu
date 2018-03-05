@@ -88,8 +88,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
                         'reset', False, next_action=DialogueActionMove(
                             'reset', False, next_action=DialogueActionSleep(
                                 sleep_time=5, cancelable=False, next_action=DialogueActionTalkNoResponse(
-            'hi', False, next_action=DialogueActionMove(
-                'hi', False, next_action=DialogueActionSleep(
+            'hi2', False, next_action=DialogueActionMove(
+                'hi2', False, next_action=DialogueActionSleep(
                     sleep_time=5, cancelable=False, next_action=DialogueActionTalkNoResponse(
                         'reset', False, next_action=DialogueActionMove(
                             'reset', False, next_action=DialogueActionSleep(

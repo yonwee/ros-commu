@@ -61,30 +61,30 @@ class DialogueLibraryQuiz(DialogueLibrary):
         #                                                                     'gu', False, next_action=DialogueActionSleep(
         #                                                                     sleep_time=1, cancelable=False, next_action=None))))))))))))))))))))))))))))
 #
+#         return Dialogue(DialogueActionTalkNoResponse(
+#             'banzai2', False, next_action=DialogueActionMovePlus(
+#             'banzai2', """0.0     P       0.0     100     2       -80     3       0       -1
+# 0.0     P       0.0     100     4       15      5       0       -1
+#
+# 1.5     P       0.0     150     4       15      5       -30     -1
+# 0.0     P       0.0     50      10      15      11      15      -1
+# 2.0     P       0.0     40      10      0       11      0       -1
+# 0.3     P       0.0     40      0       0       1       0       -1
+# 0.0     P       0.0     80      4       -80     2       -80     -1
+# 0.0     P       0.0     40      5       0       3       0       -1
+# 0.0     P       0.0     40      6       0       7       0       -1
+# 0.0     P       0.0     40      8       0       9       0       -1
+# 0.0     P       0.0     40      10      0       11      0       -1
+# 0.0     P       0.0     40      12      0       -1
+# 1.0     t""",
+#              False, next_action=DialogueActionMove(
+#                                 'banzai2', False, next_action=DialogueActionSleep(
+#                                     sleep_time=1, cancelable=False, next_action=None)))))
+
         return Dialogue(DialogueActionTalkNoResponse(
-            'banzai2', False, next_action=DialogueActionMovePlus(
-            'banzai2', """0.0     P       0.0     100     2       -80     3       0       -1
-0.0     P       0.0     100     4       15      5       0       -1
-
-1.5     P       0.0     150     4       15      5       -30     -1
-0.0     P       0.0     50      10      15      11      15      -1
-2.0     P       0.0     40      10      0       11      0       -1
-0.3     P       0.0     40      0       0       1       0       -1
-0.0     P       0.0     80      4       -80     2       -80     -1
-0.0     P       0.0     40      5       0       3       0       -1
-0.0     P       0.0     40      6       0       7       0       -1
-0.0     P       0.0     40      8       0       9       0       -1
-0.0     P       0.0     40      10      0       11      0       -1
-0.0     P       0.0     40      12      0       -1
-1.0     t""",
-             False, next_action=DialogueActionMove(
-                                'banzai2', False, next_action=DialogueActionSleep(
-                                    sleep_time=1, cancelable=False, next_action=None)))))
-
-        # return Dialogue(DialogueActionTalkNoResponse(
-        #     'acchi_arm_left2.s3r', False, next_action=DialogueActionMove(
-        #             'acchi_arm_left2.s3r', False, next_action=DialogueActionSleep(
-        #                 sleep_time=1, cancelable=False, next_action=None))))
+            'acchi_arm_left2.s3r', False, next_action=DialogueActionMove(
+                    'acchi_arm_left2.s3r', False, next_action=DialogueActionSleep(
+                        sleep_time=1, cancelable=False, next_action=None))))
 
     def request_script(self):
         convo = urllib2.urlopen('http://192.168.1.166:9000/?json={test}')

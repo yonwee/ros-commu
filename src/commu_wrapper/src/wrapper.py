@@ -61,3 +61,28 @@ class CommUWrapper:
             self.debug_handler.commu_look_received(x, y, z)
 
         return self.cumhelper.look_manual(x, y, z)
+
+    def move(self, gesturefile):
+        # type: (str) -> bool
+        """
+        Makes the CommU look at the specified pixel location on the camera. The camera translation and rotation relative
+        to the base of the head of the CommU should be provided.
+        :param gesturefile: The name of the gesture file, without the file extension.
+        :return: Whether the operation was received by the CommU successfully.
+        """
+        rospy.loginfo("Running gesturefile (%s)", gesturefile)
+
+        return self.cumhelper.gesture(gesturefile)
+
+    def move_plus(self, gesture_name, gesture_definition):
+        # type: (str, str) -> bool
+        """
+        Makes the CommU look at the specified pixel location on the camera. The camera translation and rotation relative
+        to the base of the head of the CommU should be provided.
+        :param gesture_name: The name of the gesture file, without the file extension.
+        :param gesture_definition: The actual contents of the .s3r file.
+        :return: Whether the operation was received by the CommU successfully.
+        """
+        rospy.loginfo("Adding gesturefile (%s)", gesture_name)
+
+        return self.cumhelper.add_gesture_definition(gesture_name, gesture_definition)

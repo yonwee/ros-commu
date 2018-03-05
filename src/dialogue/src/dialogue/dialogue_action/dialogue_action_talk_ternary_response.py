@@ -34,7 +34,11 @@ class DialogueActionTalkTernaryResponse(AbstractDialogueActionTalk):
 
         while True:
             try:
+<<<<<<< HEAD
                 key = rospy.wait_for_message('/keyboard/keydown', Key) # type: Key
+=======
+                key = rospy.wait_for_message('/keyboard/keydown', Key, timeout=8) # type: Key
+>>>>>>> ecc1be887f351d8c1d315d780aee8f58fde03ad9
 
                 rospy.loginfo("Key {} pressed.".format(key.code))
 

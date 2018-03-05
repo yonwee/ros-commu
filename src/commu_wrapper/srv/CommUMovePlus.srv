@@ -1,0 +1,8 @@
+# The file name of the gesture file, without the file extension.
+string gesture_name
+
+# The actual contents of the .s3r file.
+string gesture_definition
+---
+# Whether the CommU received the utter command successfully.
+bool success

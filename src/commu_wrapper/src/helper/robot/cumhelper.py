@@ -115,10 +115,8 @@ class CUMHelper():
         This function allows for changing the CommUManager's config file while the CommUManager is running.
         Note: the new config file will replace the old configuration and all loaded gestures will be discarded, so
         make sure to include any gestures you want to use in the new config file as well.
-
         Note: This function might require a fix in the CommUManager C++ code. If gestures are not reloaded after calling
         this function, apply the following fix on the CommU.
-
         To fix this error, add
         `this->gesture_table->register_gesture_robot(this->robot);`
         at the bottom of the `config_loader` method, line 630, in the `commumanager.cpp` file, located at
@@ -146,7 +144,6 @@ class CUMHelper():
         """
         This function adds a gesture while the CommUManager is running. Any previously registered gesture will be
         overwritten.
-
         :param gesture_name: The name by which the gesture can be activated.
         :param gesture_definition: The definition of the gesture. Note: this is not the _name_ of a gesture.s3r file.
             This parameter should contain the actual contents of a .s3r file.
@@ -173,7 +170,7 @@ class CUMHelperDummy(CUMHelper):
     def __init__(self, host, port, volume=None, logfile="cumhelper.log"):
         self.__logger = get_filelogger("CUMHELPER_DUMMY-"+str(port),logfile)
         self.__logger.info("stanby")
-        
+
     def chvolume(self,volume):
         command = "/aitalk-volume " + str(volume)
         self.__logger.info(command)
@@ -210,7 +207,7 @@ class CUMHelperDummy(CUMHelper):
         self.__logger.info(command)
         return True
 
-            
+
 if __name__ =='__main__':
     parser = argparse.ArgumentParser(description="utility for CommUManager")
     parser.add_argument("-i","--ipaddress", default="127.0.0.1")
@@ -234,8 +231,8 @@ if __name__ =='__main__':
     #manager.look_label(args.look,"normal")
     #manager.gesture('tmp_gesture' + str(gesture_nr))
     #manager.gesture('acchi_arm_left')
-    #print manager.add_gesture_definition('test_gesture', """0.0 P 0.0 10
-#10.0 t""")
+#     print manager.add_gesture_definition('test_gesture', """0.0 P 0.0 10
+# 10.0 t""")
     #print manager.gesture('test_gesture')
 
 

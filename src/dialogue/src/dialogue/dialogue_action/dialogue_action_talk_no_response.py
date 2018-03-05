@@ -3,7 +3,6 @@ from typing import Union
 from abstract_dialogue_action import AbstractDialogueAction
 from abstract_dialogue_action_talk import AbstractDialogueActionTalk
 
-
 class DialogueActionTalkNoResponse(AbstractDialogueActionTalk):
     """
     DialogueActionTalkNoResponse makes the Sota utter a sentence, without allowing the user to respond.

@@ -27,7 +27,6 @@ class DialogueLibraryQuiz(DialogueLibrary):
         #return Dialogue(DialogueActionTalkNoResponse(utterance='heya', cancelable=False, next_action=None))
 
         cjdata = self.request_script()
-        cjdatalen = len(cjdata)
         store['full'] = cjdata
         store['block'] = self.assign_return_dia(topic,x=1)
         return Dialogue(store['block'])
@@ -35,7 +34,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
 
     def request_script(self):
-        convo = urllib2.urlopen('http://192.168.1.171:8080/?json={test}')
+        convo = urllib2.urlopen('http://192.168.1.166:9000/?json={test}')
         cjson = convo.read()
         cjdata = json.loads(cjson)
         rospy.loginfo("Received data from conversation server.")
@@ -52,10 +51,11 @@ class DialogueLibraryQuiz(DialogueLibrary):
         curint = str(x)
 
         if store['full'][curint]['type']=='last':
-            #store['full'][curint]['u'] =store['full'][curint]['u'].format(topic=(self.__get_object_noun(topic)), atopic =self.__add_a_to_noun(self.__get_object_noun(topic)))
-            # for future grammar processing of the topic - anoun to add 'a' or 'an' into the topic string
+            store['full'][curint]['u'] =store['full'][curint]['u'].format(topic=self.__get_object_noun(topic),
+                                                                          atopic=self.__add_a_to_noun(
+                                                                              self.__get_object_noun(topic)))
             # consider using inflect library as well
-            store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
+            # store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
             return DialogueActionTalkNoResponse(store['full'][curint]['u'],
                                                 store['full'][curint]['c'],
                                                 next_action=None)
@@ -65,7 +65,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
         if store['full'][curint]['type']=='pass':
             next = int(store['full'][curint]['next'])
-            store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
+            store['full'][curint]['u'] = store['full'][curint]['u'].format(topic=self.__get_object_noun(topic),
+                                                                           atopic=self.__add_a_to_noun(
+                                                                               self.__get_object_noun(topic)))
             return DialogueActionTalkNoResponse(store['full'][curint]['u'],
                                                 store['full'][curint]['c'],
                                                 next_action=self.assign_return_dia(topicstr,next))
@@ -73,7 +75,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
         if store['full'][curint]['type']=='binary':
             yesloc = int(store['full'][curint]['yesloc'])
             noloc  = int(store['full'][curint]['noloc'])
-            store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
+            store['full'][curint]['u'] = store['full'][curint]['u'].format(topic=self.__get_object_noun(topic),
+                                                                           atopic=self.__add_a_to_noun(
+                                                                               self.__get_object_noun(topic)))
             return DialogueActionTalkBinaryResponse(store['full'][curint]['u'],
                                                     store['full'][curint]['c'],
                                                     next_action_yes=self.assign_return_dia(topicstr,yesloc),
@@ -83,21 +87,25 @@ class DialogueLibraryQuiz(DialogueLibrary):
             yesloc = int(store['full'][curint]['yesloc'])
             noloc = int(store['full'][curint]['noloc'])
             neuloc = int(store['full'][curint]['neuloc'])
-            store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
+            store['full'][curint]['u'] = store['full'][curint]['u'].format(topic=self.__get_object_noun(topic),
+                                                                           atopic=self.__add_a_to_noun(
+                                                                               self.__get_object_noun(topic)))
             return DialogueActionTalkTernaryResponse(store['full'][curint]['u'],
                                                     store['full'][curint]['c'],
                                                     next_action_yes=self.assign_return_dia(topicstr, yesloc),
                                                     next_action_no=self.assign_return_dia(topicstr, noloc),
                                                     next_action_neutral=self.assign_return_dia(topicstr,neuloc))
-        # #unimplemented look command
-        # if store['full'][curint]['type'] == 'look':
-        #     next = int(store['full'][curint]['next'])
-        #     lookat = int(store['full'][curint]['looktarget'])
-        #     #lookat should be DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER or similar
-        #     store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
-        #     return DialogueActionLook(lookat,
-        #                               store['full'][curint]['c'],
-        #                               next_action=self.assign_return_dia(topicstr, next))
+        #unimplemented look command
+        if store['full'][curint]['type'] == 'look':
+            next = int(store['full'][curint]['next'])
+            lookat = int(store['full'][curint]['looktarget'])
+            #lookat should be DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER or similar
+            store['full'][curint]['u'] = store['full'][curint]['u'].format(topic=self.__get_object_noun(topic),
+                                                                           atopic=self.__add_a_to_noun(
+                                                                               self.__get_object_noun(topic)))
+            return DialogueActionLook(lookat,
+                                      store['full'][curint]['c'],
+                                      next_action=self.assign_return_dia(topicstr, next))
 
         # if store['full'][curint]['type']=='move':
         #     store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)

@@ -71,8 +71,8 @@ if __name__ == '__main__':
     euclid_t_y = rospy.get_param('look_helper/euclid_ty', 0.40)
     euclid_t_z = rospy.get_param('look_helper/euclid_tz', 0.15)
 
-    euclid_r_x = rospy.get_param('look_helper/euclid_rx', -50)
-    euclid_r_y = rospy.get_param('look_helper/euclid_ry', 0)
+    euclid_r_x = rospy.get_param('look_helper/euclid_rx', 0)
+    euclid_r_y = rospy.get_param('look_helper/euclid_ry', -50)
     euclid_r_z = rospy.get_param('look_helper/euclid_rz', -90)
     
     webcam_t_x = rospy.get_param('look_helper/webcam_tx', 0.25)

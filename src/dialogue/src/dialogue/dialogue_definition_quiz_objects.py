@@ -105,7 +105,13 @@ class DialogueLibraryQuiz(DialogueLibrary):
                     sleep_time=3, cancelable=False, next_action=DialogueActionTalkNoResponse(
                         'reset', False, next_action=DialogueActionMove(
                             'reset', False, next_action=DialogueActionSleep(
-                                sleep_time=2, cancelable=False, next_action=None)))))))))))))))))))))))))
+                                sleep_time=2, cancelable=False, next_action=DialogueActionTalkNoResponse(
+            'point_left', False, next_action=DialogueActionMove(
+                'point_left', False, next_action=DialogueActionSleep(
+                    sleep_time=3, cancelable=False, next_action=DialogueActionTalkNoResponse(
+                        'reset', False, next_action=DialogueActionMove(
+                            'reset', False, next_action=DialogueActionSleep(
+                                sleep_time=2, cancelable=False, next_action=None)))))))))))))))))))))))))))))))
         # return Dialogue(DialogueActionTalkNoResponse(
         #     'acchi_arm_left2', False, next_action=DialogueActionMove(
         #         'acchi_arm_left2', False, next_action=DialogueActionSleep(

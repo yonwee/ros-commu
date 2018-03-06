@@ -102,6 +102,12 @@ class DialogueLibraryQuiz(DialogueLibrary):
                                       store['full'][curint]['c'],
                                       next_action=self.assign_return_dia(topicstr, next))
 
+        if store['full'][curint]['type']=='sleep':
+            next = int(store['full'][curint]['next'])
+            return DialogueActionSleep(int(store['full'][curint]['u']),
+                                                store['full'][curint]['c'],
+                                                next_action=self.assign_return_dia(topicstr,next))
+     
         # if store['full'][curint]['type']=='move':
         #     store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
         #     return DialogueActionMove("banzai",

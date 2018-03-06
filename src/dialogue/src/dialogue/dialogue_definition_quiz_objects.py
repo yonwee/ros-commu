@@ -108,14 +108,11 @@ class DialogueLibraryQuiz(DialogueLibrary):
                                                 store['full'][curint]['c'],
                                                 next_action=self.assign_return_dia(topicstr,next))
      
-        # if store['full'][curint]['type']=='move':
-        #     store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
-        #     return DialogueActionMove("banzai",
-        #                                         store['full'][curint]['c'],
-        #                                         next_action=None)
-
-
-
+        if store['full'][curint]['type']=='move':
+             next = int(store['full'][curint]['next'])
+             return DialogueActionMove(store['full'][curint]['u'],
+                                                 store['full'][curint]['c'],
+                                                 next_action=self.assign_return_dia(topicstr,next))
 
 
     def return_arb_dia(self):

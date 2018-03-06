@@ -51,9 +51,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
         curint = str(x)
 
         if store['full'][curint]['type']=='last':
-            store['full'][curint]['u'] =store['full'][curint]['u'].format(topic=self.__get_object_noun(topic),
+            store['full'][curint]['u'] =store['full'][curint]['u'].format(topic=self.__get_object_noun(topicstr),
                                                                           atopic=self.__add_a_to_noun(
-                                                                              self.__get_object_noun(topic)))
+                                                                              self.__get_object_noun(topicstr)))
             # consider using inflect library as well
             # store['full'][curint]['u'] = store['full'][curint]['u'].format(topicstr)
             return DialogueActionTalkNoResponse(store['full'][curint]['u'],
@@ -65,9 +65,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
 
         if store['full'][curint]['type']=='pass':
             next = int(store['full'][curint]['next'])
-            store['full'][curint]['u'] = store['full'][curint]['u'].format(topic=self.__get_object_noun(topic),
+            store['full'][curint]['u'] = store['full'][curint]['u'].format(topic=self.__get_object_noun(topicstr),
                                                                            atopic=self.__add_a_to_noun(
-                                                                               self.__get_object_noun(topic)))
+                                                                               self.__get_object_noun(topicstr)))
             return DialogueActionTalkNoResponse(store['full'][curint]['u'],
                                                 store['full'][curint]['c'],
                                                 next_action=self.assign_return_dia(topicstr,next))
@@ -88,9 +88,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
             yesloc = int(store['full'][curint]['yesloc'])
             noloc = int(store['full'][curint]['noloc'])
             neuloc = int(store['full'][curint]['neuloc'])
-            store['full'][curint]['u'] = store['full'][curint]['u'].format(topic=self.__get_object_noun(topic),
+            store['full'][curint]['u'] = store['full'][curint]['u'].format(topic=self.__get_object_noun(topicstr),
                                                                            atopic=self.__add_a_to_noun(
-                                                                               self.__get_object_noun(topic)))
+                                                                               self.__get_object_noun(topicstr)))
             return DialogueActionTalkTernaryResponse(store['full'][curint]['u'],
                                                     store['full'][curint]['c'],
                                                     next_action_yes=self.assign_return_dia(topicstr, yesloc),
@@ -101,9 +101,9 @@ class DialogueLibraryQuiz(DialogueLibrary):
             next = int(store['full'][curint]['next'])
             lookat = int(store['full'][curint]['looktarget'])
             #lookat should be an integer, according to LOOK_TYPE_WATCH* variables in dialogue action files
-            store['full'][curint]['u'] = store['full'][curint]['u'].format(topic=self.__get_object_noun(topic),
+            store['full'][curint]['u'] = store['full'][curint]['u'].format(topic=self.__get_object_noun(topicstr),
                                                                            atopic=self.__add_a_to_noun(
-                                                                               self.__get_object_noun(topic)))
+                                                                               self.__get_object_noun(topicstr)))
             return DialogueActionLook(lookat,
                                       store['full'][curint]['c'],
                                       next_action=self.assign_return_dia(topicstr, next))

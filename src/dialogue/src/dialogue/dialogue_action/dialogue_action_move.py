@@ -32,7 +32,7 @@ class DialogueActionMove(AbstractDialogueAction):
         """
 
         self.move(self.gesturefile)
-
+ 
         return self.next_action
 
     def can_cancel(self):

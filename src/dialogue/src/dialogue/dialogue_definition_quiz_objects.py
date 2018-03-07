@@ -81,44 +81,44 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #                                 'banzai2', False, next_action=DialogueActionSleep(
 #                                     sleep_time=1, cancelable=False, next_action=None)))))
 
+        # return Dialogue(DialogueActionTalkNoResponse(
+        #     'yay', False, next_action=DialogueActionMove(
+        #         'yay', False, next_action=DialogueActionSleep(
+        #             sleep_time=3, cancelable=False, next_action=DialogueActionTalkNoResponse(
+        #                 'reset', False, next_action=DialogueActionMove(
+        #                     'reset', False, next_action=DialogueActionSleep(
+        #                         sleep_time=2, cancelable=False, next_action=DialogueActionTalkNoResponse(
+        #     'original hi', False, next_action=DialogueActionMove(
+        #         'hi', False, next_action=DialogueActionSleep(
+        #             sleep_time=3, cancelable=False, next_action=DialogueActionTalkNoResponse(
+        #                 'reset', False, next_action=DialogueActionMove(
+        #                     'reset', False, next_action=DialogueActionSleep(
+        #                         sleep_time=2, cancelable=False, next_action=DialogueActionTalkNoResponse(
+        #     'hi2', False, next_action=DialogueActionMove(
+        #         'hi2', False, next_action=DialogueActionSleep(
+        #             sleep_time=3, cancelable=False, next_action=DialogueActionTalkNoResponse(
+        #                 'reset', False, next_action=DialogueActionMove(
+        #                     'reset', False, next_action=DialogueActionSleep(
+        #                         sleep_time=2, cancelable=False, next_action=DialogueActionTalkNoResponse(
+        #     'sugoi', False, next_action=DialogueActionMove(
+        #         'sugoi', False, next_action=DialogueActionSleep(
+        #             sleep_time=3, cancelable=False, next_action=DialogueActionTalkNoResponse(
+        #                 'reset', False, next_action=DialogueActionMove(
+        #                     'reset', False, next_action=DialogueActionSleep(
+        #                         sleep_time=2, cancelable=False, next_action=DialogueActionTalkNoResponse(
+        #     'point_left', False, next_action=DialogueActionMove(
+        #         'point_left', False, next_action=DialogueActionSleep(
+        #             sleep_time=3, cancelable=False, next_action=DialogueActionTalkNoResponse(
+        #                 'reset', False, next_action=DialogueActionMove(
+        #                     'reset', False, next_action=DialogueActionSleep(
+        #                         sleep_time=2, cancelable=False, next_action=None)))))))))))))))))))))))))))))))
         return Dialogue(DialogueActionTalkNoResponse(
-            'yay', False, next_action=DialogueActionMove(
-                'yay', False, next_action=DialogueActionSleep(
-                    sleep_time=3, cancelable=False, next_action=DialogueActionTalkNoResponse(
-                        'reset', False, next_action=DialogueActionMove(
-                            'reset', False, next_action=DialogueActionSleep(
-                                sleep_time=2, cancelable=False, next_action=DialogueActionTalkNoResponse(
-            'original hi', False, next_action=DialogueActionMove(
-                'hi', False, next_action=DialogueActionSleep(
-                    sleep_time=3, cancelable=False, next_action=DialogueActionTalkNoResponse(
-                        'reset', False, next_action=DialogueActionMove(
-                            'reset', False, next_action=DialogueActionSleep(
-                                sleep_time=2, cancelable=False, next_action=DialogueActionTalkNoResponse(
-            'hi2', False, next_action=DialogueActionMove(
-                'hi2', False, next_action=DialogueActionSleep(
-                    sleep_time=3, cancelable=False, next_action=DialogueActionTalkNoResponse(
-                        'reset', False, next_action=DialogueActionMove(
-                            'reset', False, next_action=DialogueActionSleep(
-                                sleep_time=2, cancelable=False, next_action=DialogueActionTalkNoResponse(
-            'sugoi', False, next_action=DialogueActionMove(
-                'sugoi', False, next_action=DialogueActionSleep(
-                    sleep_time=3, cancelable=False, next_action=DialogueActionTalkNoResponse(
-                        'reset', False, next_action=DialogueActionMove(
-                            'reset', False, next_action=DialogueActionSleep(
-                                sleep_time=2, cancelable=False, next_action=DialogueActionTalkNoResponse(
             'point_left', False, next_action=DialogueActionMove(
                 'point_left', False, next_action=DialogueActionSleep(
                     sleep_time=3, cancelable=False, next_action=DialogueActionTalkNoResponse(
                         'reset', False, next_action=DialogueActionMove(
                             'reset', False, next_action=DialogueActionSleep(
-                                sleep_time=2, cancelable=False, next_action=None)))))))))))))))))))))))))))))))
-        # return Dialogue(DialogueActionTalkNoResponse(
-        #     'acchi_arm_left2', False, next_action=DialogueActionMove(
-        #         'acchi_arm_left2', False, next_action=DialogueActionSleep(
-        #             sleep_time=5, cancelable=False, next_action=DialogueActionTalkNoResponse(
-        #                 'reset', False, next_action=DialogueActionMove(
-        #                     'reset', False, next_action=DialogueActionSleep(
-        #                         sleep_time=5, cancelable=False, next_action=None)))))))
+                                sleep_time=2, cancelable=False, next_action=None)))))))
 
 
     def request_script(self):

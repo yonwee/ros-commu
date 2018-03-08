@@ -65,8 +65,7 @@ class CommUWrapper:
     def move(self, gesturefile):
         # type: (str) -> bool
         """
-        Makes the CommU look at the specified pixel location on the camera. The camera translation and rotation relative
-        to the base of the head of the CommU should be provided.
+        Makes the CommU execute the input gesture.
         :param gesturefile: The name of the gesture file, without the file extension.
         :return: Whether the operation was received by the CommU successfully.
         """
@@ -77,8 +76,7 @@ class CommUWrapper:
     def move_plus(self, gesture_name, gesture_definition):
         # type: (str, str) -> bool
         """
-        Makes the CommU look at the specified pixel location on the camera. The camera translation and rotation relative
-        to the base of the head of the CommU should be provided.
+        Adds the new input gesture to the gesture table (still in progress).
         :param gesture_name: The name of the gesture file, without the file extension.
         :param gesture_definition: The actual contents of the .s3r file.
         :return: Whether the operation was received by the CommU successfully.

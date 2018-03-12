@@ -38,9 +38,9 @@ class DialogueActionTalkTernaryResponse(AbstractDialogueActionTalk):
 
                 rospy.loginfo("Key {} pressed.".format(key.code))
 
-                if key.code == Key.KEY_y:
+                if key.code == Key.KEY_s:
                     return self.next_action_yes
-                if key.code == Key.KEY_n:
+                if key.code == Key.KEY_a:
                     return self.next_action_no
             except ROSException:
                 return self.next_action_neutral

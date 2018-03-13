@@ -112,17 +112,17 @@ class DialogueLibraryQuiz(DialogueLibrary):
         #                 'reset', False, next_action=DialogueActionMove(
         #                     'reset', False, next_action=DialogueActionSleep(
         #                         sleep_time=2, cancelable=False, next_action=None)))))))))))))))))))))))))))))))
-        # return Dialogue(DialogueActionTalkNoResponse(
-        #     'point_left', False, next_action=DialogueActionMove(
-        #         'point_left', False, next_action=DialogueActionSleep(
-        #             sleep_time=3, cancelable=False, next_action=DialogueActionTalkNoResponse(
-        #                 'reset', False, next_action=DialogueActionMove(
-        #                     'reset', False, next_action=DialogueActionSleep(
-        #                         sleep_time=2, cancelable=False, next_action=None)))))))
-
         return Dialogue(DialogueActionTalkNoResponse(
-            'hi2', False, next_action=DialogueActionMove(
-                'hi2', False, next_action=None)))
+            'point_right', False, next_action=DialogueActionMove(
+                'point_right', False, next_action=DialogueActionSleep(
+                    sleep_time=3, cancelable=False, next_action=DialogueActionTalkNoResponse(
+                        'reset', False, next_action=DialogueActionMove(
+                            'reset', False, next_action=DialogueActionSleep(
+                                sleep_time=2, cancelable=False, next_action=None)))))))
+
+        # return Dialogue(DialogueActionTalkNoResponse(
+        #     'hi2', False, next_action=DialogueActionMove(
+        #         'hi2', False, next_action=None)))
 
 
     def request_script(self):

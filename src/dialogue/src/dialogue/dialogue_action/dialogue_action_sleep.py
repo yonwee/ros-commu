@@ -29,6 +29,7 @@ class DialogueActionSleep(AbstractDialogueAction):
         :return: The next action in the Dialogue. Return None when there is no next action.
         """
         time.sleep(self.sleep_time)
+        rospy.loginfo("Sleeping for {} seconds.".format(self.sleep_time))
 
         return self.next_action
 

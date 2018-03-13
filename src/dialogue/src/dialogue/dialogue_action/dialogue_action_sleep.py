@@ -1,4 +1,5 @@
 import time
+import rospy
 
 from typing import Union
 
@@ -28,8 +29,8 @@ class DialogueActionSleep(AbstractDialogueAction):
         :param tf: The name of the tf2_ros transform of the object that is currently being talked about.
         :return: The next action in the Dialogue. Return None when there is no next action.
         """
-        time.sleep(self.sleep_time)
-        #rospy.loginfo("Sleeping for {} seconds.".format(self.sleep_time))
+        rospy.sleep(self.sleep_time)
+        rospy.loginfo("Sleeping for {} seconds.".format(self.sleep_time))
 
         return self.next_action
 

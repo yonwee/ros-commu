@@ -30,7 +30,8 @@ class DialogueLibraryQuiz(DialogueLibrary):
         #convo = urllib2.urlopen("http://10.42.1.1:8001/?json={" + topic + "}")
         cjson = convo.read()
         cjdata = json.loads(cjson)
-        rospy.loginfo("Received data from conversation server.")
+        cjstr = str(cjdata)
+        rospy.loginfo("Received data from conversation server {}.".format(cjstr))
         cjdatalen = len(cjdata)
         store['full'] = cjdata
         store['block'] = self.assign_return_dia(topic,x=1)

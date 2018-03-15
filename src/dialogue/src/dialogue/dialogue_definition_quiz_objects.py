@@ -39,31 +39,13 @@ class DialogueLibraryQuiz(DialogueLibrary):
         return Dialogue(DialogueActionTalkNoResponse(
             'nani', False, next_action=DialogueActionMove(
                 'nani', False, next_action=DialogueActionSleep(
-                    sleep_time=8, cancelable=False, next_action=DialogueActionTalkNoResponse(
+                    sleep_time=1, cancelable=False, next_action=DialogueActionTalkNoResponse(
                         'nod', False, next_action=DialogueActionMove(
                             'nod', False, next_action=DialogueActionSleep(
                                 sleep_time=5, cancelable=False, next_action=DialogueActionTalkNoResponse(
                                 'reset', False, next_action=DialogueActionMove(
                                     'reset', False, next_action=DialogueActionSleep(
-                                        sleep_time=2, cancelable=False, next_action=DialogueActionTalkNoResponse(
-            'hi2', False, next_action=DialogueActionMove(
-                'hi2', False, next_action=DialogueActionSleep(
-                    sleep_time=3, cancelable=False, next_action=DialogueActionTalkNoResponse(
-                        'reset', False, next_action=DialogueActionMove(
-                            'reset', False, next_action=DialogueActionSleep(
-                                sleep_time=2, cancelable=False, next_action=DialogueActionTalkNoResponse(
-            'sugoi', False, next_action=DialogueActionMove(
-                'sugoi', False, next_action=DialogueActionSleep(
-                    sleep_time=3, cancelable=False, next_action=DialogueActionTalkNoResponse(
-                        'reset', False, next_action=DialogueActionMove(
-                            'reset', False, next_action=DialogueActionSleep(
-                                sleep_time=2, cancelable=False, next_action=DialogueActionTalkNoResponse(
-            'point_right', False, next_action=DialogueActionMove(
-                'point_right', False, next_action=DialogueActionSleep(
-                    sleep_time=3, cancelable=False, next_action=DialogueActionTalkNoResponse(
-                        'reset_front', False, next_action=DialogueActionMove(
-                            'reset_front', False, next_action=DialogueActionSleep(
-                                sleep_time=2, cancelable=False, next_action=None))))))))))))))))))))))))))))
+                                        sleep_time=2, cancelable=False, next_action=None))))))))))
 
 
     def assign_return_dia(self,topic,x):

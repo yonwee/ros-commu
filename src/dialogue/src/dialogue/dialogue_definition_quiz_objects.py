@@ -39,7 +39,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         return Dialogue(DialogueActionTalkNoResponse(
             'nani', False, next_action=DialogueActionMove(
                 'nani', False, next_action=DialogueActionSleep(
-                    sleep_time=5, cancelable=False, next_action=DialogueActionTalkNoResponse(
+                    sleep_time=3, cancelable=False, next_action=DialogueActionTalkNoResponse(
                         'nod', False, next_action=DialogueActionMove(
                             'nod', False, next_action=DialogueActionSleep(
                                 sleep_time=2, cancelable=False, next_action=DialogueActionTalkNoResponse(

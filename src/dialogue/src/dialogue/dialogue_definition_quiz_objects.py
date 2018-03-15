@@ -27,15 +27,22 @@ class DialogueLibraryQuiz(DialogueLibrary):
         #return Dialogue(DialogueActionTalkNoResponse(utterance='heya', cancelable=False, next_action=None))
         #convo = urllib2.urlopen("http://192.168.0.112:8900/?json={" + topic + "}")
         #convo = urllib2.urlopen("http://192.168.1.128:8080/?json={" + topic + "}")
-        convo = urllib2.urlopen("http://10.42.1.1:8001/?json={" + topic + "}")
-        cjson = convo.read()
-        cjdata = json.loads(cjson)
-        cjstr = str(cjdata)
-        rospy.loginfo("Received data from conversation server {}.".format(cjstr))
-        cjdatalen = len(cjdata)
-        store['full'] = cjdata
-        store['block'] = self.assign_return_dia(topic,x=1)
-        return Dialogue(store['block'])
+#         convo = urllib2.urlopen("http://10.42.1.1:8001/?json={" + topic + "}")
+#         cjson = convo.read()
+#         cjdata = json.loads(cjson)
+#         cjstr = str(cjdata)
+#         rospy.loginfo("Received data from conversation server {}.".format(cjstr))
+#         cjdatalen = len(cjdata)
+#         store['full'] = cjdata
+#         store['block'] = self.assign_return_dia(topic,x=1)
+#         return Dialogue(store['block'])
+        return Dialogue(DialogueActionTalkNoResponse(
+            'nani', False, next_action=DialogueActionMove(
+                'nani', False, next_action=DialogueActionSleep(
+                    sleep_time=3, cancelable=False, next_action=DialogueActionTalkNoResponse(
+                        'reset', False, next_action=DialogueActionMove(
+                            'reset', False, next_action=DialogueActionSleep(
+                                sleep_time=2, cancelable=False, next_action=None)))))))
 
 
     def assign_return_dia(self,topic,x):

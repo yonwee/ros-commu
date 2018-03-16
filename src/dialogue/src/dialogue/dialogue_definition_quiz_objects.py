@@ -96,7 +96,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         #unimplemented look command
         if store['full'][curint]['type'] == 'look':
             next = int(store['full'][curint]['next'])
-            lookat = int(store['full'][curint]['looktarget'])
+            lookat = int(store['full'][curint]['u'])
             #lookat should be DialogueActionLook.LOOK_TYPE_WATCH_CONVERSATION_PARTNER or similar
             store['full'][curint]['u'] = store['full'][curint]['u'].format(topic=self.__get_object_noun(topic),
                                                                            atopic=self.__add_a_to_noun(

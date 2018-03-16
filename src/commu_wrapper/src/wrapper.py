@@ -21,7 +21,7 @@ class CommUWrapper:
 
         rospy.loginfo("CommUWrapper instance created.")
 
-    def utter(self, utterance, blocking=False, english=True):
+    def utter(self, utterance, blocking=True, english=True):
         # type: (str, bool, bool) -> bool
         """
         Makes the CommU utter the specified string.

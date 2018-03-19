@@ -44,11 +44,11 @@ class CUMHelper():
         ret_s1 = ret.split(":")
         if ret_s1[0] == "FAIL":
             self.__logger.error(command)
-            rospy.logerr("{} failed".format(command))
+            rospy.logerr("Command {} failed".format(command))
             return False
         else:
             self.__logger.info(command)
-            rospy.loginfo("{} succeeded".format(command))
+            rospy.loginfo("Command {} succeeded".format(command))
 
             if blocking:
                 sleep(len(text) * (1.0/6.5)/3.0 + 1.5)
@@ -63,11 +63,11 @@ class CUMHelper():
         ret_s1 = ret.split(":")
         if ret_s1[0] == "FAIL":
             self.__logger.error(command)
-            rospy.logerr("{} failed".format(command))
+            rospy.logerr("Command {} failed".format(command))
             return False
         else:
             self.__logger.info(command)
-            rospy.loginfo("{} succeeded".format(command))
+            rospy.loginfo("Command {} succeeded".format(command))
             
 
             if blocking:
@@ -82,11 +82,11 @@ class CUMHelper():
         ret_s1 = ret.split(":")
         if ret_s1[0] == "FAIL":
             self.__logger.error(command)
-            rospy.logerr("{} failed".format(command))
+            rospy.logerr("Command {} failed".format(command))
             return False
         else:
             self.__logger.info(command)
-            rospy.loginfo("{} succeeded".format(command))
+            rospy.loginfo("Command {} succeeded".format(command))
             return True
 
     def look_label(self,label,cr,kinect=False):
@@ -113,9 +113,11 @@ class CUMHelper():
 
         if ret_s1[0] == "FAIL":
             self.__logger.error(command)
+            rospy.logerr("Command {} failed".format(command))
             return False
         else:
             self.__logger.info(command)
+            rospy.loginfo("Command {} succeeded".format(command))
             return True
 
     def set_config(self, config):

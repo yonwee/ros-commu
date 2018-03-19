@@ -8,6 +8,7 @@ import argparse
 import os
 import sys
 from time import sleep
+import rospy
 
 sys.path.append(os.path.abspath("../../"))
 from helper.connection.I2CProtocol import I2CProtocol
@@ -43,9 +44,11 @@ class CUMHelper():
         ret_s1 = ret.split(":")
         if ret_s1[0] == "FAIL":
             self.__logger.error(command)
+            rospy.logerr("{} failed".format(command))
             return False
         else:
             self.__logger.info(command)
+            rospy.loginfo("{} succeeded".format(command))
 
             if blocking:
                 sleep(len(text) * (1.0/6.5)/3.0 + 1.5)
@@ -60,9 +63,12 @@ class CUMHelper():
         ret_s1 = ret.split(":")
         if ret_s1[0] == "FAIL":
             self.__logger.error(command)
+            rospy.logerr("{} failed".format(command))
             return False
         else:
             self.__logger.info(command)
+            rospy.loginfo("{} succeeded".format(command))
+            
 
             if blocking:
                 sleep(len(text) * (1.0/6.5)/3.0 + 1.5)
@@ -76,9 +82,11 @@ class CUMHelper():
         ret_s1 = ret.split(":")
         if ret_s1[0] == "FAIL":
             self.__logger.error(command)
+            rospy.logerr("{} failed".format(command))
             return False
         else:
             self.__logger.info(command)
+            rospy.loginfo("{} succeeded".format(command))
             return True
 
     def look_label(self,label,cr,kinect=False):

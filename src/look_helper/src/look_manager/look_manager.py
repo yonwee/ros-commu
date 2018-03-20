@@ -114,7 +114,7 @@ class LookManager:
         #         ty = transform.transform.translation.y
         #         tz = transform.transform.translation.z
         if self.target_frame_name is not None and self.target_frame_name is not "":
-            if self.target_frame_name is "ahead":
+            if self.target_frame_name == "ahead":
                 try:
                     self.target_frame_name = "person"
                     transform = self.tfBuffer.lookup_transform("commu_head_yaw", self.target_frame_name, rospy.Time(),

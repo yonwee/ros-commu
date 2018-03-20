@@ -41,8 +41,10 @@ class DialogueLibraryQuiz(DialogueLibrary):
                 'nani', False, next_action=DialogueActionSleep(
                     sleep_time=5, cancelable=False, next_action=DialogueActionMove(
                         'reset', False, next_action=DialogueActionSleep(
-                            sleep_time=2, cancelable=False, next_action=DialogueActionLook(
-                            3, cancelable=False, next_action=None)))))))
+                            sleep_time=2, cancelable=False, next_action=DialogueActionTalkNoResponse(
+                                'look', False, next_action=DialogueActionLook(
+                                    3, cancelable=False, next_action=DialogueActionTalkNoResponse(
+                                        'look done', False, next_action=None)))))))))
 
 
     def assign_return_dia(self,topic,x):

@@ -130,6 +130,10 @@ class LookManager:
                 tx = transform.transform.translation.x
                 ty = transform.transform.translation.y
                 tz = transform.transform.translation.z
+                
+                tx = -tx
+                ty = -ty                
+                tx = -tz
 
                 rospy.loginfo("Looking ahead.")
             else:

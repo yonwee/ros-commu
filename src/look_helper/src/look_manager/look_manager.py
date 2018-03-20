@@ -89,8 +89,15 @@ class LookManager:
             self.webcam_r_x, self.webcam_r_y, self.webcam_r_z
         )
 
-    def request_commu_look(self):
-        if self.target_frame_name is not None and self.target_frame_name is not "":
+    def request_commu_look(self):                    
+        if self.target_frame_name is "ahead":
+            tx = 1.5
+            ty = 1.5
+            tz = 0.5
+
+            rospy.loginfo("Looking ahead.")
+        
+        elif self.target_frame_name is not None and self.target_frame_name is not "":
             rospy.loginfo("Looking for transform to {}.".format(self.target_frame_name))
 
             try:

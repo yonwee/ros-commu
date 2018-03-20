@@ -13,6 +13,7 @@ class DialogueActionLook(AbstractDialogueAction):
     LOOK_TYPE_WATCH_ENVIRONMENT = 0
     LOOK_TYPE_WATCH_CONVERSATION_PARTNER = 1
     LOOK_TYPE_WATCH_CONVERSATION_TOPIC = 2
+    LOOK_TYPE_WATCH_CONVERSATION_FRONT = 3
 
     def __init__(self, look_type, cancelable, next_action):
         # type: (int, bool, Union[AbstractDialogueAction, None]) -> None
@@ -39,7 +40,8 @@ class DialogueActionLook(AbstractDialogueAction):
         switch_dict = {
             self.LOOK_TYPE_WATCH_ENVIRONMENT: None,
             self.LOOK_TYPE_WATCH_CONVERSATION_PARTNER: "person",
-            self.LOOK_TYPE_WATCH_CONVERSATION_TOPIC: tf
+            self.LOOK_TYPE_WATCH_CONVERSATION_TOPIC: tf,
+            self.LOOK_TYPE_WATCH_CONVERSATION_FRONT: "ahead"
         }
 
         self.set_look_target(switch_dict.get(self.look_type, None))

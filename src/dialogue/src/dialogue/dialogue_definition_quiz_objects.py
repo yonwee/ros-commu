@@ -38,7 +38,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #         return Dialogue(store['block'])
         return Dialogue(DialogueActionTalkNoResponse(
             'person', False, next_action=DialogueActionLook(
-                1, False, next_action=DialogueActionTalkMove(
+                1, False, next_action=DialogueActionMove(
                             'reset_front', False, next_action=DialogueActionTalkNoResponse(
                                 'look', False, next_action=DialogueActionLook(
                                     3, cancelable=False, next_action=DialogueActionTalkNoResponse(

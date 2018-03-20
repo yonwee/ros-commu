@@ -37,14 +37,11 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #         store['block'] = self.assign_return_dia(topic,x=1)
 #         return Dialogue(store['block'])
         return Dialogue(DialogueActionTalkNoResponse(
-            'nani', False, next_action=DialogueActionMove(
-                'nani', False, next_action=DialogueActionSleep(
-                    sleep_time=3, cancelable=False, next_action=DialogueActionMove(
-                        'reset', False, next_action=DialogueActionSleep(
-                            sleep_time=2, cancelable=False, next_action=DialogueActionTalkNoResponse(
+            'person', False, next_action=DialogueActionLook(
+                1, False, next_action=DialogueActionTalkNoResponse(
                                 'look', False, next_action=DialogueActionLook(
                                     3, cancelable=False, next_action=DialogueActionTalkNoResponse(
-                                        'look done', False, next_action=None)))))))))
+                                        'look done', False, next_action=None))))))
 
 
     def assign_return_dia(self,topic,x):

@@ -43,7 +43,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
                         'reset', False, next_action=DialogueActionSleep(
                             sleep_time=2, cancelable=False, next_action=DialogueActionTalkNoResponse(
                                 'look', False, next_action=DialogueActionLook(
-                                    look_type=1, cancelable=False, next_action=DialogueActionTalkNoResponse(
+                                    1, cancelable=False, next_action=DialogueActionTalkNoResponse(
                                         'look done', False, next_action=None)))))))))
 
 

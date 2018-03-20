@@ -90,47 +90,47 @@ class LookManager:
         )
 
     def request_commu_look(self):
+        # if self.target_frame_name is not None and self.target_frame_name is not "":
+        #     if self.target_frame_name is "ahead":
+        #         tx = 1.5
+        #         ty = 1.5
+        #         tz = 0.5
+        #
+        #         rospy.loginfo("Looking ahead.")
+        #     else:
+        #         rospy.loginfo("Looking for transform to {}.".format(self.target_frame_name))
+        #
+        #         try:
+        #             transform = self.tfBuffer.lookup_transform("commu_head_yaw", self.target_frame_name, rospy.Time(),
+        #                                                        rospy.Duration(
+        #                                                            1))  # type: geometry_msgs.msg.TransformStamped
+        #
+        #         except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
+        #             rospy.loginfo("No transform found between commu_head_yaw and {}. This can happen occasionally.".format(
+        #                 self.target_frame_name))
+        #             return
+        #
+        #         tx = transform.transform.translation.x
+        #         ty = transform.transform.translation.y
+        #         tz = transform.transform.translation.z
         if self.target_frame_name is not None and self.target_frame_name is not "":
-            if self.target_frame_name is "ahead":
-                tx = transform.transform.translation.x
-                ty = transform.transform.translation.y
-                tz = transform.transform.translation.z
-        
-                rospy.loginfo("Looking ahead.")
-            else:
-                rospy.loginfo("Looking for transform to {}.".format(self.target_frame_name))
-        
-                try:
-                    transform = self.tfBuffer.lookup_transform("commu_head_yaw", self.target_frame_name, rospy.Time(),
-                                                               rospy.Duration(
-                                                                   1))  # type: geometry_msgs.msg.TransformStamped
-        
-                except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
-                    rospy.loginfo("No transform found between commu_head_yaw and {}. This can happen occasionally.".format(
+            rospy.loginfo("Looking for transform to {}.".format(self.target_frame_name))
+
+            try:
+                transform = self.tfBuffer.lookup_transform("commu_head_yaw", self.target_frame_name, rospy.Time(),
+                                                           rospy.Duration(
+                                                               1))  # type: geometry_msgs.msg.TransformStamped
+
+            except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
+                rospy.loginfo(
+                    "No transform found between commu_head_yaw and {}. This can happen occasionally.".format(
                         self.target_frame_name))
-                    return
-        
-                tx = transform.transform.translation.x
-                ty = transform.transform.translation.y
-                tz = transform.transform.translation.z
-#         if self.target_frame_name is not None and self.target_frame_name is not "":
-#             rospy.loginfo("Looking for transform to {}.".format(self.target_frame_name))
+                return
 
-#             try:
-#                 transform = self.tfBuffer.lookup_transform("commu_head_yaw", self.target_frame_name, rospy.Time(),
-#                                                            rospy.Duration(
-#                                                                1))  # type: geometry_msgs.msg.TransformStamped
+            tx = transform.transform.translation.x
+            ty = transform.transform.translation.y
+            tz = transform.transform.translation.z
 
-#             except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
-#                 rospy.loginfo(
-#                     "No transform found between commu_head_yaw and {}. This can happen occasionally.".format(
-#                         self.target_frame_name))
-#                 return
-
-#             tx = transform.transform.translation.x
-#             ty = transform.transform.translation.y
-#             tz = transform.transform.translation.z
-        
         else:
             if random.randint(0, 20) != 0:
                 return
@@ -141,6 +141,13 @@ class LookManager:
             tz = 0.5 - random.random()
 
             rospy.loginfo("Looking around randomly.")
+            
+        if self.target_frame_name is "ahead":
+            tx = transform.transform.translation.x
+            ty = transform.transform.translation.y
+            tz = transform.transform.translation.z
+
+            rospy.loginfo("Looking ahead.")
 
         x, y, z = self.convert_ros_to_commu_coords(tx, ty, tz)
 

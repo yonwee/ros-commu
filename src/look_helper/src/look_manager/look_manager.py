@@ -92,9 +92,9 @@ class LookManager:
     def request_commu_look(self):
         if self.target_frame_name is not None and self.target_frame_name is not "":
             if self.target_frame_name is "ahead":
-                tx = 80
-                ty = 80
-                tz = 0.5
+                tx = transform.transform.translation.x
+                ty = transform.transform.translation.y
+                tz = transform.transform.translation.z
         
                 rospy.loginfo("Looking ahead.")
             else:

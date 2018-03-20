@@ -89,27 +89,37 @@ class LookManager:
             self.webcam_r_x, self.webcam_r_y, self.webcam_r_z
         )
 
-    def request_commu_look(self):                    
+    def request_commu_look(self):
         if self.target_frame_name is "ahead":
             tx = 1.5
             ty = 1.5
             tz = 0.5
 
             rospy.loginfo("Looking ahead.")
-        
-        elif self.target_frame_name is not None and self.target_frame_name is not "":
-            rospy.loginfo("Looking for transform to {}.".format(self.target_frame_name))
 
-            try:
-                transform = self.tfBuffer.lookup_transform("commu_head_yaw", self.target_frame_name, rospy.Time(), rospy.Duration(1))  # type: geometry_msgs.msg.TransformStamped
+        if self.target_frame_name is not None and self.target_frame_name is not "":
+            if self.target_frame_name is "ahead":
+                tx = 1.5
+                ty = 1.5
+                tz = 0.5
 
-            except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
-                rospy.loginfo("No transform found between commu_head_yaw and {}. This can happen occasionally.".format(self.target_frame_name))
-                return
-
-            tx = transform.transform.translation.x
-            ty = transform.transform.translation.y
-            tz = transform.transform.translation.z
+                rospy.loginfo("Looking ahead.")
+            else:
+                rospy.loginfo("Looking for transform to {}.".format(self.target_frame_name))
+    
+                try:
+                    transform = self.tfBuffer.lookup_transform("commu_head_yaw", self.target_frame_name, rospy.Time(),
+                                                               rospy.Duration(
+                                                                   1))  # type: geometry_msgs.msg.TransformStamped
+    
+                except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
+                    rospy.loginfo("No transform found between commu_head_yaw and {}. This can happen occasionally.".format(
+                        self.target_frame_name))
+                    return
+    
+                tx = transform.transform.translation.x
+                ty = transform.transform.translation.y
+                tz = transform.transform.translation.z
         else:
             if random.randint(0, 20) != 0:
                 return
@@ -134,7 +144,6 @@ class LookManager:
             data = self.latest_classified_object_data
 
             transform_broadcaster.publish_object_transform(data.camera_info, data.objects, 2.0)
-
 
     def convert_ros_to_commu_coords(self, xRos, yRos, zRos):
         # Swap axes and convert to millimeters.

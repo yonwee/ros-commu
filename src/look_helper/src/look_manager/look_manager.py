@@ -45,6 +45,10 @@ class LookManager:
         self.webcam_r_x = math.radians(webcam_r_x)
         self.webcam_r_y = math.radians(webcam_r_y)
         self.webcam_r_z = math.radians(webcam_r_z)
+        
+        self.ttx = ttx
+        self.tty = tty
+        self.ttz = ttz
 
         self.latest_classified_object_data = None  # type: ClassifiedObjectArray
 
@@ -115,11 +119,13 @@ class LookManager:
         #         tz = transform.transform.translation.z
         if self.target_frame_name is not None and self.target_frame_name is not "":
             if self.target_frame_name is "ahead":
+                rospy.loginfo("Looking ahe.")
                 try:
                     self.target_frame_name = "person"
                     transform = self.tfBuffer.lookup_transform("commu_head_yaw", self.target_frame_name, rospy.Time(),
                                                                rospy.Duration(
                                                                    1))  # type: geometry_msgs.msg.TransformStamped
+                    rospy.loginfo("Looking ahea.")
 
                 except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
                     rospy.loginfo(

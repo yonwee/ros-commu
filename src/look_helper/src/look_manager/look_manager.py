@@ -45,10 +45,6 @@ class LookManager:
         self.webcam_r_x = math.radians(webcam_r_x)
         self.webcam_r_y = math.radians(webcam_r_y)
         self.webcam_r_z = math.radians(webcam_r_z)
-        
-        self.ttx = ttx
-        self.tty = tty
-        self.ttz = ttz
 
         self.latest_classified_object_data = None  # type: ClassifiedObjectArray
 

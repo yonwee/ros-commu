@@ -38,10 +38,11 @@ class DialogueLibraryQuiz(DialogueLibrary):
 #         return Dialogue(store['block'])
         return Dialogue(DialogueActionTalkNoResponse(
             'person', False, next_action=DialogueActionLook(
-                1, False, next_action=DialogueActionTalkNoResponse(
+                1, False, next_action=DialogueActionTalkMove(
+                            'reset_front', False, next_action=DialogueActionTalkNoResponse(
                                 'look', False, next_action=DialogueActionLook(
                                     3, cancelable=False, next_action=DialogueActionTalkNoResponse(
-                                        'look done', False, next_action=None))))))
+                                        'look done', False, next_action=None)))))))
 
 
     def assign_return_dia(self,topic,x):

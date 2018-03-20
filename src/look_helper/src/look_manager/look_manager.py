@@ -117,8 +117,8 @@ class LookManager:
             if self.target_frame_name == "ahead":
                 rospy.loginfo("Looking ahe.")
                
-                tx = 10
-                ty = 10
+                tx = 20
+                ty = 20
                 tz = 0.5
 
                 rospy.loginfo("Looking ahead.")

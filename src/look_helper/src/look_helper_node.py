@@ -101,7 +101,7 @@ if __name__ == '__main__':
     init_message_publishers(manager)
     init_service_handlers(manager)
 
-    rate = rospy.Rate(10)
+    rate = rospy.Rate(2)
 
     while not rospy.is_shutdown():
         manager.publish_static_transforms()

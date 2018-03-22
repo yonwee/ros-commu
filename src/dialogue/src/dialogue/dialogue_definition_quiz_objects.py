@@ -35,13 +35,13 @@ class DialogueLibraryQuiz(DialogueLibrary):
         cjdatalen = len(cjdata)
         store['full'] = cjdata
         store['block'] = self.assign_return_dia(topic,x=1)
-#         return Dialogue(store['block'])
-        return Dialogue(DialogueActionTalkNoResponse(
-            'nani', False, next_action=DialogueActionMove(
-                            'nani', False, next_action=DialogueActionSleep(
-                            3, False, next_action=DialogueActionTalkNoResponse(
-                                'reset', False, next_action=DialogueActionMove(
-                                        'reset', False, next_action=None))))))
+        return Dialogue(store['block'])
+#         return Dialogue(DialogueActionTalkNoResponse(
+#             'nani', False, next_action=DialogueActionMove(
+#                             'nani', False, next_action=DialogueActionSleep(
+#                             3, False, next_action=DialogueActionTalkNoResponse(
+#                                 'reset', False, next_action=DialogueActionMove(
+#                                         'reset', False, next_action=None))))))
 
 
     def assign_return_dia(self,topic,x):

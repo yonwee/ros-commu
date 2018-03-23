@@ -36,8 +36,7 @@ class DialogueLibraryQuiz(DialogueLibrary):
         store['full'] = cjdata
         store['block'] = self.assign_return_dia(topic,x=1)
 #        return Dialogue(store['block'])
-         return Dialogue(DialogueActionTalkNoResponse(
-             "But for me to rap like a computer must be in my genes I got a laptop in my back pocket My pen'll go off when I half-cock it Got a fat knot from that rap profi  Made a living and a killing off it Ever since Bill Clinton was still in office With Monica Lewinsky feeling on his nut-sack I'm an MC still as honest But as rude and indecent as all hell syllables, killaholic (Kill 'em all with)", False, next_action=None)
+         return Dialogue(DialogueActionTalkNoResponse("But for me to rap like a computer must be in my genes I got a laptop in my back pocket My pen'll go off when I half-cock it Got a fat knot from that rap profi  Made a living and a killing off it Ever since Bill Clinton was still in office With Monica Lewinsky feeling on his nut-sack I'm an MC still as honest But as rude and indecent as all hell syllables, killaholic (Kill 'em all with)", False, next_action=None)
 #            DialogueActionMove(
 #                             'nani', False, next_action=DialogueActionSleep(
 #                             3, False, next_action=DialogueActionTalkNoResponse(
